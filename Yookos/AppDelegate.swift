@@ -12,10 +12,22 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var user :User!
+    var services :Services!
+    var profile :Profile!
+    var httpRequest :HttpRequest!
+    var login :LoginViewController!
+    var signUp : SignUpViewController!
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        user = User.init()
+        services = Services.init()
+        profile = Profile.init()
+        httpRequest = HttpRequest.init()
+        
         return true
     }
 
