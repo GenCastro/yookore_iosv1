@@ -11,31 +11,31 @@ import Foundation
 
 class SignUpViewController: UIViewController {
     
+    @IBOutlet var navBar: UINavigationBar!
+    
+    @IBOutlet var imgStep1: UIImageView!
+    
+    @IBOutlet var lblFirstname: UILabel!
+    @IBOutlet var lblLastname: UILabel!
+    @IBOutlet var lblEmail: UILabel!
+    @IBOutlet var lblConfirmEmail: UILabel!
+    @IBOutlet var lblGender: UILabel!
+    @IBOutlet var lblMaleGen: UILabel!
+    @IBOutlet var lblDate: UILabel!
+    
     @IBOutlet var txtFirstname: UITextField!
     @IBOutlet var txtLastname: UITextField!
     @IBOutlet var txtEmail: UITextField!
-    @IBOutlet var txtConfirm: UITextField!
+    @IBOutlet var txtConfirmEmail: UITextField!
     
-    var activeField: UITextField!
+    @IBOutlet var activeField: UITextField!
     
-    @IBOutlet var navBar: UINavigationBar!
-    
-    @IBOutlet var btnNext: UIButton!
-    @IBOutlet var btnSignUpWith: UIButton!
-    @IBOutlet var btnHaveProblem: UIButton!
-    
-    @IBOutlet var imgView: UIImageView!
-    
-    @IBOutlet var lblEmail: UILabel!
-    @IBOutlet var lblSurname: UILabel!
-    @IBOutlet var lblConfirm: UILabel!
-    @IBOutlet var lblOr: UILabel!
-    @IBOutlet var lbFirstname: UILabel!
-    @IBOutlet var lblLine1: UILabel!
-    @IBOutlet var lblLine2: UILabel!
+    @IBOutlet var vwDY: UIView!
+    @IBOutlet var vwMonth: UIView!
+    @IBOutlet var vwYear: UIView!
+    @IBOutlet var theView: UIView!
     
     @IBOutlet var scroller: UIScrollView!
-    @IBOutlet var dpDate: UIDatePicker!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,44 +44,45 @@ class SignUpViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
       
         
+        //view.addSubview(scroller)
+        
         scroller = UIScrollView(frame: view.bounds)
-        scroller.backgroundColor = UIColor.blackColor()
+        scroller!.contentSize = theView.bounds.size
+        scroller!.autoresizingMask = UIViewAutoresizing.FlexibleHeight
+
+
+        theView.addSubview(scroller!)
         
-        scroller.contentSize = view.bounds.size
-        scroller.contentSize.height = 650
-        scroller.autoresizingMask = UIViewAutoresizing.FlexibleHeight
+        scroller!.addSubview(imgStep1)
         
-        scroller.addSubview(navBar)
+                scroller!.addSubview(txtFirstname)
+                scroller!.addSubview(txtLastname)
+                scroller!.addSubview(txtEmail)
+                scroller!.addSubview(txtConfirmEmail)
         
-        scroller.addSubview(imgView)
+                scroller!.addSubview(lblEmail)
+                scroller!.addSubview(lblFirstname)
+                scroller!.addSubview(lblConfirmEmail)
+                scroller!.addSubview(lblGender)
+                scroller!.addSubview(lblLastname)
+                scroller!.addSubview(lblDate)
+                scroller!.addSubview(lblMaleGen)
         
-        scroller.addSubview(txtFirstname)
-        scroller.addSubview(txtLastname)
-        scroller.addSubview(txtEmail)
-        scroller.addSubview(txtConfirm)
+                scroller!.addSubview(vwDY)
+                scroller!.addSubview(vwYear)
+                scroller!.addSubview(vwMonth)
+       
+
+        lblMaleGen.FAIcon = FAType.FAGithub
         
-        scroller.addSubview(lblEmail)
-        scroller.addSubview(lbFirstname)
-        scroller.addSubview(lblConfirm)
-        scroller.addSubview(lblOr)
-        scroller.addSubview(lblSurname)
-        scroller.addSubview(lblLine1)
-        scroller.addSubview(lblLine2)
+        lblMaleGen.setFAIcon(FAType.FAGithub, iconSize: 10)
         
-        scroller.addSubview(btnNext)
-        scroller.addSubview(btnSignUpWith)
-        scroller.addSubview(btnHaveProblem)
-        scroller.backgroundColor = UIColor.clearColor()
+        lblMaleGen.setFAText(prefixText: "follow me on ", icon: FAType.FATwitter, postfixText: ". Thanks!", size: 10)
         
-        view.addSubview(scroller)
-        
-        
-        let tap = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
-        view.addGestureRecognizer(tap)
 
     }
     
-    /*#############################################################################################             
+    /*############################################################################################             
     
     ------>  ---->  WHEN TEXTFIELDS ARE ACTIVE
 
@@ -125,7 +126,7 @@ class SignUpViewController: UIViewController {
     }
     
     
-    /*#############################################################################################
+    /*############################################################################################
     
     ------>  ---->  WHEN BUTTONS ARE CLICKED
     
@@ -139,7 +140,7 @@ class SignUpViewController: UIViewController {
     }
     
     
-    /*#############################################################################################
+    /*############################################################################################
     
     ------>  ---->  WHEN KEYBOARD IS APPEARS/DISAPPEARS
     
@@ -188,5 +189,11 @@ class SignUpViewController: UIViewController {
     func handleTap(sender: UITapGestureRecognizer? = nil) {
        
         self.view.endEditing(true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        scroller!.contentSize = CGSize(width: 320, height: 700)
     }
 }

@@ -22,6 +22,13 @@
 		1637F3E41C7EF8C700B43327 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3DF1C7EF8C700B43327 /* Services.swift */; };
 		1637F3E51C7EF8C700B43327 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3E01C7EF8C700B43327 /* User.swift */; };
 		1637F3E71C7EF8E000B43327 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3E61C7EF8E000B43327 /* Services.plist */; };
+		1637F3EA1C7F01E500B43327 /* logo_with_taglines.png in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3E91C7F01E500B43327 /* logo_with_taglines.png */; };
+		1637F3EC1C7F020100B43327 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3EB1C7F020100B43327 /* background.png */; };
+		1637F3F01C7F35C900B43327 /* step1_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3EF1C7F35C900B43327 /* step1_bg.png */; };
+		1637F3F21C7F35E300B43327 /* step2_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3F11C7F35E300B43327 /* step2_bg.png */; };
+		1637F3F81C7F3EB400B43327 /* SignUpStepOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3F71C7F3EB400B43327 /* SignUpStepOneView.swift */; };
+		1637F3FB1C7F472E00B43327 /* FAIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3F91C7F472E00B43327 /* FAIcon.swift */; };
+		1637F3FC1C7F472E00B43327 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3FA1C7F472E00B43327 /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +70,13 @@
 		1637F3DF1C7EF8C700B43327 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		1637F3E01C7EF8C700B43327 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1637F3E61C7EF8E000B43327 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
+		1637F3E91C7F01E500B43327 /* logo_with_taglines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_with_taglines.png; sourceTree = "<group>"; };
+		1637F3EB1C7F020100B43327 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		1637F3EF1C7F35C900B43327 /* step1_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step1_bg.png; sourceTree = "<group>"; };
+		1637F3F11C7F35E300B43327 /* step2_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step2_bg.png; sourceTree = "<group>"; };
+		1637F3F71C7F3EB400B43327 /* SignUpStepOneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpStepOneView.swift; sourceTree = "<group>"; };
+		1637F3F91C7F472E00B43327 /* FAIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAIcon.swift; sourceTree = "<group>"; };
+		1637F3FA1C7F472E00B43327 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +127,9 @@
 		1637F3A71C7EF76C00B43327 /* Yookos */ = {
 			isa = PBXGroup;
 			children = (
+				1637F3F91C7F472E00B43327 /* FAIcon.swift */,
+				1637F3FA1C7F472E00B43327 /* FontAwesome.ttf */,
+				1637F3E81C7F01D400B43327 /* Images */,
 				1637F3DB1C7EF89200B43327 /* Objects */,
 				1637F3D61C7EF81300B43327 /* Account */,
 				1637F3A81C7EF76C00B43327 /* AppDelegate.swift */,
@@ -147,8 +164,8 @@
 		1637F3D61C7EF81300B43327 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				1637F3D71C7EF87A00B43327 /* loginViewController.swift */,
-				1637F3D81C7EF87A00B43327 /* SignUpViewController.swift */,
+				1637F3F61C7F3E6100B43327 /* SignUP */,
+				1637F3F51C7F3E5700B43327 /* Login */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -163,6 +180,34 @@
 				1637F3E01C7EF8C700B43327 /* User.swift */,
 			);
 			name = Objects;
+			sourceTree = "<group>";
+		};
+		1637F3E81C7F01D400B43327 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1637F3F11C7F35E300B43327 /* step2_bg.png */,
+				1637F3EB1C7F020100B43327 /* background.png */,
+				1637F3EF1C7F35C900B43327 /* step1_bg.png */,
+				1637F3E91C7F01E500B43327 /* logo_with_taglines.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		1637F3F51C7F3E5700B43327 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1637F3D71C7EF87A00B43327 /* loginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		1637F3F61C7F3E6100B43327 /* SignUP */ = {
+			isa = PBXGroup;
+			children = (
+				1637F3D81C7EF87A00B43327 /* SignUpViewController.swift */,
+				1637F3F71C7F3EB400B43327 /* SignUpStepOneView.swift */,
+			);
+			name = SignUP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +316,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1637F3F01C7F35C900B43327 /* step1_bg.png in Resources */,
+				1637F3FC1C7F472E00B43327 /* FontAwesome.ttf in Resources */,
 				1637F3E71C7EF8E000B43327 /* Services.plist in Resources */,
+				1637F3EC1C7F020100B43327 /* background.png in Resources */,
+				1637F3EA1C7F01E500B43327 /* logo_with_taglines.png in Resources */,
 				1637F3B31C7EF76C00B43327 /* LaunchScreen.storyboard in Resources */,
+				1637F3F21C7F35E300B43327 /* step2_bg.png in Resources */,
 				1637F3B01C7EF76C00B43327 /* Assets.xcassets in Resources */,
 				1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */,
 			);
@@ -302,10 +352,12 @@
 				1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */,
 				1637F3E11C7EF8C700B43327 /* HttpRequest.swift in Sources */,
 				1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */,
+				1637F3FB1C7F472E00B43327 /* FAIcon.swift in Sources */,
 				1637F3E31C7EF8C700B43327 /* Profile.swift in Sources */,
 				1637F3E21C7EF8C700B43327 /* MyProtocol.swift in Sources */,
 				1637F3E51C7EF8C700B43327 /* User.swift in Sources */,
 				1637F3E41C7EF8C700B43327 /* Services.swift in Sources */,
+				1637F3F81C7F3EB400B43327 /* SignUpStepOneView.swift in Sources */,
 				1637F3DA1C7EF87A00B43327 /* SignUpViewController.swift in Sources */,
 				1637F3D91C7EF87A00B43327 /* loginViewController.swift in Sources */,
 			);
@@ -398,7 +450,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -437,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,7 +503,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Yookos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.Yookos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -464,7 +516,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Yookos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.Yookos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -538,6 +590,7 @@
 				1637F3CF1C7EF76C00B43327 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1637F3D01C7EF76C00B43327 /* Build configuration list for PBXNativeTarget "YookosTests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +599,7 @@
 				1637F3D21C7EF76C00B43327 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1637F3D31C7EF76C00B43327 /* Build configuration list for PBXNativeTarget "YookosUITests" */ = {
 			isa = XCConfigurationList;
@@ -554,6 +608,7 @@
 				1637F3D51C7EF76C00B43327 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
