@@ -26,9 +26,10 @@
 		1637F3EC1C7F020100B43327 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3EB1C7F020100B43327 /* background.png */; };
 		1637F3F01C7F35C900B43327 /* step1_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3EF1C7F35C900B43327 /* step1_bg.png */; };
 		1637F3F21C7F35E300B43327 /* step2_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3F11C7F35E300B43327 /* step2_bg.png */; };
-		1637F3F81C7F3EB400B43327 /* SignUpStepOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3F71C7F3EB400B43327 /* SignUpStepOneView.swift */; };
+		1637F3F81C7F3EB400B43327 /* SignUpStepTwoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3F71C7F3EB400B43327 /* SignUpStepTwoView.swift */; };
 		1637F3FB1C7F472E00B43327 /* FAIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3F91C7F472E00B43327 /* FAIcon.swift */; };
 		1637F3FC1C7F472E00B43327 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3FA1C7F472E00B43327 /* FontAwesome.ttf */; };
+		167989971C85E05900A32CC0 /* ico_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 167989961C85E05900A32CC0 /* ico_facebook.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,9 +75,10 @@
 		1637F3EB1C7F020100B43327 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		1637F3EF1C7F35C900B43327 /* step1_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step1_bg.png; sourceTree = "<group>"; };
 		1637F3F11C7F35E300B43327 /* step2_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step2_bg.png; sourceTree = "<group>"; };
-		1637F3F71C7F3EB400B43327 /* SignUpStepOneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpStepOneView.swift; sourceTree = "<group>"; };
+		1637F3F71C7F3EB400B43327 /* SignUpStepTwoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpStepTwoView.swift; sourceTree = "<group>"; };
 		1637F3F91C7F472E00B43327 /* FAIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAIcon.swift; sourceTree = "<group>"; };
 		1637F3FA1C7F472E00B43327 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		167989961C85E05900A32CC0 /* ico_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_facebook.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				1637F3F11C7F35E300B43327 /* step2_bg.png */,
+				167989961C85E05900A32CC0 /* ico_facebook.png */,
 				1637F3EB1C7F020100B43327 /* background.png */,
 				1637F3EF1C7F35C900B43327 /* step1_bg.png */,
 				1637F3E91C7F01E500B43327 /* logo_with_taglines.png */,
@@ -205,7 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				1637F3D81C7EF87A00B43327 /* SignUpViewController.swift */,
-				1637F3F71C7F3EB400B43327 /* SignUpStepOneView.swift */,
+				1637F3F71C7F3EB400B43327 /* SignUpStepTwoView.swift */,
 			);
 			name = SignUP;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				1637F3F21C7F35E300B43327 /* step2_bg.png in Resources */,
 				1637F3B01C7EF76C00B43327 /* Assets.xcassets in Resources */,
 				1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */,
+				167989971C85E05900A32CC0 /* ico_facebook.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +361,7 @@
 				1637F3E21C7EF8C700B43327 /* MyProtocol.swift in Sources */,
 				1637F3E51C7EF8C700B43327 /* User.swift in Sources */,
 				1637F3E41C7EF8C700B43327 /* Services.swift in Sources */,
-				1637F3F81C7F3EB400B43327 /* SignUpStepOneView.swift in Sources */,
+				1637F3F81C7F3EB400B43327 /* SignUpStepTwoView.swift in Sources */,
 				1637F3DA1C7EF87A00B43327 /* SignUpViewController.swift in Sources */,
 				1637F3D91C7EF87A00B43327 /* loginViewController.swift in Sources */,
 			);

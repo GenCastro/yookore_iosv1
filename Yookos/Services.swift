@@ -41,14 +41,12 @@ class Services {
         return NSURL(string: getUserAcc()+"/v1/create-account")!
         
     }
+    internal func validateEmail() ->NSURL
+    {
+        return NSURL(string: "http://helper-suite.apps.yookosapps.com/v1/validate-email")!
+    }
     internal func login() ->NSURL
     {
-//        let url:NSURL?
-//        let strUrl:String = getBaseUrls().valueForKey("UserAcc") as! String + "/v1/authenticate"
-//        
-//        url = NSURL(string: strUrl)
-//        
-//        return url!
         return NSURL(string: getUserAcc()+"/v1/authenticate")!
     }
     

@@ -20,7 +20,7 @@ class HttpRequest {
         
     }
     
-    internal func makePostRequest(url : NSURL ,body : AnyObject)
+    internal func makePostRequest(url : NSURL ,body : AnyObject,objClass : String,funcName :String)
     {
 
         do {
@@ -38,30 +38,17 @@ class HttpRequest {
             request.addValue((appDel.services?.getToken())!, forHTTPHeaderField: "Authorization")
             
             
-            
+            defer{
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
                 
                 if let httpResponse = response as? NSHTTPURLResponse {
                     
-                        
-                        do {
-                            
-                            let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! NSDictionary
-                            
-                            var pt : MyProtocol
-                            pt = MyProtocol.init()
-                            pt.requestFinished(httpResponse.statusCode, dic: jsonResult)
-                            print("Result -> \(jsonResult.valueForKey("username"))")
-                            
-                        } catch {
-                            
-                            var pt : MyProtocol
-                            pt = MyProtocol.init()
-                            pt.requestFinished(httpResponse.statusCode, dic: "")
-                            print("Error and here")
-                        }
-                        
-                    
+                    let code = httpResponse.statusCode
+                    print(code)
+                    var pt : MyProtocol
+                    pt = MyProtocol.init()
+                    pt.requestFinished(httpResponse.statusCode, dic: data!,objClass: objClass,funcName: funcName)
+                    print(" passed 1" )
                 }else
                 {
                     
@@ -80,7 +67,7 @@ class HttpRequest {
             while task.state == NSURLSessionTaskState.Running {
                 
             }
-            print("task done")
+                print("task done")}
         } catch {
             print(error)
         }

@@ -11,13 +11,24 @@ import Foundation
 class MyProtocol {
     
     var login :LoginViewController
+    var signup : SignUpViewController
+
     init()
     {
         login = LoginViewController.init()
+        signup = SignUpViewController.init()
     }
     
-    func requestFinished(code :Int ,dic: AnyObject)
+    func requestFinished(code :Int ,dic: AnyObject,objClass : String,funcName : String)
     {
-        login.sharedFunction(code, dic: dic)
+        if objClass == "login"
+        {
+            login.sharedFunction(code, dic: dic)
+            
+        }else if objClass == "signup"
+        {
+            signup.receiveRequest(code, response: dic, funcName: funcName)
+        }
     }
+    
 }

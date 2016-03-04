@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var appDel:AppDelegate?
     @IBOutlet var welcomeView: UIView!
     @IBOutlet var btnLogin: UIButton!
     @IBOutlet var btnSingUp: UIButton!
@@ -17,8 +18,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+        
+        //adding the background picture
         UIGraphicsBeginImageContext(welcomeView.frame.size);
         
         UIGraphicsBeginImageContext(welcomeView.frame.size)

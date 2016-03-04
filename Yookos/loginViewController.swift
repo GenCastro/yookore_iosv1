@@ -12,13 +12,23 @@ import UIKit
 class LoginViewController : UIViewController {
     
      var appDel:AppDelegate?
+    
     @IBOutlet var btnLogin: UIButton!
     @IBOutlet var txtPassword: UITextField!
     @IBOutlet var txtUsername: UITextField!
     
+    
+    @IBAction func back(sender: UIBarButtonItem) {
+        
+        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     /*
@@ -35,28 +45,42 @@ class LoginViewController : UIViewController {
         
         appDel?.profile.username = txtUsername.text
         appDel?.profile.password = txtPassword.text
-        appDel?.httpRequest.makePostRequest(url!, body: json)
+        appDel?.httpRequest.makePostRequest(url!, body: json,objClass: "login",funcName: "login")
         
     }
-    func sharedFunction(code: Int,dic:AnyObject) {
-        
-        print("called for this")
-        
-        
+    
+    func sharedFunction(code: Int,dic:AnyObject)
+    {
                 if code == 200{
                     
-                    let checkUser = dic.valueForKey("legacyuser") as! Bool
-        
-                    if  checkUser == true
+                    do
                     {
-                       appDel = UIApplication.sharedApplication().delegate as? AppDelegate
-                    
-                        _ = getB64Auth((appDel?.profile.username)!,password: (appDel?.profile.password)!)
+                   
+                        let jsonResult = try NSJSONSerialization.JSONObjectWithData(dic as! NSData, options: []) as! NSDictionary
+                        print("Access_Token -> \(jsonResult.valueForKey("access_token"))")
+                        print("userid -> \(jsonResult.valueForKey("userid"))")
+                        print("Fullname -> \(jsonResult.valueForKey("fullname"))")
+                        print("email -> \(jsonResult.valueForKey("email"))")
                         
-                    }else
+                        let checkUser = jsonResult.valueForKey("legacyuser") as! Bool
+                        
+                        if  checkUser == true
+                        {
+                            appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                            
+                            _ = getB64Auth((appDel?.profile.username)!,password: (appDel?.profile.password)!)
+                            
+                        }else
+                        {
+                            
+                        }
+                    }catch
                     {
                         
                     }
+                    
+
+                    
                 }else if code == 404
                 {
                      print("\(code)")
