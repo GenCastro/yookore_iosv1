@@ -18,6 +18,7 @@ class Profile {
     var email:String?
     var currentcountry:String?
     var birthdate:NSTimeInterval?
+    var dateOfBirth:String?
     var gender:String?
     var terms : Bool?
     

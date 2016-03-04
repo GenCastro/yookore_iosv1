@@ -76,7 +76,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     var lastnameVer : Bool = false
     var emailVer : Bool = false
     var dateVer : Bool = false
-    var gender : Bool = false
+    var gender : String = "Male"
     var day : String = ""
     var month : String = ""
     var year : String = ""
@@ -312,6 +312,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             lblFemaleICon.FAIcon = FAType.FAGithub
             lblFemaleICon.setFAIcon(FAType.FAGithub, iconSize: 15)
             lblFemaleICon.setFAText(prefixText: "", icon: FAType.FACheckCircle, postfixText: "", size: 15)
+        gender = "Female"
         
     }
     func maleTap(sender: UITapGestureRecognizer? = nil) {
@@ -326,7 +327,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         lblMaleIcon.FAIcon = FAType.FAGithub
         lblMaleIcon.setFAIcon(FAType.FAGithub, iconSize: 15)
         lblMaleIcon.setFAText(prefixText: "", icon: FAType.FACheckCircle, postfixText: "", size: 15)
-        
+        gender = "Male"
     }
     
     func closeErrorTap(sender: UITapGestureRecognizer? = nil) {
@@ -348,12 +349,11 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         let chk = checkAlphabet(sender.text!)
         
-    
         if chk == "0"
         {
-            
+            nameVer = true
         }else if chk == "1"
-        {
+        {   nameVer = false
             var msg = ""
             if sender.isEqual(txtFirstname)
             {
@@ -370,6 +370,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             
         }else if chk == "2"
         {
+            nameVer = false
             defer{
             dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
                 
@@ -381,7 +382,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             sender.becomeFirstResponder()
         }else if chk == "3"
         {
-            
+            nameVer = false
             
             defer{
             dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
@@ -401,7 +402,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         activeField = sender
         
         if sender.text == ""
-        {
+        {   emailVer = false
             lblErrorMsg.FAIcon = FAType.FAGithub
             lblErrorMsg.setFAIcon(FAType.FAGithub, iconSize: 17)
             lblErrorMsg.setFAText(prefixText: "", icon: FAType.FAClose, postfixText: "\tEmail address is required", size: 12)
@@ -489,6 +490,19 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     
     ###########################################################################################*/
     @IBAction func nextStep(sender: UIButton) {
+        
+        
+        appDel?.profile.firstname = txtFirstname.text
+        appDel?.profile.lastname = txtLastname.text
+        appDel?.profile.email = txtEmail.text
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd-MMMM-yyyy"
+        let date = dateFormatter.dateFromString(day + "-" + month + "-" + year)
+        let timeStamp = date?.timeIntervalSince1970
+        appDel?.profile.birthdate = timeStamp
+        appDel?.profile.gender = gender
+        appDel?.profile.dateOfBirth = dateFormatter.stringFromDate(date!)
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
