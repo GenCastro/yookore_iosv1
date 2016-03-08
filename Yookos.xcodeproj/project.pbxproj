@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161189861C8D6086006F8082 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189851C8D6086006F8082 /* LocationManager.swift */; };
+		161189881C8D63E5006F8082 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161189871C8D63E5006F8082 /* CoreLocation.framework */; };
+		161189941C8D9091006F8082 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161189931C8D9091006F8082 /* FBSDKCoreKit.framework */; };
+		161189971C8D909E006F8082 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161189951C8D909E006F8082 /* Bolts.framework */; };
+		161189981C8D909E006F8082 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161189961C8D909E006F8082 /* FBSDKLoginKit.framework */; };
+		1611899A1C8DB1BE006F8082 /* TermsNConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189991C8DB1BE006F8082 /* TermsNConditions.swift */; };
+		1611899C1C8DC2BA006F8082 /* HelpCentre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611899B1C8DC2BA006F8082 /* HelpCentre.swift */; };
+		1611899E1C8EB0C7006F8082 /* ExtentionsMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611899D1C8EB0C7006F8082 /* ExtentionsMethods.swift */; };
 		1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3A81C7EF76C00B43327 /* AppDelegate.swift */; };
 		1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3AA1C7EF76C00B43327 /* ViewController.swift */; };
 		1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3AC1C7EF76C00B43327 /* Main.storyboard */; };
@@ -50,6 +58,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		161189851C8D6086006F8082 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		161189871C8D63E5006F8082 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1611898B1C8D8B32006F8082 /* FBBridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FBBridging-Header.h"; sourceTree = "<group>"; };
+		161189931C8D9091006F8082 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		161189951C8D909E006F8082 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		161189961C8D909E006F8082 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		161189991C8DB1BE006F8082 /* TermsNConditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsNConditions.swift; sourceTree = "<group>"; };
+		1611899B1C8DC2BA006F8082 /* HelpCentre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCentre.swift; sourceTree = "<group>"; };
+		1611899D1C8EB0C7006F8082 /* ExtentionsMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtentionsMethods.swift; sourceTree = "<group>"; };
 		1637F3A51C7EF76C00B43327 /* Yookos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yookos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1637F3A81C7EF76C00B43327 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1637F3AA1C7EF76C00B43327 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +103,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				161189971C8D909E006F8082 /* Bolts.framework in Frameworks */,
+				161189881C8D63E5006F8082 /* CoreLocation.framework in Frameworks */,
+				161189981C8D909E006F8082 /* FBSDKLoginKit.framework in Frameworks */,
+				161189941C8D9091006F8082 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,9 +127,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		161189921C8D9055006F8082 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				161189951C8D909E006F8082 /* Bolts.framework */,
+				161189961C8D909E006F8082 /* FBSDKLoginKit.framework */,
+				161189931C8D9091006F8082 /* FBSDKCoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1637F39C1C7EF76C00B43327 = {
 			isa = PBXGroup;
 			children = (
+				161189921C8D9055006F8082 /* Frameworks */,
+				161189871C8D63E5006F8082 /* CoreLocation.framework */,
 				1637F3A71C7EF76C00B43327 /* Yookos */,
 				1637F3BC1C7EF76C00B43327 /* YookosTests */,
 				1637F3C71C7EF76C00B43327 /* YookosUITests */,
@@ -141,6 +174,7 @@
 				1637F3B11C7EF76C00B43327 /* LaunchScreen.storyboard */,
 				1637F3E61C7EF8E000B43327 /* Services.plist */,
 				1637F3B41C7EF76C00B43327 /* Info.plist */,
+				1611898B1C8D8B32006F8082 /* FBBridging-Header.h */,
 			);
 			path = Yookos;
 			sourceTree = "<group>";
@@ -168,6 +202,7 @@
 			children = (
 				1637F3F61C7F3E6100B43327 /* SignUP */,
 				1637F3F51C7F3E5700B43327 /* Login */,
+				1611899B1C8DC2BA006F8082 /* HelpCentre.swift */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -180,6 +215,8 @@
 				1637F3DE1C7EF8C700B43327 /* Profile.swift */,
 				1637F3DF1C7EF8C700B43327 /* Services.swift */,
 				1637F3E01C7EF8C700B43327 /* User.swift */,
+				161189851C8D6086006F8082 /* LocationManager.swift */,
+				1611899D1C8EB0C7006F8082 /* ExtentionsMethods.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -209,6 +246,7 @@
 			children = (
 				1637F3D81C7EF87A00B43327 /* SignUpViewController.swift */,
 				1637F3F71C7F3EB400B43327 /* SignUpStepTwoView.swift */,
+				161189991C8DB1BE006F8082 /* TermsNConditions.swift */,
 			);
 			name = SignUP;
 			sourceTree = "<group>";
@@ -281,6 +319,7 @@
 				TargetAttributes = {
 					1637F3A41C7EF76C00B43327 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = H6TK77555C;
 					};
 					1637F3B81C7EF76C00B43327 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -354,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */,
+				1611899E1C8EB0C7006F8082 /* ExtentionsMethods.swift in Sources */,
 				1637F3E11C7EF8C700B43327 /* HttpRequest.swift in Sources */,
 				1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */,
 				1637F3FB1C7F472E00B43327 /* FAIcon.swift in Sources */,
@@ -361,9 +401,12 @@
 				1637F3E21C7EF8C700B43327 /* MyProtocol.swift in Sources */,
 				1637F3E51C7EF8C700B43327 /* User.swift in Sources */,
 				1637F3E41C7EF8C700B43327 /* Services.swift in Sources */,
+				161189861C8D6086006F8082 /* LocationManager.swift in Sources */,
 				1637F3F81C7F3EB400B43327 /* SignUpStepTwoView.swift in Sources */,
 				1637F3DA1C7EF87A00B43327 /* SignUpViewController.swift in Sources */,
+				1611899C1C8DC2BA006F8082 /* HelpCentre.swift in Sources */,
 				1637F3D91C7EF87A00B43327 /* loginViewController.swift in Sources */,
+				1611899A1C8DB1BE006F8082 /* TermsNConditions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,11 +549,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Yookos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.Yookos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Yookos/FBBridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -519,11 +569,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Yookos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.Yookos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Yookos/FBBridging-Header.h";
 			};
 			name = Release;
 		};

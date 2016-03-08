@@ -9,7 +9,7 @@
 import UIKit
 
 
-class LoginViewController : UIViewController {
+class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
     
      var appDel:AppDelegate?
     
@@ -17,6 +17,7 @@ class LoginViewController : UIViewController {
     @IBOutlet var txtPassword: UITextField!
     @IBOutlet var txtUsername: UITextField!
     
+    @IBOutlet var vwFb: FBSDKLoginButton!
     
     @IBAction func back(sender: UIBarButtonItem) {
         
@@ -25,16 +26,57 @@ class LoginViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+
+        
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        print("User Logged In")
+        
+        if ((error) != nil)
+        {
+            // Process error
+        }
+        else if result.isCancelled {
+            // Handle cancellations
+        }
+        else {
+            // If you ask for multiple permissions at once, you
+            // should check if specific permissions missing
+            if result.grantedPermissions.contains("email")
+            {
+                // Do work
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("User Logged Out")
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
     }
-    
-    /*
-    
-    
-    */
+    func returnUserData()
+    {
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if ((error) != nil)
+            {
+                // Process error
+                print("Error: \(error)")
+            }
+            else
+            {
+                print("fetched user: \(result)")
+                let userName : NSString = result.valueForKey("name") as! NSString
+                print("User Name is: \(userName)")
+                let userEmail : NSString = result.valueForKey("email") as! NSString
+                print("User Email is: \(userEmail)")
+            }
+        })
+    }
     
     @IBAction func login(sender: AnyObject) {
         
@@ -46,6 +88,8 @@ class LoginViewController : UIViewController {
         appDel?.profile.username = txtUsername.text
         appDel?.profile.password = txtPassword.text
         appDel?.httpRequest.makePostRequest(url!, body: json,objClass: "login",funcName: "login")
+        
+        
         
     }
     

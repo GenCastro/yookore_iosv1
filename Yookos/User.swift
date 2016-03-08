@@ -15,6 +15,9 @@ class User {
     var userid:String = ""
     var message:String = ""
     var legacyuser:Bool = false
+    var currentCountry :String = ""
+    var currentState : String = ""
+    var currentCity : String = ""
     
     init()
     {
@@ -24,9 +27,9 @@ class User {
             self.userid = ""
             self.message = ""
             self.legacyuser = false
-        
-        
-        
+            self.currentCity = ""
+            self.currentCountry = ""
+            self.currentState = ""
     }
     
 }

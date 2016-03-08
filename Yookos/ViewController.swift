@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,CLLocationManagerDelegate{
 
     var appDel:AppDelegate?
+    //let locationManager = CLLocationManager()
     @IBOutlet var welcomeView: UIView!
     @IBOutlet var btnLogin: UIButton!
     @IBOutlet var btnSingUp: UIButton!
@@ -21,6 +23,20 @@ class ViewController: UIViewController {
         
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         
+        let loc = LocationManager.init()
+        loc.viewDidLoad()
+        /*// Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }*/
+
         //adding the background picture
         UIGraphicsBeginImageContext(welcomeView.frame.size);
         
@@ -34,7 +50,6 @@ class ViewController: UIViewController {
         imgLogo.clipsToBounds = true;
         
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
