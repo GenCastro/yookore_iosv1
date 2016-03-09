@@ -57,7 +57,6 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     var attributedString = NSMutableAttributedString(string:"")
     
     var accepted = false
-    var countrySelected = false
     var verPassword = false
     var passMatch = false
     
@@ -171,7 +170,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         lblCountrySelect.text = pickOption[pickCountryCode.indexOf("ZA")!]
         lblCountCode.text = "+" + prefixCodes["ZA"]!
         lblConfirmCode.text = "+" + prefixCodes["ZA"]!
-        countrySelected = true
+        
     }
     
     func acceptTnCsTap(gr:UITapGestureRecognizer)
@@ -208,23 +207,36 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     }
     @IBAction func signup(sender: AnyObject) {
         
-        appDel?.profile.currentcountry = lblCountrySelect.text
-        appDel?.profile.cellphone = lblCountCode.text! + txtNumber.text!
-        appDel?.profile.password = txtPassword.text
-        appDel?.profile.terms = accepted
         
-        let url = appDel?.services.signUp()
-        let json :[String : AnyObject] = ["password":(appDel?.profile.password)!,
-                                          "firstname":(appDel?.profile.firstname)!,
-                                          "lastname":(appDel?.profile.lastname)!,
-                                          "cellphone":(appDel?.profile.cellphone)!,
-                                          "email":(appDel?.profile.email)!,
-                                          "currentcountry":(appDel?.profile.currentcountry)!,
-                                          "birthdate":(appDel?.profile.birthdate)!,
-                                          "gender":(appDel?.profile.gender)!,
-                                          "terms":(appDel?.profile.terms)!]
+        if passMatch == true && verPassword == true
+        {
+            appDel?.profile.currentcountry = lblCountrySelect.text
+            appDel?.profile.cellphone = lblCountCode.text! + txtNumber.text!
+            appDel?.profile.password = txtPassword.text
+            appDel?.profile.terms = accepted
+            
+            let url = appDel?.services.signUp()
+            let json :[String : AnyObject] = ["password":(appDel?.profile.password)!,
+                "firstname":(appDel?.profile.firstname)!,
+                "lastname":(appDel?.profile.lastname)!,
+                "cellphone":(appDel?.profile.cellphone)!,
+                "email":(appDel?.profile.email)!,
+                "currentcountry":(appDel?.profile.currentcountry)!,
+                "birthdate":(appDel?.profile.birthdate)!,
+                "gender":(appDel?.profile.gender)!,
+                "terms":(appDel?.profile.terms)!]
+            
+            appDel?.httpRequest.makePostRequest(url!, body: json, objClass: "signup2", funcName: "signup")
+        }else if verPassword == false
+        {
+            validatePassword(txtPassword)
+            
+        }else if passMatch == false
+        {
+            matchPass(txtConfirmPass)
+        }
         
-        appDel?.httpRequest.makePostRequest(url!, body: json, objClass: "signup2", funcName: "signup")
+        
         
     }
     @IBAction func haveProblem(sender: AnyObject) {
@@ -339,10 +351,22 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
        
 
     }
-    @IBAction func matchEmails(sender: AnyObject) {
+    @IBAction func matchPass(sender: AnyObject) {
         
          passMatch = true
-        if txtConfirmPass.text != txtPassword.text
+        
+        if txtConfirmPass.text == ""
+        {
+            defer {
+                dispatch_async( dispatch_get_main_queue(),{
+                    let alert = UIAlertController(title: "Password", message:"Please confirm email. y", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                    self.presentViewController(alert, animated: true){}
+                })
+            }
+
+        }
+        else if txtConfirmPass.text != txtPassword.text
         {
             passMatch = false
             defer {

@@ -56,7 +56,11 @@ class HelpCentre: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,U
         txtProbInput!.inputAccessoryView = toolBar
         
         vwProblem!.layer.borderColor = Color.init().viewBorderColor().CGColor
-        vwProblem!.layer.borderWidth = 2.0
+        vwProblem!.layer.borderWidth = 1.0
+        txtProbInput!.layer.borderColor = Color.init().viewBorderColor().CGColor
+        txtProbInput!.layer.borderWidth = 1.0
+        txtMore!.layer.borderColor = Color.init().viewBorderColor().CGColor
+        txtMore!.layer.borderWidth = 1.0
         
         vwContent.addSubview(txtProbInput!)
         

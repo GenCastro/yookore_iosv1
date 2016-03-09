@@ -75,6 +75,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     var nameVer : Bool = false
     var lastnameVer : Bool = false
     var emailVer : Bool = false
+    var emailMatch : Bool = false
     var dateVer : Bool = false
     var gender : String = "Male"
     var day : String = ""
@@ -501,6 +502,9 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                     self.presentViewController(alert, animated: true){}
                 })
             }
+        }else
+        {
+            emailMatch = true
         }
         
         
@@ -546,21 +550,42 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     @IBAction func nextStep(sender: UIButton) {
         
         
-        appDel?.profile.firstname = txtFirstname!.text
-        appDel?.profile.lastname = txtLastname!.text
-        appDel?.profile.email = txtEmail!.text
+        if nameVer == true && lastnameVer == true && emailVer == true && dateVer == true && emailMatch == true && gender != ""
+        {
+            appDel?.profile.firstname = txtFirstname!.text
+            appDel?.profile.lastname = txtLastname!.text
+            appDel?.profile.email = txtEmail!.text
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd-MMMM-yyyy"
+            let date = dateFormatter.dateFromString(day + "-" + month + "-" + year)
+            let timeStamp = date?.timeIntervalSince1970
+            appDel?.profile.birthdate = timeStamp
+            appDel?.profile.gender = gender
+            appDel?.profile.dateOfBirth = dateFormatter.stringFromDate(date!)
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
+            self.presentViewController(nextViewController, animated:true, completion:nil)
+            
+        }else if emailVer == false
+        {
+            verEmail(txtEmail!)
+        }else if emailMatch == false
+        {
+            emailMatch(txtConfirmEmail!)
+            
+        }else if dateVer == false
+        {
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd-MMMM-yyyy"
-        let date = dateFormatter.dateFromString(day + "-" + month + "-" + year)
-        let timeStamp = date?.timeIntervalSince1970
-        appDel?.profile.birthdate = timeStamp
-        appDel?.profile.gender = gender
-        appDel?.profile.dateOfBirth = dateFormatter.stringFromDate(date!)
+        }else if gender == ""
+        {
+            
+        }else
+        {
+            
+        }
         
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
-        self.presentViewController(nextViewController, animated:true, completion:nil)
         
     }
     
@@ -697,21 +722,32 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         {
             if code == 200
             {
+                emailVer = true
                 print("USer found")
+                
             }else if code == 406
             {
+                emailVer = false
                 print("Unsupported request")
+                
             }else if code == 400
             {
+                emailVer = false
                 print("bad request")
+                
             }else if code == 401
             {
+                emailVer = false
                 print("Unauthorized")
+                
             }else if code == 404
             {
-                
+                emailVer = false
                 print("not found")
                 
+            }else
+            {
+               emailVer = false
             }
         }
     }

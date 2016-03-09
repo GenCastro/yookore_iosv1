@@ -15,6 +15,12 @@
 		1611899A1C8DB1BE006F8082 /* TermsNConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189991C8DB1BE006F8082 /* TermsNConditions.swift */; };
 		1611899C1C8DC2BA006F8082 /* HelpCentre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611899B1C8DC2BA006F8082 /* HelpCentre.swift */; };
 		1611899E1C8EB0C7006F8082 /* ExtentionsMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611899D1C8EB0C7006F8082 /* ExtentionsMethods.swift */; };
+		161189A01C900083006F8082 /* ico_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1611899F1C900083006F8082 /* ico_back@2x.png */; };
+		161189A51C902AE3006F8082 /* ico_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 161189A21C902AE3006F8082 /* ico_connect.png */; };
+		161189A61C902AE3006F8082 /* ico_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 161189A31C902AE3006F8082 /* ico_play.png */; };
+		161189A71C902AE3006F8082 /* ico_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 161189A41C902AE3006F8082 /* ico_share.png */; };
+		161189A91C9059EA006F8082 /* ico_profile_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 161189A81C9059EA006F8082 /* ico_profile_pic.png */; };
+		161189AC1C906726006F8082 /* OnBoardingTableVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189AB1C906726006F8082 /* OnBoardingTableVIew.swift */; };
 		1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3A81C7EF76C00B43327 /* AppDelegate.swift */; };
 		1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3AA1C7EF76C00B43327 /* ViewController.swift */; };
 		1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3AC1C7EF76C00B43327 /* Main.storyboard */; };
@@ -67,6 +73,12 @@
 		161189991C8DB1BE006F8082 /* TermsNConditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsNConditions.swift; sourceTree = "<group>"; };
 		1611899B1C8DC2BA006F8082 /* HelpCentre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCentre.swift; sourceTree = "<group>"; };
 		1611899D1C8EB0C7006F8082 /* ExtentionsMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtentionsMethods.swift; sourceTree = "<group>"; };
+		1611899F1C900083006F8082 /* ico_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_back@2x.png"; sourceTree = "<group>"; };
+		161189A21C902AE3006F8082 /* ico_connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_connect.png; sourceTree = "<group>"; };
+		161189A31C902AE3006F8082 /* ico_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_play.png; sourceTree = "<group>"; };
+		161189A41C902AE3006F8082 /* ico_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_share.png; sourceTree = "<group>"; };
+		161189A81C9059EA006F8082 /* ico_profile_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_profile_pic.png; sourceTree = "<group>"; };
+		161189AB1C906726006F8082 /* OnBoardingTableVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingTableVIew.swift; sourceTree = "<group>"; };
 		1637F3A51C7EF76C00B43327 /* Yookos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yookos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1637F3A81C7EF76C00B43327 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1637F3AA1C7EF76C00B43327 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +149,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		161189A11C900F95006F8082 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		161189AA1C9066DF006F8082 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				161189AB1C906726006F8082 /* OnBoardingTableVIew.swift */,
+			);
+			name = OnBoarding;
+			sourceTree = "<group>";
+		};
 		1637F39C1C7EF76C00B43327 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +227,8 @@
 		1637F3D61C7EF81300B43327 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				161189AA1C9066DF006F8082 /* OnBoarding */,
+				161189A11C900F95006F8082 /* ForgotPassword */,
 				1637F3F61C7F3E6100B43327 /* SignUP */,
 				1637F3F51C7F3E5700B43327 /* Login */,
 				1611899B1C8DC2BA006F8082 /* HelpCentre.swift */,
@@ -224,6 +253,11 @@
 		1637F3E81C7F01D400B43327 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				161189A21C902AE3006F8082 /* ico_connect.png */,
+				161189A81C9059EA006F8082 /* ico_profile_pic.png */,
+				161189A31C902AE3006F8082 /* ico_play.png */,
+				161189A41C902AE3006F8082 /* ico_share.png */,
+				1611899F1C900083006F8082 /* ico_back@2x.png */,
 				1637F3F11C7F35E300B43327 /* step2_bg.png */,
 				167989961C85E05900A32CC0 /* ico_facebook.png */,
 				1637F3EB1C7F020100B43327 /* background.png */,
@@ -359,15 +393,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				1637F3F01C7F35C900B43327 /* step1_bg.png in Resources */,
+				161189A01C900083006F8082 /* ico_back@2x.png in Resources */,
 				1637F3FC1C7F472E00B43327 /* FontAwesome.ttf in Resources */,
 				1637F3E71C7EF8E000B43327 /* Services.plist in Resources */,
 				1637F3EC1C7F020100B43327 /* background.png in Resources */,
+				161189A71C902AE3006F8082 /* ico_share.png in Resources */,
 				1637F3EA1C7F01E500B43327 /* logo_with_taglines.png in Resources */,
 				1637F3B31C7EF76C00B43327 /* LaunchScreen.storyboard in Resources */,
+				161189A61C902AE3006F8082 /* ico_play.png in Resources */,
 				1637F3F21C7F35E300B43327 /* step2_bg.png in Resources */,
 				1637F3B01C7EF76C00B43327 /* Assets.xcassets in Resources */,
 				1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */,
+				161189A51C902AE3006F8082 /* ico_connect.png in Resources */,
 				167989971C85E05900A32CC0 /* ico_facebook.png in Resources */,
+				161189A91C9059EA006F8082 /* ico_profile_pic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +441,7 @@
 				1637F3E51C7EF8C700B43327 /* User.swift in Sources */,
 				1637F3E41C7EF8C700B43327 /* Services.swift in Sources */,
 				161189861C8D6086006F8082 /* LocationManager.swift in Sources */,
+				161189AC1C906726006F8082 /* OnBoardingTableVIew.swift in Sources */,
 				1637F3F81C7F3EB400B43327 /* SignUpStepTwoView.swift in Sources */,
 				1637F3DA1C7EF87A00B43327 /* SignUpViewController.swift in Sources */,
 				1611899C1C8DC2BA006F8082 /* HelpCentre.swift in Sources */,
