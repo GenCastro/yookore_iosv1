@@ -50,4 +50,14 @@ class Services {
         return NSURL(string: getUserAcc()+"/v1/authenticate")!
     }
     
+    internal func updateLegacyPassword(userid : String) ->NSURL
+    {
+        return NSURL(string: getUserAcc()+"/v1/password/legacy/"+userid)!
+    }
+    
+    internal func loginLegacyUser(username : String) ->NSURL
+    {
+        return NSURL(string: "http://www.yookos.co.uk/api/core/v3/people/username/" + username+"/")!
+    }
+    
 }

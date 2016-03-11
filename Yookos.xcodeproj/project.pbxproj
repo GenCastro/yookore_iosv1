@@ -21,6 +21,10 @@
 		161189A71C902AE3006F8082 /* ico_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 161189A41C902AE3006F8082 /* ico_share.png */; };
 		161189A91C9059EA006F8082 /* ico_profile_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 161189A81C9059EA006F8082 /* ico_profile_pic.png */; };
 		161189AC1C906726006F8082 /* OnBoardingTableVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189AB1C906726006F8082 /* OnBoardingTableVIew.swift */; };
+		161189AF1C906E7F006F8082 /* OnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189AD1C906E7F006F8082 /* OnboardingCell.swift */; };
+		161189B01C906E7F006F8082 /* Location.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161189AE1C906E7F006F8082 /* Location.xib */; };
+		161189B21C917665006F8082 /* School.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161189B11C917665006F8082 /* School.xib */; };
+		161189B41C93120F006F8082 /* LoginTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189B31C93120F006F8082 /* LoginTerms.swift */; };
 		1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3A81C7EF76C00B43327 /* AppDelegate.swift */; };
 		1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3AA1C7EF76C00B43327 /* ViewController.swift */; };
 		1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3AC1C7EF76C00B43327 /* Main.storyboard */; };
@@ -79,6 +83,10 @@
 		161189A41C902AE3006F8082 /* ico_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_share.png; sourceTree = "<group>"; };
 		161189A81C9059EA006F8082 /* ico_profile_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_profile_pic.png; sourceTree = "<group>"; };
 		161189AB1C906726006F8082 /* OnBoardingTableVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingTableVIew.swift; sourceTree = "<group>"; };
+		161189AD1C906E7F006F8082 /* OnboardingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCell.swift; sourceTree = "<group>"; };
+		161189AE1C906E7F006F8082 /* Location.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Location.xib; sourceTree = "<group>"; };
+		161189B11C917665006F8082 /* School.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = School.xib; sourceTree = "<group>"; };
+		161189B31C93120F006F8082 /* LoginTerms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTerms.swift; sourceTree = "<group>"; };
 		1637F3A51C7EF76C00B43327 /* Yookos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yookos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1637F3A81C7EF76C00B43327 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1637F3AA1C7EF76C00B43327 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				161189AB1C906726006F8082 /* OnBoardingTableVIew.swift */,
+				161189AD1C906E7F006F8082 /* OnboardingCell.swift */,
+				161189AE1C906E7F006F8082 /* Location.xib */,
+				161189B11C917665006F8082 /* School.xib */,
 			);
 			name = OnBoarding;
 			sourceTree = "<group>";
@@ -271,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				1637F3D71C7EF87A00B43327 /* loginViewController.swift */,
+				161189B31C93120F006F8082 /* LoginTerms.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -399,6 +411,7 @@
 				1637F3EC1C7F020100B43327 /* background.png in Resources */,
 				161189A71C902AE3006F8082 /* ico_share.png in Resources */,
 				1637F3EA1C7F01E500B43327 /* logo_with_taglines.png in Resources */,
+				161189B01C906E7F006F8082 /* Location.xib in Resources */,
 				1637F3B31C7EF76C00B43327 /* LaunchScreen.storyboard in Resources */,
 				161189A61C902AE3006F8082 /* ico_play.png in Resources */,
 				1637F3F21C7F35E300B43327 /* step2_bg.png in Resources */,
@@ -406,6 +419,7 @@
 				1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */,
 				161189A51C902AE3006F8082 /* ico_connect.png in Resources */,
 				167989971C85E05900A32CC0 /* ico_facebook.png in Resources */,
+				161189B21C917665006F8082 /* School.xib in Resources */,
 				161189A91C9059EA006F8082 /* ico_profile_pic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,6 +448,7 @@
 				1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */,
 				1611899E1C8EB0C7006F8082 /* ExtentionsMethods.swift in Sources */,
 				1637F3E11C7EF8C700B43327 /* HttpRequest.swift in Sources */,
+				161189B41C93120F006F8082 /* LoginTerms.swift in Sources */,
 				1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */,
 				1637F3FB1C7F472E00B43327 /* FAIcon.swift in Sources */,
 				1637F3E31C7EF8C700B43327 /* Profile.swift in Sources */,
@@ -444,6 +459,7 @@
 				161189AC1C906726006F8082 /* OnBoardingTableVIew.swift in Sources */,
 				1637F3F81C7F3EB400B43327 /* SignUpStepTwoView.swift in Sources */,
 				1637F3DA1C7EF87A00B43327 /* SignUpViewController.swift in Sources */,
+				161189AF1C906E7F006F8082 /* OnboardingCell.swift in Sources */,
 				1611899C1C8DC2BA006F8082 /* HelpCentre.swift in Sources */,
 				1637F3D91C7EF87A00B43327 /* loginViewController.swift in Sources */,
 				1611899A1C8DB1BE006F8082 /* TermsNConditions.swift in Sources */,

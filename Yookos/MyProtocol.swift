@@ -13,19 +13,21 @@ class MyProtocol {
     var login :LoginViewController
     var signup : SignUpViewController
     var signup2 : SignUpStepTwoView
+    var loginTerms : LoginTerms
 
     init()
     {
         login = LoginViewController.init()
         signup = SignUpViewController.init()
         signup2 = SignUpStepTwoView.init()
+        loginTerms = LoginTerms.init()
     }
     
-    func requestFinished(code :Int ,dic: AnyObject,objClass : String,funcName : String)
+    func postRequestFinished(code :Int ,dic: AnyObject,objClass : String,funcName : String)
     {
         if objClass == "login"
         {
-            login.sharedFunction(code, dic: dic)
+            login.sharedFunction(code, dic: dic, funcName: funcName)
             
         }else if objClass == "signup"
         {
@@ -35,5 +37,26 @@ class MyProtocol {
             signup2.receiveRequest(code, response: dic, funcName: funcName)
         }
     }
+    
+    
+    func getRequestFinished(code : Int,dic: AnyObject,objClass : String,funcName : String)
+    {
+        
+        if objClass == "login"
+        {
+            login.sharedFunction(code, dic: dic,funcName: funcName)
+        }
+    }
+    
+    func putRequestFinished(code :Int ,dic: AnyObject,objClass : String,funcName : String)
+    {
+        if objClass == "loginterms"
+        {
+            loginTerms.receiveResponse(code, dic: dic, funcName: funcName)
+            
+        }
+    }
+    
+    
     
 }
