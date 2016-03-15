@@ -66,6 +66,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.endEditing(true)
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         scroller = UIScrollView(frame: view.bounds)
         scroller!.contentSize = view.bounds.size
@@ -240,6 +241,16 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         
     }
     @IBAction func haveProblem(sender: AnyObject) {
+        
+        dispatch_after(1,dispatch_get_main_queue(), { () -> Void in
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("help")
+            
+            let view = UIViewController.topMostController()
+            view.presentViewController(nextViewController, animated:true, completion:nil)
+            
+        })
     }
     
     /*############################################################################################
@@ -330,7 +341,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
                 dispatch_async( dispatch_get_main_queue(),{
                     let alert = UIAlertController(title: "Password", message:"Please enter password with at least one capital letter, a number and a minimum of six characters", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                    self.presentViewController(alert, animated: true){}
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
                 })
             }
         }else

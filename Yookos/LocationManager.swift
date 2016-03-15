@@ -21,14 +21,13 @@ class LocationManager: UIViewController,CLLocationManagerDelegate,UIApplicationD
         self.locationManager.requestAlwaysAuthorization()
         
         // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
+        //self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
-             locationManager.requestAlwaysAuthorization()
-            //locationManager.requestWhenInUseAuthorization()
+             
         }
     }
     

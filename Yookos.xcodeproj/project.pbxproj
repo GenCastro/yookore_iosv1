@@ -25,6 +25,7 @@
 		161189B01C906E7F006F8082 /* Location.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161189AE1C906E7F006F8082 /* Location.xib */; };
 		161189B21C917665006F8082 /* School.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161189B11C917665006F8082 /* School.xib */; };
 		161189B41C93120F006F8082 /* LoginTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189B31C93120F006F8082 /* LoginTerms.swift */; };
+		161189B61C96CAE2006F8082 /* UserInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 161189B51C96CAE2006F8082 /* UserInfo.plist */; };
 		1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3A81C7EF76C00B43327 /* AppDelegate.swift */; };
 		1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3AA1C7EF76C00B43327 /* ViewController.swift */; };
 		1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3AC1C7EF76C00B43327 /* Main.storyboard */; };
@@ -87,6 +88,7 @@
 		161189AE1C906E7F006F8082 /* Location.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Location.xib; sourceTree = "<group>"; };
 		161189B11C917665006F8082 /* School.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = School.xib; sourceTree = "<group>"; };
 		161189B31C93120F006F8082 /* LoginTerms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTerms.swift; sourceTree = "<group>"; };
+		161189B51C96CAE2006F8082 /* UserInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserInfo.plist; sourceTree = "<group>"; };
 		1637F3A51C7EF76C00B43327 /* Yookos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yookos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1637F3A81C7EF76C00B43327 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1637F3AA1C7EF76C00B43327 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				1637F3E61C7EF8E000B43327 /* Services.plist */,
 				1637F3B41C7EF76C00B43327 /* Info.plist */,
 				1611898B1C8D8B32006F8082 /* FBBridging-Header.h */,
+				161189B51C96CAE2006F8082 /* UserInfo.plist */,
 			);
 			path = Yookos;
 			sourceTree = "<group>";
@@ -365,7 +368,7 @@
 				TargetAttributes = {
 					1637F3A41C7EF76C00B43327 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = H6TK77555C;
+						DevelopmentTeam = S2936392P7;
 					};
 					1637F3B81C7EF76C00B43327 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -407,6 +410,7 @@
 				1637F3F01C7F35C900B43327 /* step1_bg.png in Resources */,
 				161189A01C900083006F8082 /* ico_back@2x.png in Resources */,
 				1637F3FC1C7F472E00B43327 /* FontAwesome.ttf in Resources */,
+				161189B61C96CAE2006F8082 /* UserInfo.plist in Resources */,
 				1637F3E71C7EF8E000B43327 /* Services.plist in Resources */,
 				1637F3EC1C7F020100B43327 /* background.png in Resources */,
 				161189A71C902AE3006F8082 /* ico_share.png in Resources */,

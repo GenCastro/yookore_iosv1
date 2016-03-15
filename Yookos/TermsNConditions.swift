@@ -18,7 +18,7 @@ class TermsNConditions: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.endEditing(true)
         // Do any additional setup after loading the view, typically from a nib.
         let url = NSURL (string: "http://google.com")
         //let url = NSURL (string: "https://chat.yookos.com/files/assests/terms.html")
@@ -31,7 +31,6 @@ class TermsNConditions: UIViewController {
         super.didReceiveMemoryWarning()
     }
     @IBAction func done(sender: AnyObject) {
-        
-        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+        UIViewController.topMostController().presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
 }

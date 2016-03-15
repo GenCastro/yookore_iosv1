@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate,UITextFieldDelegate {
+class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate,UITextFieldDelegate,UIScrollViewDelegate {
     
     var appDel:AppDelegate?
     
@@ -45,6 +45,8 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     @IBOutlet var lblYear: UILabel?
     @IBOutlet var lblYearDrop: UILabel?
     @IBOutlet var lblOR: UILabel?
+    @IBOutlet var lblLeftLine: UILabel!
+    @IBOutlet var lblRightLine: UILabel!
     
     @IBOutlet var lblErrorMsg: UILabel?
    
@@ -84,13 +86,12 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     
     @IBAction func back(sender: UIBarButtonItem) {
         
-       self.presentingViewController!
-        .dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.endEditing(true)
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
@@ -99,14 +100,35 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         //DEALING WITH SCROLLING ACTIVITIES
         
-        scroller = UIScrollView(frame: view.bounds)
-        scroller!.contentSize = theView!.bounds.size
-        scroller!.autoresizingMask = UIViewAutoresizing.FlexibleHeight
-
-        vwMainView!.addSubview(scroller!)
-        scroller!.addSubview(theView!)
-        theView!.addSubview(txtDateInput)
-       
+//        scroller = UIScrollView(frame: (self.view?.bounds)!)
+//        scroller?.contentSize = ((theView?.bounds.size))!
+//        scroller?.autoresizingMask = UIViewAutoresizing.FlexibleHeight
+//        scroller?.delegate = self
+//        scroller?.userInteractionEnabled = true
+//        scroller?.clipsToBounds = true
+//        scroller?.scrollEnabled = true
+//        
+//        txtDateInput.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        scroller?.addSubview(imgStep1!)
+//        scroller?.addSubview(btnHaveProblem!)
+//        vwMainView?.addSubview(scroller!)
+//        
+          theView?.addSubview(txtDateInput)
+//        
+//        
+        let specsScrollViewConstY = NSLayoutConstraint(item: scroller,
+            attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal,
+            toItem: btnHaveProblem, attribute: NSLayoutAttribute.Bottom, multiplier: 1,
+            constant: 10);
+        
+        scroller?.addConstraint(specsScrollViewConstY);
+//
+//        
+//        vwMainView?.clipsToBounds = true
+//        vwMainView?.layoutIfNeeded()
+        
+        
         //ADDING TAB GESTURE TO ALL VIEWS
         
         var tap = UITapGestureRecognizer(target: self, action: Selector("dayTap:"))
@@ -202,11 +224,11 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        scroller!.contentSize = CGSize(width: 320, height: 900)
-        txtFirstname!.delegate = self
-        txtLastname!.delegate = self
-        txtEmail!.delegate = self
-        txtConfirmEmail!.delegate = self
+        scroller?.contentSize = CGSize(width: self.view.bounds.width, height: 800)
+        txtFirstname?.delegate = self
+        txtLastname?.delegate = self
+        txtEmail?.delegate = self
+        txtConfirmEmail?.delegate = self
     }
     
     /*############################################################################################
@@ -294,9 +316,9 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     @IBAction func signWithTap(sender: UITapGestureRecognizer) {
         
         
-        let token = FBSDKAccessToken.currentAccessToken().tokenString!
+        let token = FBSDKAccessToken.currentAccessToken()
         
-        if token.characters.count > 0
+        if token != nil
         {
             print(FBSDKAccessToken.currentAccessToken())
         
@@ -322,14 +344,14 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                     } else if result.isCancelled {
                         // Handle cancellations
                         print("CANCELLED")
-                        print(result)
+                        self.returnUserData()
                     } else {
                         // If you ask for multiple permissions at once, you
                         // should check if specific permissions missing
                         if result.grantedPermissions.contains("email") {
                             // Do work
                             print("SEE RESULTS")
-                            self.getFBUserData()
+                            self.returnUserData()
                         }
                     }
                 })
@@ -338,14 +360,25 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
     }
     
-    func getFBUserData(){
-        if((FBSDKAccessToken.currentAccessToken()) != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
-                if (error == nil){
-                    print(result)
-                }
-            })
-        }
+    func returnUserData()
+    {
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if ((error) != nil)
+            {
+                // Process error
+                print("Error: \(error)")
+            }
+            else
+            {
+                print("fetched user: \(result)")
+                let userName : NSString = result.valueForKey("name") as! NSString
+                print("User Name is: \(userName)")
+                let userEmail : NSString = result.valueForKey("email") as! NSString
+                print("User Email is: \(userEmail)")
+            }
+        })
     }
     
     func haveProblem(sender: UIButton) {
@@ -406,50 +439,70 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         if chk == "0"
         {
-            nameVer = true
-        }else if chk == "1"
-        {   nameVer = false
-            var msg = ""
             if sender.isEqual(txtFirstname)
             {
-                msg = "First name is required"
+                nameVer = true
             }else if sender.isEqual(txtLastname)
             {
-                 msg = "last name is required"
+                lastnameVer = true
+            }
+        }else
+        {
+            
+            if sender.isEqual(txtFirstname)
+            {
+                nameVer = false
+            }else if sender.isEqual(txtLastname)
+            {
+                lastnameVer = false
             }
             
-            lblErrorMsg!.FAIcon = FAType.FAGithub
-            lblErrorMsg!.setFAIcon(FAType.FAGithub, iconSize: 17)
-            lblErrorMsg!.setFAText(prefixText: "", icon: FAType.FAClose, postfixText: msg, size: 12)
-            vwError!.hidden = false
-            
-        }else if chk == "2"
-        {
-            nameVer = false
-            defer{
-            dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
+            if chk == "1"
+            {
+                var msg = ""
+                if sender.isEqual(txtFirstname)
+                {
+                    msg = "First name is required"
+                }else if sender.isEqual(txtLastname)
+                {
+                    msg = "last name is required"
+                }
                 
-                let alert = UIAlertController(title: "Name", message:"your message", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                alert.message = "Please enter Name and Surname with less than 20 alphabetical charcters"
-                self.presentViewController(alert, animated: true){}
-            })}
-            sender.becomeFirstResponder()
-        }else if chk == "3"
-        {
-            nameVer = false
+                lblErrorMsg!.FAIcon = FAType.FAGithub
+                lblErrorMsg!.setFAIcon(FAType.FAGithub, iconSize: 17)
+                lblErrorMsg!.setFAText(prefixText: "", icon: FAType.FAClose, postfixText: msg, size: 12)
+                vwError!.hidden = false
+                
+            }else if chk == "2"
+            {
+                
+                defer{
+                    dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
+                        
+                        let alert = UIAlertController(title: "Name", message:"your message", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                        alert.message = "Please enter Name and Surname with less than 20 alphabetical charcters"
+                        self.presentViewController(alert, animated: true){}
+                    })}
+                
+            }else if chk == "3"
+            {
+                
+                defer{
+                    dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
+                        //this place to call segue or manually load the view.
+                        let alert = UIAlertController(title: "Name", message:"your message", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                        alert.message = "PLease enter only alphabetical letters in the name and surname fields."
+                        self.presentViewController(alert, animated: true){}
+                    })}
+                
+            }
             
-            defer{
-            dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
-                //this place to call segue or manually load the view.
-                let alert = UIAlertController(title: "Name", message:"your message", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                alert.message = "PLease enter only alphabetical letters in the name and surname fields."
-                self.presentViewController(alert, animated: true){}
-            })}
-            
-            sender.becomeFirstResponder()
         }
+        
+        
+        
         
     }
     @IBAction func verEmail(sender: UITextField) {
@@ -462,10 +515,10 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             lblErrorMsg!.setFAIcon(FAType.FAGithub, iconSize: 17)
             lblErrorMsg!.setFAText(prefixText: "", icon: FAType.FAClose, postfixText: "\tEmail address is required", size: 12)
             vwError!.hidden = false
-            sender.becomeFirstResponder()
+            
         }else
         {
-            let x = validateEmail(txtEmail!.text!)
+            let x = validateEmail(sender.text!)
             
             if x == false
             {
@@ -477,7 +530,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                     }) 
                 }
                 
-                sender.becomeFirstResponder()
+                
                 
             }else
             {
@@ -542,6 +595,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     }
     
     
+    
     /*############################################################################################
     
     ------>  ---->  WHEN BUTTONS ARE CLICKED
@@ -566,24 +620,66 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
-            self.presentViewController(nextViewController, animated:true, completion:nil)
+            UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+            
+        }else if nameVer == false
+        {
+            validateName(txtFirstname!)
+            
+        }else if lastnameVer == false
+        {
+            validateName(txtLastname!)
             
         }else if emailVer == false
         {
             verEmail(txtEmail!)
+            
         }else if emailMatch == false
         {
             emailMatch(txtConfirmEmail!)
             
         }else if dateVer == false
         {
-        
-        }else if gender == ""
-        {
+           if day == ""
+           {
+            dispatch_after(1, dispatch_get_main_queue(),{
+                
+                let alert = UIAlertController(title: "DATE!!", message: "You did not select date", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                })
+            
+            }else if month == ""
+           {
+            dispatch_after(1, dispatch_get_main_queue(),{
+                
+                let alert = UIAlertController(title: "DATE!!", message: "You did not select date", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            })
+            }else if year == ""
+           {
+            dispatch_after(1, dispatch_get_main_queue(),{
+                
+                let alert = UIAlertController(title: "DATE!!", message: "You did not select date", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            })
+            }
+            
             
         }else
         {
-            
+            dispatch_after(1, dispatch_get_main_queue(),{
+                
+                let alert = UIAlertController(title: "ERROR", message: "WE SEEM TO E HAVING A PROBLEM PLEASE CONTACT YOOKOS HELP CENTRE", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            })
         }
         
         
@@ -604,11 +700,11 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
        
         
-        let contentInsets = UIEdgeInsetsMake(0.0, 0.0,offset.height, 0.0);
+        _ = UIEdgeInsetsMake(0.0, 0.0,offset.height, 0.0);
         
         
-        scroller!.contentInset = contentInsets;
-        scroller!.scrollIndicatorInsets = contentInsets;
+//        scroller!.contentInset = contentInsets;
+//        scroller!.scrollIndicatorInsets = contentInsets;
         
         // If active text field is hidden by keyboard, scroll it so it's visible
         // Your app might not need or want this behavior.
@@ -625,9 +721,9 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     
     func keyboardWillHide(sender: NSNotification) {
         
-        let contentInsets = UIEdgeInsetsZero;
-        scroller!.contentInset = contentInsets;
-        scroller!.scrollIndicatorInsets = contentInsets;
+        _ = UIEdgeInsetsZero;
+//        scroller!.contentInset = contentInsets;
+//        scroller!.scrollIndicatorInsets = contentInsets;
     }
     
     func textFieldDidBeginEditing(txtField :UITextField )

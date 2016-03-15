@@ -20,22 +20,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.endEditing(true)
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         
-        let loc = LocationManager.init()
-        loc.viewDidLoad()
-        /*// Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
-        
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }*/
 
         //adding the background picture
         UIGraphicsBeginImageContext(welcomeView.frame.size);
@@ -48,6 +35,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate{
         
         imgLogo.layer.cornerRadius = 2.0;
         imgLogo.clipsToBounds = true;
+        
+        btnLogin.layer.cornerRadius = 2
+        btnSingUp.layer.cornerRadius = 2
         
     }
     override func didReceiveMemoryWarning() {

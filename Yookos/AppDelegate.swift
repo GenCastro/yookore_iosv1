@@ -28,6 +28,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         profile = Profile.init()
         httpRequest = HttpRequest.init()
         
+        
+//        let plist = NSBundle.mainBundle().pathForResource("UserInfo", ofType: "plist")
+//        let dict = NSMutableDictionary(contentsOfFile: plist!)
+//        let proStat = dict?.objectForKey("userStage") as! String
+//        
+//        if proStat.characters.count != 0
+//        {
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//            let initView = storyBoard.instantiateViewControllerWithIdentifier(proStat)
+//            
+//            self.window?.rootViewController = initView
+//        }
+       
+        self.window?.makeKeyAndVisible()
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
     }

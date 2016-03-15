@@ -16,21 +16,31 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
     @IBOutlet var btnLogin: UIButton!
     @IBOutlet var txtPassword: UITextField!
     @IBOutlet var txtUsername: UITextField!
+    @IBOutlet var btnHaveProblem: UIButton!
     
     @IBOutlet var indicator: UIActivityIndicatorView!
     @IBOutlet var vwFb: FBSDKLoginButton!
     
     @IBAction func back(sender: UIBarButtonItem) {
         
-        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+       dismissViewControllerAnimated(true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.endEditing(true)
         //indicator.stopAnimating()
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
-
+        
+        
+        btnLogin?.layer.cornerRadius = 3
         
     }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("User Logged In")
@@ -38,9 +48,12 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
         if ((error) != nil)
         {
             // Process error
+            print(error)
         }
         else if result.isCancelled {
             // Handle cancellations
+            
+            print("cancelled")
         }
         else {
             // If you ask for multiple permissions at once, you
@@ -48,6 +61,8 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
             if result.grantedPermissions.contains("email")
             {
                 // Do work
+                
+                print(result.valueForKey("email"))
             }
         }
     }
@@ -55,10 +70,7 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User Logged Out")
     }
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
+    
     func returnUserData()
     {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
@@ -83,24 +95,41 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
     @IBAction func login(sender: AnyObject) {
         
         //let request = NSMutableURLRequest(URL: (appDel?.services?.login())!)
-        let url = appDel?.services?.login()
-        let json : [String: AnyObject] = [ "username"  : txtUsername.text!, "password" : txtPassword.text!]
         
-        appDel?.profile.username = txtUsername.text
-        appDel?.profile.password = txtPassword.text
-        appDel?.httpRequest.makePostRequest(url!, body: json,objClass: "login",funcName: "login")
+        
+        if txtUsername.text == "" || txtPassword.text == ""
+        {
+            defer {
+                dispatch_after( 1,dispatch_get_main_queue(), {
+                    let alert = UIAlertController(title: "Error!", message:"username and password can not be empty", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok!", style: .Default) { _ in })
+                    
+                    self.presentViewController(alert, animated: false,completion: nil)
+                    
+                });
+            }
+        }else
+        {
+            let url = appDel?.services?.login()
+            let json : [String: AnyObject] = [ "username"  : txtUsername.text!, "password" : txtPassword.text!]
+            
+            appDel?.profile.username = txtUsername.text
+            appDel?.profile.password = txtPassword.text
+            appDel?.httpRequest.makePostRequest(url!, body: json,objClass: "login",funcName: "login")
+        }
+        
         
         
         
     }
     
-    func sharedFunction(var code: Int,dic:AnyObject,funcName : String)
+    func sharedFunction( code: Int,dic:AnyObject,funcName : String)
     {
         
         if funcName == "login"
         {
                 if code == 200{
-                    defer{
+                    
                     do
                     {
                    
@@ -114,8 +143,8 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
                         print("Fullname -> \(jsonResult.valueForKey("fullname"))")
                         print("email -> \(jsonResult.valueForKey("email"))")
                         
-                        let checkUser = jsonResult.valueForKey("legacyuser") as! Bool
-                        
+                        var checkUser = jsonResult.valueForKey("legacyuser") as! Bool
+                        checkUser = true
                         if  checkUser == true
                         {
                             appDel = UIApplication.sharedApplication().delegate as? AppDelegate
@@ -126,72 +155,85 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
                             
                         }else
                         {
-                            
+                            print("logged in")
                         }
                     }catch
                     {
                         
                     }
-                    }
+                    
 
                     
                 }else if code == 404
                 {
                      print("\(code)")
+                    let alert = UIAlertController(title: "Error", message:"You have entered wrong login creditials,please enter again", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
                     
-                    }
+                
+                    dispatch_async( dispatch_get_main_queue(),{
+                        
+                        
+                        let view = UIViewController.topMostController()
+                        view.presentViewController(alert, animated: true,completion: nil)
+                    })
+                    
+                }
         }else if funcName == "legacyUser"
         {
-            //change var
-           code = 200
+            
             if code == 200{
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                dispatch_after(1,dispatch_get_main_queue(), { () -> Void in
                     
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                     let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("loginterms")
                     
-                    let view = UIApplication.sharedApplication().keyWindow?.rootViewController
-                    view!.presentViewController(nextViewController, animated:true, completion:nil)
+                    let view = UIViewController.topMostController()
+                    view.presentViewController(nextViewController, animated:true, completion:nil)
                     
                 })
-               
-                
-//                do
-//                {
-//                    
-////                    let jsonResult = try NSJSONSerialization.JSONObjectWithData(dic as! NSData, options: []) as! NSDictionary
-////                    print("Access_Token -> \(jsonResult.valueForKey("access_token"))")
-////                    print("userid -> \(jsonResult.valueForKey("userid"))")
-////                    print("Fullname -> \(jsonResult.valueForKey("fullname"))")
-////                    print("email -> \(jsonResult.valueForKey("email"))")
-//                    
-//                    
-//                }catch
-//                {
-//                    
-//                }
-                
                 
                 
             }else if code == 401
             {
                 
-                defer {
-                    dispatch_async( dispatch_get_main_queue(), {
-                        let alert = UIAlertController(title: "Password", message:"Oh Ooh! Incorrect password", preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "I see", style: .Default) { _ in })
-                        let view = UIApplication.sharedApplication().keyWindow?.rootViewController
-                        view!.presentViewController(alert, animated: true){}
-                        
-                        });
-                }
+                let alert = UIAlertController(title: "Error", message:"You have entered wrong login creditials,please enter again", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                
+                dispatch_async( dispatch_get_main_queue(),{
+                    self.presentViewController(alert, animated: true,completion: nil)
+                })
                 
             }
             
         }
     }
+    @IBAction func forgotPassword(sender: AnyObject) {
+        
+        dispatch_after(1,dispatch_get_main_queue(), { () -> Void in
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("requestPassword")
+            
+            self.presentViewController(nextViewController, animated:true, completion:nil)
+            
+        })
+        
+    }
     
+    @IBAction func haveProblem(sender: AnyObject) {
+        
+        dispatch_after(1,dispatch_get_main_queue(), { () -> Void in
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("help")
+            
+            self.presentViewController(nextViewController, animated:true, completion:nil)
+            
+        })
+        
+    }
     private func getB64Auth(username : String,password :String) -> String{
         
         let apiLoginString = NSString(format: "%@:%@", username, password)

@@ -17,12 +17,16 @@ class LoginTerms: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.endEditing(true)
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         // Do any additional setup after loading the view, typically from a nib.
         let url = NSURL (string: "http://google.com")
         //let url = NSURL (string: "https://chat.yookos.com/files/assests/terms.html")
         let requestObj = NSURLRequest(URL: url!)
         webView.loadRequest(requestObj)
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,6 +57,11 @@ class LoginTerms: UIViewController
                 
                 print("PASSWORD UPDATED")
                 //will then push to another screen
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("welcome2")
+                
+                let view = UIViewController.topMostController()
+                view.presentViewController(nextViewController, animated:true, completion:nil)
                 
             }else if code == 404
             {

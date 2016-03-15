@@ -71,3 +71,36 @@ extension NSLocale {
     }
     
 }
+
+
+extension UIViewController{
+    
+    class func topMostController() -> UIViewController {
+        
+        var topController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        
+        while((topController?.parentViewController) != nil)
+        {
+            topController = topController?.presentedViewController
+        }
+        
+        return topController!
+    }
+}
+
+
+extension NSLayoutConstraint
+{
+    convenience init(item view1: AnyObject!,
+    attribute attr1: NSLayoutAttribute,
+    relatedBy relation: NSLayoutRelation,
+    toItem view2: AnyObject!,
+    attribute attr2: NSLayoutAttribute,
+    multiplier: CGFloat,
+    constant c: CGFloat)
+    {
+        self.init()
+    }
+    
+    
+}
