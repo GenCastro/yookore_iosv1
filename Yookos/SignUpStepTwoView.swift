@@ -68,17 +68,16 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         super.viewDidLoad()
         self.view.endEditing(true)
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
-        scroller = UIScrollView(frame: view.bounds)
-        scroller!.contentSize = view.bounds.size
-        scroller!.contentSize.height = view.bounds.height
-        scroller!.autoresizingMask = UIViewAutoresizing.FlexibleHeight
         
-        vwMainView.addSubview(scroller!)
-        scroller?.addSubview(vwContent)
-        vwContent.addSubview(txtDateInput)
+        
         //scroller?.addConstraint(NSLayoutConstraint(item: btnHaveProb, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: vwMainView, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: 0))
         
-        _ = LocationManager()
+//        let specsScrollViewConstY = NSLayoutConstraint(item: scroller,
+//            attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal,
+//            toItem: btnHaveProb, attribute: NSLayoutAttribute.Bottom, multiplier: 1,
+//            constant: 10);
+//        scroller?.addConstraint(specsScrollViewConstY);
+        
         
         
         //ADDING TAB GESTURE TO ALL VIEWS
@@ -204,7 +203,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("tnc")
-        self.presentViewController(nextViewController, animated:true, completion:nil)
+        UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
     }
     @IBAction func signup(sender: AnyObject) {
         
@@ -228,6 +227,8 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
                 "terms":(appDel?.profile.terms)!]
             
             appDel?.httpRequest.makePostRequest(url!, body: json, objClass: "signup2", funcName: "signup")
+            
+            
         }else if verPassword == false
         {
             validatePassword(txtPassword)
@@ -301,6 +302,14 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
             if code == 200
             {
                 print(response.valueForKey("username"))
+                
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(response.valueForKey("email") as! String, forKey: "email")
+                
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("versignup")
+                UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+                
             }else if code == 406
             {
                 print("Unsupported request")
@@ -354,7 +363,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
                     dispatch_async( dispatch_get_main_queue(),{
                         let alert = UIAlertController(title: "Password", message:"Please enter password with at least one capital letter, a number and a minimum of six characters", preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                        self.presentViewController(alert, animated: true){}
+                        UIViewController.topMostController().presentViewController(alert, animated: true){}
                     })
                 }
             }
@@ -372,7 +381,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
                 dispatch_async( dispatch_get_main_queue(),{
                     let alert = UIAlertController(title: "Password", message:"Please confirm email. y", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                    self.presentViewController(alert, animated: true){}
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
                 })
             }
 
@@ -384,7 +393,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
                 dispatch_async( dispatch_get_main_queue(),{
                     let alert = UIAlertController(title: "Password", message:"The passwords entered do not match.Please enter password again", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                    self.presentViewController(alert, animated: true){}
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
                 })
             }
         }

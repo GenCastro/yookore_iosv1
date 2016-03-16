@@ -12,7 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var user :User!
     var services :Services!
     var profile :Profile!
     var httpRequest :HttpRequest!
@@ -23,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        user = User.init()
+
         services = Services.init()
         profile = Profile.init()
         httpRequest = HttpRequest.init()
@@ -83,7 +82,83 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        
+        let urlParams = url.path
+        
+        if urlParams == ""
+        {
+            print("nothing")
+        }else
+        {
+            print(urlParams)
+        }
+        
+        return true
+    }
 
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        
+        let urlParams = url.path
+        url.host
+        
+        if urlParams == nil
+        {
+            print("nothing")
+        }else
+        {
+            if url.host == "user"
+            {
+                let splitParms = urlParams?.componentsSeparatedByString("/")
+                
+                let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+                
+                
+                
+                appDel.profile.access_token = splitParms![1]
+                appDel.profile.userid = splitParms![0]
+                let myEmail = NSUserDefaults.standardUserDefaults().objectForKey("email")
+                if ( myEmail != nil) {
+                 
+                    let json : [String : AnyObject] = ["email" : myEmail!,"token": appDel.profile.access_token!,"userid" : appDel.profile.userid!,"isnewuser" : true ]
+                        
+                    appDel.httpRequest.makePostRequest(appDel.services.verifyUser(), body: json, objClass: "appdel", funcName: "verUser")
+                    
+                }
+                else {// Show login
+                    
+                    
+                }
+                
+                
+                
+            }else
+            {
+                
+            }
+            print(urlParams)
+        }
+        
+        
+        return true
+    }
+    
+    func receiveResponse(code:Int, dic: AnyObject,funcName :String)
+    {
+        if funcName == "verUser"
+        {
+            if code == 200
+            {
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("welcome2")
+                UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+            }else
+            {
+                print(code)
+            }
+        }
+    }
 
 }
 

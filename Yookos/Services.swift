@@ -41,6 +41,16 @@ class Services {
         return NSURL(string: getUserAcc()+"/v1/create-account")!
         
     }
+    internal func verifyUser() ->NSURL
+    {
+        return NSURL(string: getUserAcc()+"/v1/verifyuser")!
+        
+    }
+    internal func resendVerEmail() ->NSURL
+    {
+        return NSURL(string: getUserAcc()+"/v1/reverifyuser")!
+        
+    }
     internal func validateEmail() ->NSURL
     {
         return NSURL(string: "http://helper-suite.apps.yookosapps.com/v1/validate-email")!

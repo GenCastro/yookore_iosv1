@@ -79,10 +79,10 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     var emailVer : Bool = false
     var emailMatch : Bool = false
     var dateVer : Bool = false
-    var gender : String = "Male"
-    var day : String = ""
-    var month : String = ""
-    var year : String = ""
+    //var gender : String = "Male"
+    var dy : String = ""
+    var mnth : String = ""
+    var yr : String = ""
     
     @IBAction func back(sender: UIBarButtonItem) {
         
@@ -97,7 +97,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
       
-        
+        appDel?.profile.gender = "Male"
         //DEALING WITH SCROLLING ACTIVITIES
         
 //        scroller = UIScrollView(frame: (self.view?.bounds)!)
@@ -223,7 +223,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+        appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         scroller?.contentSize = CGSize(width: self.view.bounds.width, height: 800)
         txtFirstname?.delegate = self
         txtLastname?.delegate = self
@@ -246,10 +246,11 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             pickOption.append(String(i))
         }
         pickerView!.selectRow(pickOption.indexOf("15")!, inComponent: 0, animated: true)
-        day = "15"
+        dy = "15"
         
         txtDateInput.becomeFirstResponder()
-        lblDay!.text = day
+        lblDay!.text = dy
+        appDel?.profile.day = dy
     }
     
     func monthTap(sender: UITapGestureRecognizer? = nil) {
@@ -258,10 +259,11 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         pickOption = []
         pickOption = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         pickerView!.selectRow(pickOption.indexOf("June")!, inComponent: 0, animated: true)
-        month = "june"
+        mnth = "june"
         
         txtDateInput.becomeFirstResponder()
-        lblMonth!.text = month
+        lblMonth!.text = mnth
+        appDel?.profile.month = mnth
     }
     func yearTap(sender: UITapGestureRecognizer? = nil) {
         
@@ -272,43 +274,25 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Day , .Month , .Year], fromDate: date)
         
-        let yr =  components.year
+        let year =  components.year
 
-        let x = yr - 1900
+        let x = year - 1900
         
         for var i = 0;i < x;i++
         {
           pickOption.append(String(1900 + i))
         }
         pickerView!.selectRow(pickOption.indexOf("1992")!, inComponent: 0, animated: true)
-        year = "1992"
+        yr = "1992"
         
         txtDateInput.becomeFirstResponder()
-        lblYear!.text = year
+        lblYear!.text = yr
+        appDel?.profile.year = yr
     }
     
     func donePicking(sender: UIBarButtonItem) {
         
-        if checkPic == "year"
-        {
-            let date = NSDate()
-            let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components([.Day , .Month , .Year], fromDate: date)
-            
-            let yr =  components.year
-            let x = Int(year)
-            if yr - x!  < 13
-            {
-                defer {
-                    dispatch_async( dispatch_get_main_queue(),{
-                        let alert = UIAlertController(title: "Age Restriction", message:"You ar ineligible to register an account on Yookos.For you to register an account on Yookos you need to be at least 13 years old", preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                        self.presentViewController(alert, animated: true){}
-                    })
-                }
-            }
-        }
-        self.view.endEditing(true)
+                self.view.endEditing(true)
     }
     let facebookReadPermissions = ["public_profile", "email", "user_friends"]
     //Some other options: "user_about_me", "user_birthday", "user_hometown", "user_likes", "user_interests", "user_photos", "friends_photos", "friends_hometown", "friends_location", "friends_education_history"
@@ -400,7 +384,8 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             lblFemaleICon!.FAIcon = FAType.FAGithub
             lblFemaleICon!.setFAIcon(FAType.FAGithub, iconSize: 15)
             lblFemaleICon!.setFAText(prefixText: "", icon: FAType.FACheckCircle, postfixText: "", size: 15)
-        gender = "Female"
+        appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+        appDel?.profile.gender = "Female"
         
     }
     func maleTap(sender: UITapGestureRecognizer? = nil) {
@@ -415,7 +400,9 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         lblMaleIcon!.FAIcon = FAType.FAGithub
         lblMaleIcon!.setFAIcon(FAType.FAGithub, iconSize: 15)
         lblMaleIcon!.setFAText(prefixText: "", icon: FAType.FACheckCircle, postfixText: "", size: 15)
-        gender = "Male"
+        
+        appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+        appDel?.profile.gender = "Male"
     }
     
     func closeErrorTap(sender: UITapGestureRecognizer? = nil) {
@@ -439,12 +426,15 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         if chk == "0"
         {
+            appDel = UIApplication.sharedApplication().delegate as? AppDelegate
             if sender.isEqual(txtFirstname)
             {
                 nameVer = true
+                appDel?.profile.firstname = sender.text
             }else if sender.isEqual(txtLastname)
             {
                 lastnameVer = true
+                appDel?.profile.lastname = sender.text
             }
         }else
         {
@@ -510,7 +500,8 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         activeField = sender
         
         if sender.text == ""
-        {   emailVer = false
+        {
+            emailVer = false
             lblErrorMsg!.FAIcon = FAType.FAGithub
             lblErrorMsg!.setFAIcon(FAType.FAGithub, iconSize: 17)
             lblErrorMsg!.setFAText(prefixText: "", icon: FAType.FAClose, postfixText: "\tEmail address is required", size: 12)
@@ -529,15 +520,10 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                         self.presentViewController(alert, animated: true){}
                     }) 
                 }
-                
-                
-                
             }else
             {
-                let url = appDel?.services.validateEmail()
-                
-                let json : [String: AnyObject] = [ "email"  : sender.text!]
-                appDel?.httpRequest.makePostRequest(url!, body: json, objClass: "signup", funcName: "verEmail")
+                appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                appDel?.profile.email = sender.text
             }
         }
         
@@ -604,23 +590,12 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     @IBAction func nextStep(sender: UIButton) {
         
         
-        if nameVer == true && lastnameVer == true && emailVer == true && dateVer == true && emailMatch == true && gender != ""
+        if nameVer == true && lastnameVer == true && emailMatch == true && dy != "" && mnth != "" && yr != ""
         {
-            appDel?.profile.firstname = txtFirstname!.text
-            appDel?.profile.lastname = txtLastname!.text
-            appDel?.profile.email = txtEmail!.text
             
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd-MMMM-yyyy"
-            let date = dateFormatter.dateFromString(day + "-" + month + "-" + year)
-            let timeStamp = date?.timeIntervalSince1970
-            appDel?.profile.birthdate = timeStamp
-            appDel?.profile.gender = gender
-            appDel?.profile.dateOfBirth = dateFormatter.stringFromDate(date!)
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
-            UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+            let url = appDel?.services.validateEmail()
+            let json : [String: AnyObject] = [ "email"  : (txtEmail?.text!)!]
+            appDel?.httpRequest.makePostRequest(url!, body: json, objClass: "signup", funcName: "verEmail")
             
         }else if nameVer == false
         {
@@ -630,17 +605,13 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         {
             validateName(txtLastname!)
             
-        }else if emailVer == false
-        {
-            verEmail(txtEmail!)
-            
         }else if emailMatch == false
         {
             emailMatch(txtConfirmEmail!)
             
-        }else if dateVer == false
+        }else
         {
-           if day == ""
+           if dy == ""
            {
             dispatch_after(1, dispatch_get_main_queue(),{
                 
@@ -650,7 +621,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                 
                 })
             
-            }else if month == ""
+            }else if mnth == ""
            {
             dispatch_after(1, dispatch_get_main_queue(),{
                 
@@ -659,7 +630,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                 self.presentViewController(alert, animated: true, completion: nil)
                 
             })
-            }else if year == ""
+            }else if yr == ""
            {
             dispatch_after(1, dispatch_get_main_queue(),{
                 
@@ -670,16 +641,6 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             })
             }
             
-            
-        }else
-        {
-            dispatch_after(1, dispatch_get_main_queue(),{
-                
-                let alert = UIAlertController(title: "ERROR", message: "WE SEEM TO E HAVING A PROBLEM PLEASE CONTACT YOOKOS HELP CENTRE", preferredStyle: UIAlertControllerStyle.Alert)
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-                
-            })
         }
         
         
@@ -767,19 +728,24 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        
+        appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         if checkPic == "day"
         {
               lblDay!.text = pickOption[row]
-              day = lblDay!.text!
+              dy = lblDay!.text!
+            appDel?.profile.day = dy
+            
         }else if checkPic == "month"
         {
             lblMonth!.text = pickOption[row]
-            month = lblMonth!.text!
+            mnth = lblMonth!.text!
+            appDel?.profile.month = mnth
+            
         }else if checkPic == "year"
         {
             lblYear!.text = pickOption[row]
-            year = lblYear!.text!
+            yr = lblYear!.text!
+            appDel?.profile.year = yr
         }
         
     }
@@ -818,33 +784,47 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         {
             if code == 200
             {
-                emailVer = true
                 print("USer found")
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd-MMMM-yyyy"
+                appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                let day = appDel?.profile.day!
+                let month = appDel?.profile.month!
+                let year = appDel?.profile.year!
+                
+                let date = dateFormatter.dateFromString(day! + "-" + month! + "-" + year!)
+                
+                let timeStamp = date?.timeIntervalSince1970
+                appDel?.profile.birthdate = timeStamp
+                appDel?.profile.dateOfBirth = dateFormatter.stringFromDate(date!)
+                
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
+                UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
                 
             }else if code == 406
             {
-                emailVer = false
+               
                 print("Unsupported request")
                 
             }else if code == 400
             {
-                emailVer = false
+                
                 print("bad request")
                 
             }else if code == 401
             {
-                emailVer = false
+                
                 print("Unauthorized")
                 
             }else if code == 404
             {
-                emailVer = false
+               
                 print("not found")
                 
-            }else
-            {
-               emailVer = false
             }
+            
         }
     }
     

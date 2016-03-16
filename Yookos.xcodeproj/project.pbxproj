@@ -26,6 +26,7 @@
 		161189B21C917665006F8082 /* School.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161189B11C917665006F8082 /* School.xib */; };
 		161189B41C93120F006F8082 /* LoginTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189B31C93120F006F8082 /* LoginTerms.swift */; };
 		161189B61C96CAE2006F8082 /* UserInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 161189B51C96CAE2006F8082 /* UserInfo.plist */; };
+		161189BE1C9965D1006F8082 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189BD1C9965D1006F8082 /* VerificationView.swift */; };
 		1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3A81C7EF76C00B43327 /* AppDelegate.swift */; };
 		1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3AA1C7EF76C00B43327 /* ViewController.swift */; };
 		1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3AC1C7EF76C00B43327 /* Main.storyboard */; };
@@ -39,7 +40,6 @@
 		1637F3E21C7EF8C700B43327 /* MyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3DD1C7EF8C700B43327 /* MyProtocol.swift */; };
 		1637F3E31C7EF8C700B43327 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3DE1C7EF8C700B43327 /* Profile.swift */; };
 		1637F3E41C7EF8C700B43327 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3DF1C7EF8C700B43327 /* Services.swift */; };
-		1637F3E51C7EF8C700B43327 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3E01C7EF8C700B43327 /* User.swift */; };
 		1637F3E71C7EF8E000B43327 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3E61C7EF8E000B43327 /* Services.plist */; };
 		1637F3EA1C7F01E500B43327 /* logo_with_taglines.png in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3E91C7F01E500B43327 /* logo_with_taglines.png */; };
 		1637F3EC1C7F020100B43327 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3EB1C7F020100B43327 /* background.png */; };
@@ -89,6 +89,7 @@
 		161189B11C917665006F8082 /* School.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = School.xib; sourceTree = "<group>"; };
 		161189B31C93120F006F8082 /* LoginTerms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTerms.swift; sourceTree = "<group>"; };
 		161189B51C96CAE2006F8082 /* UserInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserInfo.plist; sourceTree = "<group>"; };
+		161189BD1C9965D1006F8082 /* VerificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		1637F3A51C7EF76C00B43327 /* Yookos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yookos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1637F3A81C7EF76C00B43327 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1637F3AA1C7EF76C00B43327 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,7 +109,6 @@
 		1637F3DD1C7EF8C700B43327 /* MyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProtocol.swift; sourceTree = "<group>"; };
 		1637F3DE1C7EF8C700B43327 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		1637F3DF1C7EF8C700B43327 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
-		1637F3E01C7EF8C700B43327 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1637F3E61C7EF8E000B43327 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
 		1637F3E91C7F01E500B43327 /* logo_with_taglines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_with_taglines.png; sourceTree = "<group>"; };
 		1637F3EB1C7F020100B43327 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -257,7 +257,6 @@
 				1637F3DD1C7EF8C700B43327 /* MyProtocol.swift */,
 				1637F3DE1C7EF8C700B43327 /* Profile.swift */,
 				1637F3DF1C7EF8C700B43327 /* Services.swift */,
-				1637F3E01C7EF8C700B43327 /* User.swift */,
 				161189851C8D6086006F8082 /* LocationManager.swift */,
 				1611899D1C8EB0C7006F8082 /* ExtentionsMethods.swift */,
 			);
@@ -296,6 +295,7 @@
 				1637F3D81C7EF87A00B43327 /* SignUpViewController.swift */,
 				1637F3F71C7F3EB400B43327 /* SignUpStepTwoView.swift */,
 				161189991C8DB1BE006F8082 /* TermsNConditions.swift */,
+				161189BD1C9965D1006F8082 /* VerificationView.swift */,
 			);
 			name = SignUP;
 			sourceTree = "<group>";
@@ -457,7 +457,6 @@
 				1637F3FB1C7F472E00B43327 /* FAIcon.swift in Sources */,
 				1637F3E31C7EF8C700B43327 /* Profile.swift in Sources */,
 				1637F3E21C7EF8C700B43327 /* MyProtocol.swift in Sources */,
-				1637F3E51C7EF8C700B43327 /* User.swift in Sources */,
 				1637F3E41C7EF8C700B43327 /* Services.swift in Sources */,
 				161189861C8D6086006F8082 /* LocationManager.swift in Sources */,
 				161189AC1C906726006F8082 /* OnBoardingTableVIew.swift in Sources */,
@@ -465,6 +464,7 @@
 				1637F3DA1C7EF87A00B43327 /* SignUpViewController.swift in Sources */,
 				161189AF1C906E7F006F8082 /* OnboardingCell.swift in Sources */,
 				1611899C1C8DC2BA006F8082 /* HelpCentre.swift in Sources */,
+				161189BE1C9965D1006F8082 /* VerificationView.swift in Sources */,
 				1637F3D91C7EF87A00B43327 /* loginViewController.swift in Sources */,
 				1611899A1C8DB1BE006F8082 /* TermsNConditions.swift in Sources */,
 			);

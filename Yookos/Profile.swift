@@ -11,6 +11,7 @@ import Foundation
 
 class Profile {
     
+    var fullname :String?
     var password:String?
     var firstname:String?
     var lastname:String?
@@ -21,6 +22,9 @@ class Profile {
     var dateOfBirth:String?
     var gender:String?
     var terms : Bool?
+    var day : String?
+    var month : String?
+    var year : String?
     
     var externalId: String?// optional
     var profileUrl:String?// optional
@@ -29,5 +33,8 @@ class Profile {
     var userid:String?
     var access_token:String?
     var refresh_token:String?
-    var token_expiry:String?
+    var token_expiry:Int64?
+    var sessionID:String?
+    
+    
 }

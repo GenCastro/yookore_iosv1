@@ -79,7 +79,7 @@ extension UIViewController{
         
         var topController = UIApplication.sharedApplication().keyWindow?.rootViewController
         
-        while((topController?.parentViewController) != nil)
+        while(((topController?.presentedViewController)) != nil)
         {
             topController = topController?.presentedViewController
         }

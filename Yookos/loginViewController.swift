@@ -110,17 +110,36 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
             }
         }else
         {
-            let url = appDel?.services?.login()
-            let json : [String: AnyObject] = [ "username"  : txtUsername.text!, "password" : txtPassword.text!]
+            let verEmail = validateEmail(txtUsername.text!)
             
-            appDel?.profile.username = txtUsername.text
-            appDel?.profile.password = txtPassword.text
-            appDel?.httpRequest.makePostRequest(url!, body: json,objClass: "login",funcName: "login")
+            if verEmail == false
+            {
+                let url = appDel?.services?.login()
+                let json : [String: AnyObject] = [ "username"  : txtUsername.text!, "password" : txtPassword.text!]
+                
+                appDel?.profile.username = txtUsername.text
+                appDel?.profile.password = txtPassword.text
+                appDel?.httpRequest.makePostRequest(url!, body: json,objClass: "login",funcName: "login")
+            }else
+            {
+                let url = appDel?.services?.login()
+                let json : [String: AnyObject] = [ "email"  : txtUsername.text!, "password" : txtPassword.text!]
+                
+                appDel?.profile.username = txtUsername.text
+                appDel?.profile.email = txtPassword.text
+                appDel?.httpRequest.makePostRequest(url!, body: json,objClass: "login",funcName: "login")
+            }
+            
         }
         
         
         
         
+    }
+    
+    func validateEmail(candidate: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(candidate)
     }
     
     func sharedFunction( code: Int,dic:AnyObject,funcName : String)
@@ -136,26 +155,45 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
                         let jsonResult = try NSJSONSerialization.JSONObjectWithData(dic as! NSData, options: []) as! NSDictionary
                         
                         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                        
+                        appDel?.profile.fullname = jsonResult.valueForKey("fullname") as? String
                         appDel?.profile.userid = jsonResult.valueForKey("userid") as? String
+                        appDel?.profile.username = jsonResult.valueForKey("username") as? String
+                        appDel?.profile.email = jsonResult.valueForKey("email") as? String
+                        appDel?.profile.access_token = jsonResult.valueForKey("access_token") as? String
+                        appDel?.profile.sessionID = jsonResult.valueForKey("sessionid") as? String
+                        appDel?.profile.refresh_token = jsonResult.valueForKey("refresh_token") as? String
+                        appDel?.profile.token_expiry = jsonResult.valueForKey("token_expiry") as? Int64
                         
-                        print("Access_Token -> \(jsonResult.valueForKey("access_token"))")
-                        print("userid -> \(jsonResult.valueForKey("userid"))")
-                        print("Fullname -> \(jsonResult.valueForKey("fullname"))")
-                        print("email -> \(jsonResult.valueForKey("email"))")
                         
-                        var checkUser = jsonResult.valueForKey("legacyuser") as! Bool
-                        checkUser = true
+                        let checkUser = jsonResult.valueForKey("legacyuser") as! Bool
+                        //checkUser = true
+                        
                         if  checkUser == true
                         {
                             appDel = UIApplication.sharedApplication().delegate as? AppDelegate
                             
-                            let auth = getB64Auth((appDel?.profile.username)!,password: (appDel?.profile.password)!)
+                            
+                            let auth = getB64Auth(jsonResult.valueForKey("username") as! String, password: (appDel?.profile.password)!)
                             
                             appDel?.httpRequest.makeGetRequest((appDel?.services.loginLegacyUser((appDel?.profile.username)!))!, objClass: "login", funcName: "legacyUser", extra: auth)
                             
                         }else
                         {
-                            print("logged in")
+                            
+                            
+                            let verified = jsonResult.valueForKey("verified") as! Bool
+                            
+                            if (verified)
+                            {
+                                print("logged in")
+                            }else
+                            {
+                                appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                                
+                                let json : [String: AnyObject] = [ "email"  : jsonResult.valueForKey("email")!, "userid" : jsonResult.valueForKey("userid")!]
+                                appDel?.httpRequest.makePostRequest((appDel?.services.resendVerEmail())!, body: json, objClass: "login", funcName: "verify")
+                            }
                         }
                     }catch
                     {
@@ -166,6 +204,7 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
                     
                 }else if code == 404
                 {
+                 
                      print("\(code)")
                     let alert = UIAlertController(title: "Error", message:"You have entered wrong login creditials,please enter again", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
@@ -207,6 +246,32 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
                 
             }
             
+        }else if funcName == "verify"
+        {
+            if code == 200{
+                
+            
+                dispatch_after(1,dispatch_get_main_queue(), { () -> Void in
+                    
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("versignup")
+                    
+                    UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+                    
+                })
+                
+                
+            }else
+            {
+                
+                let alert = UIAlertController(title: "Error", message:"we have encountered an error with your request", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                
+                dispatch_async( dispatch_get_main_queue(),{
+                    UIViewController.topMostController().presentViewController(alert, animated: true,completion: nil)
+                })
+                
+            }
         }
     }
     @IBAction func forgotPassword(sender: AnyObject) {
@@ -216,7 +281,7 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("requestPassword")
             
-            self.presentViewController(nextViewController, animated:true, completion:nil)
+            UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
             
         })
         
@@ -229,7 +294,7 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("help")
             
-            self.presentViewController(nextViewController, animated:true, completion:nil)
+            UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
             
         })
         
