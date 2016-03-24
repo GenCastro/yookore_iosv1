@@ -97,6 +97,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+    
+    func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
 
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         
@@ -118,6 +126,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 appDel.profile.access_token = splitParms![1]
                 appDel.profile.userid = splitParms![0]
+                
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("welcome2")
+                UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+                
                 let myEmail = NSUserDefaults.standardUserDefaults().objectForKey("email")
                 if ( myEmail != nil) {
                  

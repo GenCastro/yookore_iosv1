@@ -44,7 +44,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     
     var pickOption :[String] = []
     var pickCountryCode :[String] = []
-    var txtDateInput :UITextField = UITextField()
+    var txtSelectCountry :UITextField = UITextField()
     
     var pickerView:UIPickerView!
     @IBOutlet var activeField: UITextField!
@@ -68,16 +68,6 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         super.viewDidLoad()
         self.view.endEditing(true)
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
-        
-        
-        //scroller?.addConstraint(NSLayoutConstraint(item: btnHaveProb, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: vwMainView, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: 0))
-        
-//        let specsScrollViewConstY = NSLayoutConstraint(item: scroller,
-//            attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal,
-//            toItem: btnHaveProb, attribute: NSLayoutAttribute.Bottom, multiplier: 1,
-//            constant: 10);
-//        scroller?.addConstraint(specsScrollViewConstY);
-        
         
         
         //ADDING TAB GESTURE TO ALL VIEWS
@@ -112,9 +102,11 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         pickerView.dataSource = self
         pickerView.sizeToFit()
         
-        txtDateInput.addTarget(self, action: "dateInput:", forControlEvents: UIControlEvents.EditingDidBegin)
-        txtDateInput.inputView = pickerView
-        txtDateInput.inputAccessoryView = toolBar
+        txtSelectCountry.addTarget(self, action: "dateInput:", forControlEvents: UIControlEvents.EditingDidBegin)
+        txtSelectCountry.inputView = pickerView
+        txtSelectCountry.inputAccessoryView = toolBar
+        
+        vwContent.addSubview(txtSelectCountry)
         
         
         //APPLYING FONT-AWESOME TO ALL COMPONANTS THAT USE SPECIAL FONTTS
@@ -140,6 +132,8 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         let buttonTitleStr = NSMutableAttributedString(string:"having a problem with signing up?", attributes:attrs)
         attributedString.appendAttributedString(buttonTitleStr)
         btnHaveProb.setAttributedTitle(attributedString, forState: .Normal)
+        
+        
 
     }
     override func viewDidAppear(animated: Bool)
@@ -166,7 +160,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         }
         
         pickerView.selectRow(pickCountryCode.indexOf("ZA")!, inComponent: 0, animated: true)
-        txtDateInput.becomeFirstResponder()
+        txtSelectCountry.becomeFirstResponder()
         lblCountrySelect.text = pickOption[pickCountryCode.indexOf("ZA")!]
         lblCountCode.text = "+" + prefixCodes["ZA"]!
         lblConfirmCode.text = "+" + prefixCodes["ZA"]!
@@ -337,6 +331,11 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     @IBAction func dateInput(sender: UITextField) {
         
         activeField = sender
+    }
+    @IBAction func enterNumber(sender: AnyObject) {
+        
+        
+        
     }
     
     @IBAction func validatePassword(sender: UITextField) {

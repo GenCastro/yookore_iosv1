@@ -10,9 +10,24 @@ import UIKit
 
 class OnboardingCell: UITableViewCell {
 
+    @IBOutlet var lblCurCountry: UILabel!
+    @IBOutlet var lblState: UILabel!
+    @IBOutlet var lblHomeCountry: UILabel!
+    @IBOutlet var lblHomeCity: UILabel!
+    @IBOutlet var txtCurCity: UITextField!
+    
+    @IBOutlet var lblSkulType: UILabel!
+    @IBOutlet var lblYearTo: UILabel!
+    @IBOutlet var lblYearFrom: UILabel!
+    @IBOutlet var txtSkulName: UITextField!
+    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+       
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

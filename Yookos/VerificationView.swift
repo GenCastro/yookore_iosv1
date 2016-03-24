@@ -37,7 +37,7 @@ class VerificationView: UIViewController {
             appDel?.httpRequest.makePostRequest((appDel?.services.resendVerEmail())!, body: json, objClass: "verify", funcName: "verify")
         }else
         {
-            let alert = UIAlertController(title: "Verification", message:"we have resend a verification link", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Verification", message:"exceeded", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "dismiss", style: .Default) { _ in })
             
             dispatch_async( dispatch_get_main_queue(),{

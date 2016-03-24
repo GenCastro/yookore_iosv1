@@ -70,4 +70,14 @@ class Services {
         return NSURL(string: "http://www.yookos.co.uk/api/core/v3/people/username/" + username+"/")!
     }
     
+    internal func uploadProfileAvatar(userid: String) ->NSURL
+    {
+        return NSURL(string: "https://upm.yookos.com/api/v1/profile/" + userid+"/avatar")!
+    }
+    
+    internal func getCountries() -> NSURL
+    {
+        return NSURL(string: "http://countryservice.apps.yookosapps.com/api/v1/countryservice/countries")!
+    }
+    
 }

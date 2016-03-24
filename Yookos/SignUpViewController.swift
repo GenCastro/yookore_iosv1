@@ -55,7 +55,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     @IBOutlet var txtEmail: UITextField?
     @IBOutlet var txtConfirmEmail: UITextField?
     
-    @IBOutlet var activeField: UITextField?
+     @IBOutlet var activeField: UITextField?
     
     @IBOutlet var vwDY: UIView?
     @IBOutlet var vwMonth: UIView?
@@ -67,22 +67,15 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     @IBOutlet var vwMainView: UIView?
     @IBOutlet var vwError: UIView?
     
+    var spinner: UIActivityIndicatorView?
     @IBOutlet var scroller: UIScrollView?
 
     var pickOption :[String] = []
     var txtDateInput :UITextField = UITextField()
     
     var pickerView:UIPickerView?
+
     
-    var nameVer : Bool = false
-    var lastnameVer : Bool = false
-    var emailVer : Bool = false
-    var emailMatch : Bool = false
-    var dateVer : Bool = false
-    //var gender : String = "Male"
-    var dy : String = ""
-    var mnth : String = ""
-    var yr : String = ""
     
     @IBAction func back(sender: UIBarButtonItem) {
         
@@ -91,61 +84,46 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.endEditing(true)
+        
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
-      
-        appDel?.profile.gender = "Male"
-        //DEALING WITH SCROLLING ACTIVITIES
+        self.view?.userInteractionEnabled = true
+        spinner?.stopAnimating()
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-//        scroller = UIScrollView(frame: (self.view?.bounds)!)
-//        scroller?.contentSize = ((theView?.bounds.size))!
-//        scroller?.autoresizingMask = UIViewAutoresizing.FlexibleHeight
-//        scroller?.delegate = self
-//        scroller?.userInteractionEnabled = true
-//        scroller?.clipsToBounds = true
-//        scroller?.scrollEnabled = true
-//        
-//        txtDateInput.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        scroller?.addSubview(imgStep1!)
-//        scroller?.addSubview(btnHaveProblem!)
-//        vwMainView?.addSubview(scroller!)
-//        
-          theView?.addSubview(txtDateInput)
-//        
-//        
+        self.view?.endEditing(true)
+        spinner?.stopAnimating()
+       
+        theView?.addSubview(txtDateInput)
+        //
+        //
         let specsScrollViewConstY = NSLayoutConstraint(item: scroller,
             attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal,
             toItem: btnHaveProblem, attribute: NSLayoutAttribute.Bottom, multiplier: 1,
             constant: 10);
         
         scroller?.addConstraint(specsScrollViewConstY);
-//
-//        
-//        vwMainView?.clipsToBounds = true
-//        vwMainView?.layoutIfNeeded()
-        
+     
         
         //ADDING TAB GESTURE TO ALL VIEWS
         
         var tap = UITapGestureRecognizer(target: self, action: Selector("dayTap:"))
-        vwDY!.addGestureRecognizer(tap)
+        vwDY?.addGestureRecognizer(tap)
         tap = UITapGestureRecognizer(target: self, action: Selector("monthTap:"))
-        vwMonth!.addGestureRecognizer(tap)
+        vwMonth?.addGestureRecognizer(tap)
         tap = UITapGestureRecognizer(target: self, action: Selector("yearTap:"))
-        vwYear!.addGestureRecognizer(tap)
+        vwYear?.addGestureRecognizer(tap)
         
         tap = UITapGestureRecognizer(target: self, action: Selector("maleTap:"))
-        vwMale!.addGestureRecognizer(tap)
+        vwMale?.addGestureRecognizer(tap)
         tap = UITapGestureRecognizer(target: self, action: Selector("femaleTap:"))
-        vwFemale!.addGestureRecognizer(tap)
+        vwFemale?.addGestureRecognizer(tap)
         tap = UITapGestureRecognizer(target: self, action: Selector("signWithTap:"))
-        vwSignupWith!.addGestureRecognizer(tap)
+        vwSignupWith?.addGestureRecognizer(tap)
         tap = UITapGestureRecognizer(target: self, action: Selector("closeErrorTap:"))
-        lblErrorMsg!.addGestureRecognizer(tap)
+        lblErrorMsg?.addGestureRecognizer(tap)
         
         
         // ADD A TOOLBAR WITH A DONE BUTTON
@@ -164,61 +142,57 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         //CREATE A PICKER AND ASSIGN IT AS INPUT OF A TEXTFIELD
         pickerView = UIPickerView()
-        pickerView!.delegate = self
-        pickerView!.dataSource = self
-        pickerView!.sizeToFit()
+        pickerView?.delegate = self
+        pickerView?.dataSource = self
+        pickerView?.sizeToFit()
         
         txtDateInput.addTarget(self, action: "dateInput:", forControlEvents: UIControlEvents.EditingDidBegin)
         txtDateInput.inputView = pickerView
         txtDateInput.inputAccessoryView = toolBar
         
         //APPLYING FONT-AWESOME TO ALL COMPONANTS THAT USE SPECIAL FONTTS
-     
-        lblDayDrop!.FAIcon = FAType.FAGithub
-        lblDayDrop!.setFAIcon(FAType.FAGithub, iconSize: 17)
-        lblDayDrop!.setFAText(prefixText: "", icon: FAType.FAAngleDown, postfixText: "", size: 25)
         
-        lblMonthDrop!.FAIcon = FAType.FAGithub
-        lblMonthDrop!.setFAIcon(FAType.FAGithub, iconSize: 17)
-        lblMonthDrop!.setFAText(prefixText: "", icon: FAType.FAAngleDown, postfixText: "", size: 25)
-        lblYearDrop!.FAIcon = FAType.FAGithub
-        lblYearDrop!.setFAIcon(FAType.FAGithub, iconSize: 17)
-        lblYearDrop!.setFAText(prefixText: "", icon: FAType.FAAngleDown, postfixText: "", size: 25)
+        lblDayDrop?.FAIcon = FAType.FAGithub
+        lblDayDrop?.setFAIcon(FAType.FAGithub, iconSize: 17)
+        lblDayDrop?.setFAText(prefixText: "", icon: FAType.FAAngleDown, postfixText: "", size: 25)
         
-        lblYearDrop!.FAIcon = FAType.FAGithub
-        lblYearDrop!.setFAIcon(FAType.FAGithub, iconSize: 17)
-        lblYearDrop!.setFAText(prefixText: "", icon: FAType.FAAngleDown, postfixText: "", size: 25)
+        lblMonthDrop?.FAIcon = FAType.FAGithub
+        lblMonthDrop?.setFAIcon(FAType.FAGithub, iconSize: 17)
+        lblMonthDrop?.setFAText(prefixText: "", icon: FAType.FAAngleDown, postfixText: "", size: 25)
+        lblYearDrop?.FAIcon = FAType.FAGithub
+        lblYearDrop?.setFAIcon(FAType.FAGithub, iconSize: 17)
+        lblYearDrop?.setFAText(prefixText: "", icon: FAType.FAAngleDown, postfixText: "", size: 25)
         
-        lblFemaleICon!.FAIcon = FAType.FAGithub
-        lblFemaleICon!.setFAIcon(FAType.FAGithub, iconSize: 15)
-        lblFemaleICon!.setFAText(prefixText: "", icon: FAType.FACircleThin, postfixText: "", size: 15)
-        lblFemaleICon!.textColor = UIColor.lightGrayColor()
+        lblYearDrop?.FAIcon = FAType.FAGithub
+        lblYearDrop?.setFAIcon(FAType.FAGithub, iconSize: 17)
+        lblYearDrop?.setFAText(prefixText: "", icon: FAType.FAAngleDown, postfixText: "", size: 25)
         
-        lblMaleIcon!.textColor = UIColor.blueColor()
-        lblMaleIcon!.FAIcon = FAType.FAGithub
-        lblMaleIcon!.setFAIcon(FAType.FAGithub, iconSize: 15)
-        lblMaleIcon!.setFAText(prefixText: "", icon: FAType.FACheckCircle, postfixText: "", size: 15)
+        lblFemaleICon?.FAIcon = FAType.FAGithub
+        lblFemaleICon?.setFAIcon(FAType.FAGithub, iconSize: 15)
+        lblFemaleICon?.setFAText(prefixText: "", icon: FAType.FACircleThin, postfixText: "", size: 15)
+        lblFemaleICon?.textColor = UIColor.lightGrayColor()
+        
+        lblMaleIcon?.textColor = UIColor.blueColor()
+        lblMaleIcon?.FAIcon = FAType.FAGithub
+        lblMaleIcon?.setFAIcon(FAType.FAGithub, iconSize: 15)
+        lblMaleIcon?.setFAText(prefixText: "", icon: FAType.FACheckCircle, postfixText: "", size: 15)
         
         //ADDING BORDERS TO THE DATE VIEWS
-        vwDY!.layer.borderColor = Color.init().viewBorderColor().CGColor
-        vwDY!.layer.borderWidth = 2.0
-        vwMonth!.layer.borderColor = Color.init().viewBorderColor().CGColor
-        vwMonth!.layer.borderWidth = 2.0
-        vwYear!.layer.borderColor = Color.init().viewBorderColor().CGColor
-        vwYear!.layer.borderWidth = 2.0
+        vwDY?.layer.borderColor = Color.init().viewBorderColor().CGColor
+        vwDY?.layer.borderWidth = 2.0
+        vwMonth?.layer.borderColor = Color.init().viewBorderColor().CGColor
+        vwMonth?.layer.borderWidth = 2.0
+        vwYear?.layer.borderColor = Color.init().viewBorderColor().CGColor
+        vwYear?.layer.borderWidth = 2.0
         
-        vwSignupWith!.layer.borderColor = Color.init().fbColor().CGColor
-        vwSignupWith!.layer.borderWidth = 2.0
+        vwSignupWith?.layer.borderColor = Color.init().fbColor().CGColor
+        vwSignupWith?.layer.borderWidth = 2.0
         
         
         let buttonTitleStr = NSMutableAttributedString(string:"having a problem with signing up?", attributes:attrs)
         attributedString.appendAttributedString(buttonTitleStr)
-        btnHaveProblem!.setAttributedTitle(attributedString, forState: .Normal)
+        btnHaveProblem?.setAttributedTitle(attributedString, forState: .Normal)
 
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
     }
     override func viewDidAppear(animated: Bool) {
@@ -239,6 +213,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     
     func dayTap(sender: UITapGestureRecognizer? = nil) {
         
+        theView!.userInteractionEnabled = false
         checkPic = "day"
         pickOption = []
         for var i = 1;i < 32;i++
@@ -246,27 +221,30 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             pickOption.append(String(i))
         }
         pickerView!.selectRow(pickOption.indexOf("15")!, inComponent: 0, animated: true)
-        dy = "15"
+        appDel?.profile.day! = "15"
         
         txtDateInput.becomeFirstResponder()
-        lblDay!.text = dy
-        appDel?.profile.day = dy
+        lblDay!.text = appDel?.profile.day!
+        vwDY?.layer.borderColor = Color().viewBorderColor().CGColor
     }
     
     func monthTap(sender: UITapGestureRecognizer? = nil) {
         
+        theView!.userInteractionEnabled = false
         checkPic = "month"
         pickOption = []
         pickOption = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         pickerView!.selectRow(pickOption.indexOf("June")!, inComponent: 0, animated: true)
-        mnth = "june"
+        appDel?.profile.month! = "june"
         
         txtDateInput.becomeFirstResponder()
-        lblMonth!.text = mnth
-        appDel?.profile.month = mnth
+        lblMonth!.text = appDel?.profile.month!
+        appDel?.profile.month = appDel?.profile.month!
+        vwMonth?.layer.borderColor = Color().viewBorderColor().CGColor
     }
     func yearTap(sender: UITapGestureRecognizer? = nil) {
         
+        theView!.userInteractionEnabled = false
         checkPic = "year"
         pickOption = []
         
@@ -283,16 +261,19 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
           pickOption.append(String(1900 + i))
         }
         pickerView!.selectRow(pickOption.indexOf("1992")!, inComponent: 0, animated: true)
-        yr = "1992"
+        appDel?.profile.year! = "1992"
         
         txtDateInput.becomeFirstResponder()
-        lblYear!.text = yr
-        appDel?.profile.year = yr
+        lblYear!.text = appDel?.profile.year!
+        appDel?.profile.year = appDel?.profile.year!
+        vwYear?.layer.borderColor = Color().viewBorderColor().CGColor
     }
     
     func donePicking(sender: UIBarButtonItem) {
         
-                self.view.endEditing(true)
+        self.view.endEditing(true)
+        pickOption = []
+        theView!.userInteractionEnabled = true
     }
     let facebookReadPermissions = ["public_profile", "email", "user_friends"]
     //Some other options: "user_about_me", "user_birthday", "user_hometown", "user_likes", "user_interests", "user_photos", "friends_photos", "friends_hometown", "friends_location", "friends_education_history"
@@ -429,22 +410,26 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             appDel = UIApplication.sharedApplication().delegate as? AppDelegate
             if sender.isEqual(txtFirstname)
             {
-                nameVer = true
+                appDel?.profile.nameVer! = true
                 appDel?.profile.firstname = sender.text
+                self.txtFirstname?.layer.borderWidth = 0
+                vwError?.hidden = true
             }else if sender.isEqual(txtLastname)
             {
-                lastnameVer = true
+                appDel?.profile.lastnameVer! = true
                 appDel?.profile.lastname = sender.text
+                self.txtLastname?.layer.borderWidth = 0
+                vwError?.hidden = true
             }
         }else
         {
             
             if sender.isEqual(txtFirstname)
             {
-                nameVer = false
+                appDel?.profile.nameVer! = false
             }else if sender.isEqual(txtLastname)
             {
-                lastnameVer = false
+                appDel?.profile.lastnameVer! = false
             }
             
             if chk == "1"
@@ -453,9 +438,14 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                 if sender.isEqual(txtFirstname)
                 {
                     msg = "First name is required"
+                    self.txtFirstname?.layer.borderColor = UIColor.redColor().CGColor
+                    self.txtFirstname?.layer.borderWidth = 1
+                    
                 }else if sender.isEqual(txtLastname)
                 {
                     msg = "last name is required"
+                    self.txtLastname?.layer.borderColor = UIColor.redColor().CGColor
+                    self.txtLastname?.layer.borderWidth = 1
                 }
                 
                 lblErrorMsg!.FAIcon = FAType.FAGithub
@@ -465,27 +455,72 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                 
             }else if chk == "2"
             {
+                if sender.isEqual(txtFirstname)
+                {
+                    defer{
+                        dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
+                            
+                            let alert = UIAlertController(title: "Name", message:"your message", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                                
+                                
+                                self.txtFirstname?.layer.borderColor = UIColor.redColor().CGColor
+                                self.txtFirstname?.layer.borderWidth = 1
+                                })
+                            alert.message = "Please enter firstname with less than 20 alphabetical charcters"
+                            self.presentViewController(alert, animated: true){}
+                        })}
+                }else if sender.isEqual(txtLastname)
+                {
+                    defer{
+                        dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
+                            
+                            let alert = UIAlertController(title: "Name", message:"your message", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                                
+                                
+                                self.txtLastname?.layer.borderColor = UIColor.redColor().CGColor
+                                self.txtLastname?.layer.borderWidth = 1
+                                })
+                            alert.message = "Please enter lastname with less than 20 alphabetical charcters"
+                            self.presentViewController(alert, animated: true){}
+                        })}
+                }
                 
-                defer{
-                    dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
-                        
-                        let alert = UIAlertController(title: "Name", message:"your message", preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                        alert.message = "Please enter Name and Surname with less than 20 alphabetical charcters"
-                        self.presentViewController(alert, animated: true){}
-                    })}
                 
             }else if chk == "3"
             {
                 
-                defer{
-                    dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
-                        //this place to call segue or manually load the view.
-                        let alert = UIAlertController(title: "Name", message:"your message", preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                        alert.message = "PLease enter only alphabetical letters in the name and surname fields."
-                        self.presentViewController(alert, animated: true){}
-                    })}
+                if sender.isEqual(txtFirstname)
+                {
+                    defer{
+                        dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
+                            
+                            let alert = UIAlertController(title: "Name", message:"PLease enter only alphabetical letters in the lastname field", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                                
+                                
+                                self.txtFirstname?.layer.borderColor = UIColor.redColor().CGColor
+                                self.txtFirstname?.layer.borderWidth = 1
+                                })
+                            
+                            self.presentViewController(alert, animated: true){}
+                        })}
+                }else if sender.isEqual(txtLastname)
+                {
+                    defer{
+                        dispatch_after(0, dispatch_get_main_queue(), { () -> Void in
+                            
+                            let alert = UIAlertController(title: "Name", message:"PLease enter only alphabetical letters in the firstname field", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                                
+                                self.txtLastname?.layer.borderColor = UIColor.redColor().CGColor
+                                self.txtLastname?.layer.borderWidth = 1
+                                })
+                           
+                            self.presentViewController(alert, animated: true){}
+                        })}
+                }
                 
             }
             
@@ -501,14 +536,17 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         if sender.text == ""
         {
-            emailVer = false
+            appDel?.profile.emailVer! = false
             lblErrorMsg!.FAIcon = FAType.FAGithub
             lblErrorMsg!.setFAIcon(FAType.FAGithub, iconSize: 17)
             lblErrorMsg!.setFAText(prefixText: "", icon: FAType.FAClose, postfixText: "\tEmail address is required", size: 12)
             vwError!.hidden = false
+            self.txtEmail?.layer.borderColor = UIColor.redColor().CGColor
+            self.txtEmail?.layer.borderWidth = 1
             
         }else
         {
+            vwError?.hidden = true
             let x = validateEmail(sender.text!)
             
             if x == false
@@ -516,13 +554,18 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                 defer {
                     dispatch_async( dispatch_get_main_queue(),{
                         let alert = UIAlertController(title: "Email", message:"The email address you have entered is invalid. please enter a valid email address.", preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                            
+                            self.txtEmail?.layer.borderColor = UIColor.redColor().CGColor
+                            self.txtEmail?.layer.borderWidth = 1
+                            
+                            })
                         self.presentViewController(alert, animated: true){}
                     }) 
                 }
             }else
             {
-                appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                self.txtEmail?.layer.borderWidth = 0
                 appDel?.profile.email = sender.text
             }
         }
@@ -537,13 +580,21 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             defer {
                 dispatch_async( dispatch_get_main_queue(),{
                     let alert = UIAlertController(title: "Email", message:"Email address do not match.Please enter the email addresses again.", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                        
+                        self.txtConfirmEmail?.layer.borderColor = UIColor.redColor().CGColor
+                        self.txtConfirmEmail?.layer.borderWidth = 1
+                        
+                        })
                     self.presentViewController(alert, animated: true){}
                 })
             }
         }else
         {
-            emailMatch = true
+            appDel?.profile.emailMatch! = true
+            
+            self.txtConfirmEmail?.layer.borderWidth = 0
+            
         }
         
         
@@ -589,103 +640,180 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     ###########################################################################################*/
     @IBAction func nextStep(sender: UIButton) {
         
+        appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         
-        if nameVer == true && lastnameVer == true && emailMatch == true && dy != "" && mnth != "" && yr != ""
+        if appDel?.profile.nameVer! == true && appDel?.profile.lastnameVer! == true && appDel?.profile.email != "" && appDel?.profile.emailMatch! == true && appDel?.profile.day! != "" && appDel?.profile.month! != "" && appDel?.profile.year! != ""
         {
+            self.view!.userInteractionEnabled = false
             
             let url = appDel?.services.validateEmail()
-            let json : [String: AnyObject] = [ "email"  : (txtEmail?.text!)!]
-            appDel?.httpRequest.makePostRequest(url!, body: json, objClass: "signup", funcName: "verEmail")
+            let json : [String: AnyObject] = [ "email"  : (appDel?.profile.email)!]
             
-        }else if nameVer == false
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(HttpRequest().getPostRequest(url!, body: json)){ data, response, error in
+                
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    
+                    let code = httpResponse.statusCode
+                    print(code)
+                   
+                    if code == 200
+                    {
+                        print("email found")
+                        self.txtEmail?.layer.borderWidth = 0
+                        self.appDel?.profile.emailVer! = true
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "dd-MMMM-yyyy"
+                        self.appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                        let day = self.appDel?.profile.day!
+                        let month = self.appDel?.profile.month!
+                        let year = self.appDel?.profile.year!
+                        
+                        let date = dateFormatter.dateFromString(day! + "-" + month! + "-" + year!)
+                        
+                        let timeStamp = date?.timeIntervalSince1970
+                        self.appDel?.profile.birthdate = timeStamp
+                        self.appDel?.profile.dateOfBirth = dateFormatter.stringFromDate(date!)
+                        
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
+                        self.presentViewController(nextViewController, animated:true, completion:nil)
+                        
+                    }else if code == 406
+                    {
+                        
+                        print("Unsupported request")
+                        
+                    }else if code == 400
+                    {
+                        
+                        print("bad request")
+                        
+                    }else if code == 401
+                    {
+                        
+                        print("Unauthorized")
+                        
+                    }else if code == 404
+                    {
+                        
+                        print("not found")
+                        
+                        dispatch_after(1, dispatch_get_main_queue(),{
+                            
+                            let alert = UIAlertController(title: "Error!!", message: "either the email doesnot exist or the email have been used on yookos before,please verify", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
+                                
+                                self.view.userInteractionEnabled = true
+                                self.txtEmail?.layer.borderColor = UIColor.redColor().CGColor
+                                self.txtEmail?.layer.borderWidth = 1
+                                self.txtEmail?.becomeFirstResponder()
+                                })
+                            
+                            UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+                            
+                            
+                        })
+                        
+                    }
+                    print(" passed 1" )
+                    
+                }else
+                {
+                    
+                }
+                
+                if error != nil{
+                    
+                    print(error)
+                    return
+                }
+                
+            }
+            task.resume()
+            
+            //appDel?.httpRequest.makePostRequest(url!, body: json, objClass: "signup", funcName: "verEmail")
+        
+        }else if appDel?.profile.nameVer! == false
         {
             validateName(txtFirstname!)
-            
-        }else if lastnameVer == false
+            txtFirstname?.becomeFirstResponder()
+            txtFirstname?.layer.borderWidth = 1
+            txtFirstname?.layer.borderColor = UIColor.redColor().CGColor
+        }else if appDel?.profile.lastnameVer! == false
         {
             validateName(txtLastname!)
+            txtLastname?.becomeFirstResponder()
+            txtLastname?.layer.borderWidth = 1
+            txtLastname?.layer.borderColor = UIColor.redColor().CGColor
+        }else if txtEmail?.text == ""
+        {
+            verEmail(txtEmail!)
+            txtEmail?.becomeFirstResponder()
+            txtEmail?.layer.borderWidth = 1
+            txtEmail?.layer.borderColor = UIColor.redColor().CGColor
             
-        }else if emailMatch == false
+        }else if appDel?.profile.emailMatch! == false
         {
             emailMatch(txtConfirmEmail!)
-            
+            txtConfirmEmail?.becomeFirstResponder()
+            txtConfirmEmail?.layer.borderWidth = 1
+            txtConfirmEmail?.layer.borderColor = UIColor.redColor().CGColor
         }else
         {
-           if dy == ""
+           if appDel?.profile.day! == ""
            {
             dispatch_after(1, dispatch_get_main_queue(),{
                 
-                let alert = UIAlertController(title: "DATE!!", message: "You did not select date", preferredStyle: UIAlertControllerStyle.Alert)
-                
+                let alert = UIAlertController(title: "DATE!!", message: "You did not select day", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                    
+                    self.vwDY?.layer.borderColor = UIColor.redColor().CGColor
+                    self.checkPic = "day"
+                    
+                    })
                 self.presentViewController(alert, animated: true, completion: nil)
                 
                 })
             
-            }else if mnth == ""
+            }else if appDel?.profile.month! == ""
            {
             dispatch_after(1, dispatch_get_main_queue(),{
                 
-                let alert = UIAlertController(title: "DATE!!", message: "You did not select date", preferredStyle: UIAlertControllerStyle.Alert)
-                
+                let alert = UIAlertController(title: "DATE!!", message: "You did not select month", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                    
+                    self.vwMonth?.layer.borderColor = UIColor.redColor().CGColor
+                    self.checkPic = "month"
+                    
+                    
+                    })
                 self.presentViewController(alert, animated: true, completion: nil)
                 
             })
-            }else if yr == ""
+            }else if appDel?.profile.year! == ""
            {
-            dispatch_after(1, dispatch_get_main_queue(),{
+                dispatch_after(1, dispatch_get_main_queue(),{
                 
-                let alert = UIAlertController(title: "DATE!!", message: "You did not select date", preferredStyle: UIAlertControllerStyle.Alert)
-                
+                let alert = UIAlertController(title: "DATE!!", message: "You did not select year", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                    
+                    self.vwYear?.layer.borderColor = UIColor.redColor().CGColor
+                    self.checkPic = "year"
+                    
+                })
                 self.presentViewController(alert, animated: true, completion: nil)
                 
-            })
-            }
+                })
+            
+            
+           }
             
         }
         
         
     }
     
-
-    
-    
-    /*############################################################################################
-    
-    ------>  ---->  WHEN KEYBOARD APPEARS/DISAPPEARS
-    
-    ###########################################################################################*/
-    func keyboardWillShow(sender: NSNotification) {
-        
-        let userInfo: [NSObject : AnyObject] = sender.userInfo!
-        
-        let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
-       
-        
-        _ = UIEdgeInsetsMake(0.0, 0.0,offset.height, 0.0);
-        
-        
-//        scroller!.contentInset = contentInsets;
-//        scroller!.scrollIndicatorInsets = contentInsets;
-        
-        // If active text field is hidden by keyboard, scroll it so it's visible
-        // Your app might not need or want this behavior.
-        var aRect = self.view.frame;
-        aRect.size.height -= offset.height;
-        
-        
-//        if (!CGRectContainsPoint(aRect, activeField.frame.origin) )
-//        {
-//            self.scroller.scrollRectToVisible(activeField.frame, animated: true)
-//        }
-        
-    }
-    
-    func keyboardWillHide(sender: NSNotification) {
-        
-        _ = UIEdgeInsetsZero;
-//        scroller!.contentInset = contentInsets;
-//        scroller!.scrollIndicatorInsets = contentInsets;
-    }
     
     func textFieldDidBeginEditing(txtField :UITextField )
     {
@@ -732,20 +860,19 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         if checkPic == "day"
         {
               lblDay!.text = pickOption[row]
-              dy = lblDay!.text!
-            appDel?.profile.day = dy
+              appDel?.profile.day! = lblDay!.text!
+            appDel?.profile.day = appDel?.profile.day!
             
         }else if checkPic == "month"
         {
             lblMonth!.text = pickOption[row]
-            mnth = lblMonth!.text!
-            appDel?.profile.month = mnth
+            appDel?.profile.month! = lblMonth!.text!
+            
             
         }else if checkPic == "year"
         {
             lblYear!.text = pickOption[row]
-            yr = lblYear!.text!
-            appDel?.profile.year = yr
+            appDel?.profile.year! = lblYear!.text!
         }
         
     }
@@ -780,11 +907,16 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     
     func receiveRequest(code :Int,response :AnyObject,funcName : String)
     {
+        self.view!.userInteractionEnabled = true
+        
         if funcName == "verEmail"
         {
+            
             if code == 200
             {
-                print("USer found")
+                print("email found")
+                self.txtEmail?.layer.borderWidth = 0
+                appDel?.profile.emailVer! = true
                 
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "dd-MMMM-yyyy"
@@ -801,7 +933,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
                 
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
-                UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+                self.presentViewController(nextViewController, animated:true, completion:nil)
                 
             }else if code == 406
             {
@@ -822,6 +954,20 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             {
                
                 print("not found")
+                self.txtEmail?.layer.borderColor = UIColor.redColor().CGColor
+                self.txtEmail?.layer.borderWidth = 1
+                dispatch_after(1, dispatch_get_main_queue(),{
+                    
+                    let alert = UIAlertController(title: "Error!!", message: "either the email doesnot exist or the email have been used on yookos before,please verify", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
+                        
+                        
+                        })
+                    
+                    UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+                    
+                    
+                })
                 
             }
             

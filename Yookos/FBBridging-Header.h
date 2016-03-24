@@ -11,5 +11,4 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-
 #endif /* FBBridging_Header_h */

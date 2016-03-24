@@ -65,15 +65,39 @@ class HttpRequest {
             
             task.resume()
             
-            while task.state == NSURLSessionTaskState.Running {
-                
-            }
-                print("task done")}
+            print("task done")}
         } catch {
             print(error)
         }
         
 
+    }
+    
+    internal func getPostRequest(url : NSURL ,body : AnyObject) ->  NSMutableURLRequest
+    {
+        
+      
+    
+        do{
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(body, options: .PrettyPrinted)
+            
+            // create post request
+            
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            
+            request.HTTPBody = jsonData
+            request.addValue("application/json", forHTTPHeaderField: "Content-type")
+            request.addValue((appDel.services?.getToken())!, forHTTPHeaderField: "Authorization")
+            
+            return request
+        }catch
+        {
+            return NSMutableURLRequest()
+        }
+
+        
+        
     }
     
     internal func makePutRequest(url : NSURL ,body : AnyObject,objClass : String,funcName :String)
