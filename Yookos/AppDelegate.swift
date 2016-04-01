@@ -55,6 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 openURL: url,
                 sourceApplication: sourceApplication,
                 annotation: annotation)
+            
+            
+            
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -134,20 +137,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let myEmail = NSUserDefaults.standardUserDefaults().objectForKey("email")
                 if ( myEmail != nil) {
                  
+                  
+                        
+                    
                     let json : [String : AnyObject] = ["email" : myEmail!,"token": appDel.profile.access_token!,"userid" : appDel.profile.userid!,"isnewuser" : true ]
                         
-                    appDel.httpRequest.makePostRequest(appDel.services.verifyUser(), body: json, objClass: "appdel", funcName: "verUser")
+                    let request = appDel.httpRequest.getRequest(appDel.services.verifyUser(), body: json,method: "POST")
+                    
+                    defer{
+                        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+                            
+                            if let httpResponse = response as? NSHTTPURLResponse {
+                                
+                                let code = httpResponse.statusCode
+                                print(code)
+                                
+                                if code == 200
+                                {
+                                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                                    let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("welcome2")
+                                    UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+                                }else
+                                {
+                                    
+                                }
+                                
+                                print(" passed 1" )
+                                
+                            }else
+                            {
+                                
+                            }
+                            
+                            if error != nil{
+                                
+                                print(error)
+                                return
+                            }
+                            
+                        }
+                        
+                        task.resume()
+                        
+                        print("task done")}
                     
                 }
-                else {// Show login
-                    
-                    
-                }
                 
                 
                 
-            }else
-            {
+            }else if url.host == "reset"
+            {// Show login
+                
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("setpwd")
+                UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
                 
             }
             print(urlParams)
@@ -157,21 +200,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func receiveResponse(code:Int, dic: AnyObject,funcName :String)
-    {
-        if funcName == "verUser"
-        {
-            if code == 200
-            {
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("welcome2")
-                UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
-            }else
-            {
-                print(code)
-            }
-        }
-    }
 
 }
 

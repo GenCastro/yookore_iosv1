@@ -45,30 +45,46 @@ class LoginTerms: UIViewController
         
         let json : [String: AnyObject] = [ "username"  : (appDel?.profile.username)! , "password" : (appDel?.profile.password)!]
         
-        appDel?.httpRequest.makePutRequest(url!, body: json,objClass: "loginterms",funcName: "agree")
-    }
-    
-    func receiveResponse(code: Int,dic:AnyObject,funcName : String)
-    {
-        
-        if funcName == "agree"
-        {
-            if code == 200{
+        let request = appDel?.httpRequest.getRequest(url!, body: json,method: "PUT")
+        defer{
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request!){ data, response, error in
                 
-                print("PASSWORD UPDATED")
-                //will then push to another screen
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("welcome2")
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    
+                    let code = httpResponse.statusCode
+                    print(code)
+                    if code == 200{
+                        
+                        print("PASSWORD UPDATED")
+                        //will then push to another screen
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("welcome2")
+                        
+                        let view = UIViewController.topMostController()
+                        view.presentViewController(nextViewController, animated:true, completion:nil)
+                        
+                    }else if code == 404
+                    {
+                        print("\(code)")
+                        
+                    }
+                    
+                }else
+                {
+                    
+                }
                 
-                let view = UIViewController.topMostController()
-                view.presentViewController(nextViewController, animated:true, completion:nil)
-                
-            }else if code == 404
-            {
-                print("\(code)")
+                if error != nil{
+                    
+                    print(error)
+                    return
+                }
                 
             }
             
-        }
+            task.resume()
+            
+            print("task done")}
     }
+    
 }

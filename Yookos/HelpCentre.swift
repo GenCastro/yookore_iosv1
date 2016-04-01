@@ -55,11 +55,11 @@ class HelpCentre: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,U
         txtProbInput!.inputView = pickerView
         txtProbInput!.inputAccessoryView = toolBar
         
-        vwProblem!.layer.borderColor = Color.init().viewBorderColor().CGColor
+        vwProblem!.layer.borderColor = Color.init().viewBorderColor()
         vwProblem!.layer.borderWidth = 1.0
-        txtProbInput!.layer.borderColor = Color.init().viewBorderColor().CGColor
+        txtProbInput!.layer.borderColor = Color.init().viewBorderColor()
         txtProbInput!.layer.borderWidth = 1.0
-        txtMore!.layer.borderColor = Color.init().viewBorderColor().CGColor
+        txtMore!.layer.borderColor = Color.init().viewBorderColor()
         txtMore!.layer.borderWidth = 1.0
         
         vwContent.addSubview(txtProbInput!)
@@ -75,6 +75,133 @@ class HelpCentre: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,U
     }
     
     @IBAction func report(sender: AnyObject) {
+        
+        
+        if txtEmail.text == ""
+        {
+            defer {
+                dispatch_async( dispatch_get_main_queue(),{
+                    let alert = UIAlertController(title: "Email", message:"Please enter Email", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
+                })
+            }
+            
+            return
+        }
+        
+        if txtDevice.text == ""
+        {
+            defer {
+                dispatch_async( dispatch_get_main_queue(),{
+                    let alert = UIAlertController(title: "Divice name", message:"Please enter the name of the device and the OS version", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
+                })
+            }
+            
+            return
+        }
+        if lblProblem.text == "Select"
+        {
+            defer {
+                dispatch_async( dispatch_get_main_queue(),{
+                    let alert = UIAlertController(title: "Error", message:"Please select what problem you having", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "DISMISS", style: .Default) { _ in })
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
+                })
+            }
+            
+            return
+        }
+        
+        if txtMore.text == ""
+        {
+            defer {
+                dispatch_async( dispatch_get_main_queue(),{
+                    let alert = UIAlertController(title: "Error", message:"Please tell us a bit more about your problem", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "DISMISS", style: .Default) { _ in })
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
+                })
+            }
+            
+            return
+        }
+        
+        let json : [String: AnyObject] = [ "email"  : txtEmail.text!,"reason" : lblProblem.text!,"description" : txtMore.text,"platform": txtDevice.text!]
+        
+        let request = HttpRequest().getRequest(Services().help(), body: json ,method: "POST")
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                
+                let code = httpResponse.statusCode
+                print(code)
+                
+                if code == 200
+                {
+                    
+                    defer {
+                        dispatch_async( dispatch_get_main_queue(),{
+                            let alert = UIAlertController(title: "Thank you", message:"Thank you for your feedback,we will send you a response within 24 hours.", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "DISMISS", style: .Default) { _ in })
+                            UIViewController.topMostController().presentViewController(alert, animated: true){}
+                        })
+                    }
+
+                    
+                    
+                }else if code == 400
+                {
+                    defer {
+                        dispatch_async( dispatch_get_main_queue(),{
+                            let alert = UIAlertController(title: "ERROR", message:"Please make sure you entered a valid email or an email that we know of.", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "DISMISS", style: .Default) { _ in })
+                            UIViewController.topMostController().presentViewController(alert, animated: true){}
+                        })
+                    }
+                }else
+                {
+                    defer {
+                        dispatch_async( dispatch_get_main_queue(),{
+                            let alert = UIAlertController(title: "ERROR", message:"Please make sure you entered a valid email or an email that we know of.", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "DISMISS", style: .Default) { _ in })
+                            UIViewController.topMostController().presentViewController(alert, animated: true){}
+                        })
+                    }
+                }
+                
+                print(" passed 1" )
+                
+            }else
+            {
+                defer {
+                    dispatch_async( dispatch_get_main_queue(),{
+                        let alert = UIAlertController(title: "ERROR", message:"ooops looks like we experiencing some problems", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "DISMISS", style: .Default) { _ in })
+                        UIViewController.topMostController().presentViewController(alert, animated: true){}
+                    })
+                }
+            }
+            
+            if error != nil{
+                
+                dispatch_async( dispatch_get_main_queue(),{
+                    let alert = UIAlertController(title: "ERROR", message:"Network Connection Lost", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
+                })
+                return
+            }
+            
+        }
+        
+        task.resume()
+        
+        
+        print("task done")
+        
     }
     
     @IBAction func cancel(sender: AnyObject) {

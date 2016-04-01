@@ -12,7 +12,12 @@ import CoreLocation
 class ViewController: UIViewController,CLLocationManagerDelegate{
 
     var appDel:AppDelegate?
-    //let locationManager = CLLocationManager()
+    
+    var latitude: String?
+    var longitude: String?
+    
+    var locationManager: CLLocationManager = CLLocationManager()
+    
     @IBOutlet var welcomeView: UIView!
     @IBOutlet var btnLogin: UIButton!
     @IBOutlet var btnSingUp: UIButton!
@@ -23,7 +28,13 @@ class ViewController: UIViewController,CLLocationManagerDelegate{
         self.view.endEditing(true)
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         
-
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 100.0
+        locationManager.startUpdatingLocation()
+        
         //adding the background picture
         UIGraphicsBeginImageContext(welcomeView.frame.size);
         
@@ -58,5 +69,43 @@ class ViewController: UIViewController,CLLocationManagerDelegate{
         self.presentViewController(nextViewController, animated:true, completion:nil)
         
     }
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation = locations[locations.count - 1]
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let geoCoder = CLGeocoder()
+                geoCoder.reverseGeocodeLocation(userLocation)
+                    {
+                        (placemarks, error) -> Void in
+        
+                        let placeArray = placemarks as [CLPlacemark]!
+        
+                        // Place details
+                        var placeMark: CLPlacemark!
+                        placeMark = placeArray?[0]
+        
+                        // Address dictionary
+                        //print(placeMark.addressDictionary)
+        
+        
+                        // City
+                        if let city = placeMark.addressDictionary?["City"] as? NSString
+                        {
+                            print("City : \(city)")
+                            defaults.setValue(city, forKey: "city")
+                        }
+                        
+                        
+                        // Country
+                        if let country = placeMark.addressDictionary?["Country"] as? NSString
+                        {
+                           
+                            defaults.setValue(country, forKey: "country")
+                            defaults.setValue(placeMark.ISOcountryCode, forKey: "ISOCode")
+                        }
+                }
+        locationManager.stopUpdatingLocation()
+    }
+    
 }
 

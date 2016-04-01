@@ -26,6 +26,8 @@ class Services {
         
     }
     
+    
+    
     internal func getToken() -> String
     {
         return token
@@ -36,6 +38,15 @@ class Services {
     {
         return baseUrls!.valueForKey("UserAcc") as! String
     }
+    
+    internal func getCountryUrl() -> String
+    {
+        return baseUrls?.valueForKey("countryUrls") as! String
+    }
+    
+    
+    
+    
     internal func signUp() ->NSURL
     {
         return NSURL(string: getUserAcc()+"/v1/create-account")!
@@ -46,38 +57,55 @@ class Services {
         return NSURL(string: getUserAcc()+"/v1/verifyuser")!
         
     }
+    internal func verifyEmail() ->NSURL
+    {
+        return NSURL(string: getUserAcc()+"/v1/verifyemail")!
+        
+    }
     internal func resendVerEmail() ->NSURL
     {
         return NSURL(string: getUserAcc()+"/v1/reverifyuser")!
         
     }
-    internal func validateEmail() ->NSURL
-    {
-        return NSURL(string: "http://helper-suite.apps.yookosapps.com/v1/validate-email")!
-    }
+    
     internal func login() ->NSURL
     {
         return NSURL(string: getUserAcc()+"/v1/authenticate")!
+    }
+
+    internal func help() ->NSURL
+    {
+        return NSURL(string: getUserAcc()+"/v1/help/create/")!
     }
     
     internal func updateLegacyPassword(userid : String) ->NSURL
     {
         return NSURL(string: getUserAcc()+"/v1/password/legacy/"+userid)!
     }
+    internal func resetPassword(userid : String) ->NSURL
+    {
+        return NSURL(string: getUserAcc()+"/v1/password/reset/"+userid)!
+    }
     
+    
+    
+    
+    
+    internal func countriesUrl() -> NSURL
+    {
+        return NSURL(string: getCountryUrl()+"countries")!
+    }
+    
+    
+    
+    
+    internal func validateEmail() ->NSURL
+    {
+        return NSURL(string: "http://helper-suite.apps.yookosapps.com/v1/validate-email")!
+    }
     internal func loginLegacyUser(username : String) ->NSURL
     {
         return NSURL(string: "http://www.yookos.co.uk/api/core/v3/people/username/" + username+"/")!
-    }
-    
-    internal func uploadProfileAvatar(userid: String) ->NSURL
-    {
-        return NSURL(string: "https://upm.yookos.com/api/v1/profile/" + userid+"/avatar")!
-    }
-    
-    internal func getCountries() -> NSURL
-    {
-        return NSURL(string: "http://countryservice.apps.yookosapps.com/api/v1/countryservice/countries")!
     }
     
 }

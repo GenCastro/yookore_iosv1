@@ -42,4 +42,6 @@ class Profile {
     var emailMatch:Bool? = false
     var emailVer:Bool? = false
     
+    var countryId = ""
+    
 }

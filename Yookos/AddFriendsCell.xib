@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="AddFriendsCell" customModule="Yookos" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hop-J4-ZLg">
+                        <rect key="frame" x="8" y="8" width="46" height="43"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="Sfy-VE-dS0"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dennis Hernandez " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deC-PU-GGt">
+                        <rect key="frame" x="62" y="8" width="174" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hED-a4-SU3">
+                        <rect key="frame" x="235" y="15" width="77" height="30"/>
+                        <color key="backgroundColor" red="0.01176470588" green="0.66274509800000003" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="nqw-6b-WiL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                        <state key="normal" title="Requested">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTh-Ng-CQI">
+                        <rect key="frame" x="62" y="19" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="hED-a4-SU3" secondAttribute="trailing" id="2WI-6J-8Vr"/>
+                    <constraint firstItem="hED-a4-SU3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7QR-Xc-d7e"/>
+                    <constraint firstItem="deC-PU-GGt" firstAttribute="trailing" secondItem="hED-a4-SU3" secondAttribute="trailing" constant="-76" id="7tj-Og-D1s"/>
+                    <constraint firstItem="Hop-J4-ZLg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DCs-a5-WGP"/>
+                    <constraint firstItem="deC-PU-GGt" firstAttribute="top" secondItem="Hop-J4-ZLg" secondAttribute="top" id="T1p-es-yjX"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="Hop-J4-ZLg" secondAttribute="leading" id="cbg-6E-jwj"/>
+                    <constraint firstAttribute="topMargin" secondItem="Hop-J4-ZLg" secondAttribute="top" id="mJR-Ci-bHa"/>
+                    <constraint firstItem="deC-PU-GGt" firstAttribute="leading" secondItem="Hop-J4-ZLg" secondAttribute="trailing" constant="8" id="tRB-si-ojH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="192" y="344"/>
+        </tableViewCell>
+    </objects>
+</document>

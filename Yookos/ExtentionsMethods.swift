@@ -7,7 +7,112 @@
 //
 
 import Foundation
+import ContactsUI
 
+class Methods {
+    
+    init()
+    {}
+    
+    func checkTextSufficientComplexity( text : String) -> Bool{
+        
+        
+        
+        let capitalLetterRegEx  = ".*[A-Z]+.*"
+        let txtCapCase = NSPredicate(format:"SELF MATCHES %@", capitalLetterRegEx)
+        let capitalresult = txtCapCase.evaluateWithObject(text)
+        print("\(capitalresult)")
+        
+        let clowLetterRegEx = ".*[a-z]+.*"
+        let lowCaseTxt = NSPredicate(format:"SELF MATCHES %@", clowLetterRegEx)
+        let lowCase = lowCaseTxt.evaluateWithObject(text)
+        print("\(lowCase)")
+        
+        let numberRegEx  = ".*[0-9]+.*"
+        let texttest1 = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
+        let numberresult = texttest1.evaluateWithObject(text)
+        print("\(numberresult)")
+        
+        if capitalresult == true && numberresult == true && lowCase == true
+        {
+            return true
+        }
+        
+        return false
+    }
+    func validateEmail(candidate: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(candidate)
+    }
+    
+    func getAllContacts() {
+        
+        let status = CNContactStore.authorizationStatusForEntityType(CNEntityType.Contacts) as CNAuthorizationStatus
+        let arrContacts = NSMutableArray()
+        if status == CNAuthorizationStatus.Denied {
+            
+            let alert = UIAlertController(title:nil, message:"This app previously was refused permissions to contacts; Please go to settings and grant permission to this app so it can use contacts", preferredStyle:UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title:"OK", style:UIAlertActionStyle.Default, handler:nil))
+            UIViewController.topMostController().presentViewController(alert, animated:true, completion:nil)
+            return
+        }
+        
+        let store = CNContactStore()
+        store.requestAccessForEntityType(CNEntityType.Contacts) { (granted:Bool, error:NSError?) -> Void in
+            
+            if !granted {
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    // user didn't grant access;
+                    // so, again, tell user here why app needs permissions in order  to do it's job;
+                    // this is dispatched to the main queue because this request could be running on background thread
+                })
+                return
+            }
+            
+             // Declare this array globally, so you can access it in whole class.
+            
+            let request = CNContactFetchRequest(keysToFetch:[CNContactIdentifierKey, CNContactEmailAddressesKey, CNContactBirthdayKey, CNContactImageDataKey, CNContactPhoneNumbersKey, CNContactFormatter.descriptorForRequiredKeysForStyle(CNContactFormatterStyle.FullName)])
+            
+            do {
+                
+                try store.enumerateContactsWithFetchRequest(request, usingBlock: { (contact:CNContact, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
+                    
+                    let arrEmail = contact.emailAddresses as NSArray
+                    
+                    if arrEmail.count > 0 {
+                        
+                        let dict = NSMutableDictionary()
+                        dict.setValue((contact.givenName+" "+contact.familyName), forKey: "name")
+                        let emails = NSMutableArray()
+                        
+                        for (var x = 0 ; x < arrEmail.count ; x++) {
+                            
+                            let email:CNLabeledValue = arrEmail.objectAtIndex(x) as! CNLabeledValue
+                            emails .addObject(email.value as! String)
+                        }
+                        dict.setValue(emails, forKey: "email")
+                        arrContacts.addObject(dict) // Either retrieve only those contact who have email and store only name and email
+                    }
+                    //arrContacts.addObject(contact) // either store all contact with all detail and simplifies later on
+                    for var index = 0; index < arrContacts.count; ++index {
+                        
+                        let dict = arrContacts[index] as! NSDictionary
+                        print(dict.valueForKey("name"))
+                        print(dict.valueForKey("email"))
+                    }
+                })
+            } catch {
+                
+                return
+            }
+        }
+        return
+
+    }
+    
+}
 
 class Color {
 
@@ -26,9 +131,9 @@ class Color {
         return UIColor(netHex: 0x00BFFF)
     }
     
-    func viewBorderColor() -> UIColor
+    func viewBorderColor() -> CGColor
     {
-        return UIColor(netHex: 0x03A9F4)
+        return UIColor(netHex: 0x03A9F4).CGColor
     }
     
     func fbColor() -> UIColor

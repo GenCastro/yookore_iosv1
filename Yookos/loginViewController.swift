@@ -110,170 +110,234 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
             }
         }else
         {
-            let verEmail = validateEmail(txtUsername.text!)
             
-            if verEmail == false
-            {
                 let url = appDel?.services?.login()
-                let json : [String: AnyObject] = [ "username"  : txtUsername.text!, "password" : txtPassword.text!]
-                
-                appDel?.profile.username = txtUsername.text
-                appDel?.profile.password = txtPassword.text
-                appDel?.httpRequest.makePostRequest(url!, body: json,objClass: "login",funcName: "login")
-            }else
-            {
-                let url = appDel?.services?.login()
-                let json : [String: AnyObject] = [ "email"  : txtUsername.text!, "password" : txtPassword.text!]
+            
+                let check = Methods().validateEmail(txtUsername.text!)
+            
+            let json :[String : AnyObject]
+                if check == true
+                {
+                    json  = [ "email"  : txtUsername.text!, "password" : txtPassword.text!]
+                }else
+                {
+                    json  = [ "username"  : txtUsername.text!, "password" : txtPassword.text!]
+                }
+            
                 
                 appDel?.profile.username = txtUsername.text
                 appDel?.profile.email = txtPassword.text
-                appDel?.httpRequest.makePostRequest(url!, body: json,objClass: "login",funcName: "login")
-            }
-            
-        }
-        
-        
-        
-        
-    }
-    
-    func validateEmail(candidate: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(candidate)
-    }
-    
-    func sharedFunction( code: Int,dic:AnyObject,funcName : String)
-    {
-        
-        if funcName == "login"
-        {
-                if code == 200{
+                let request = appDel?.httpRequest.getRequest(url!, body: json,method: "POST")
+                
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request!){ data, response, error in
                     
-                    do
-                    {
-                   
-                        let jsonResult = try NSJSONSerialization.JSONObjectWithData(dic as! NSData, options: []) as! NSDictionary
+                    if let httpResponse = response as? NSHTTPURLResponse {
                         
-                        appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                        let code = httpResponse.statusCode
+                        print(code)
                         
-                        appDel?.profile.fullname = jsonResult.valueForKey("fullname") as? String
-                        appDel?.profile.userid = jsonResult.valueForKey("userid") as? String
-                        appDel?.profile.username = jsonResult.valueForKey("username") as? String
-                        appDel?.profile.email = jsonResult.valueForKey("email") as? String
-                        appDel?.profile.access_token = jsonResult.valueForKey("access_token") as? String
-                        appDel?.profile.sessionID = jsonResult.valueForKey("sessionid") as? String
-                        appDel?.profile.refresh_token = jsonResult.valueForKey("refresh_token") as? String
-                        appDel?.profile.token_expiry = jsonResult.valueForKey("token_expiry") as? Int64
-                        
-                        
-                        let checkUser = jsonResult.valueForKey("legacyuser") as! Bool
-                        //checkUser = true
-                        
-                        if  checkUser == true
+                        if code == 200
                         {
-                            appDel = UIApplication.sharedApplication().delegate as? AppDelegate
-                            
-                            
-                            let auth = getB64Auth(jsonResult.valueForKey("username") as! String, password: (appDel?.profile.password)!)
-                            
-                            appDel?.httpRequest.makeGetRequest((appDel?.services.loginLegacyUser((appDel?.profile.username)!))!, objClass: "login", funcName: "legacyUser", extra: auth)
-                            
-                        }else
-                        {
-                            
-                            
-                            let verified = jsonResult.valueForKey("verified") as! Bool
-                            
-                            if (verified)
-                            {
-                                print("logged in")
-                            }else
-                            {
-                                appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                            do{
+                                let jsonResult = try NSJSONSerialization.JSONObjectWithData(data! , options: []) as! NSDictionary
                                 
-                                let json : [String: AnyObject] = [ "email"  : jsonResult.valueForKey("email")!, "userid" : jsonResult.valueForKey("userid")!]
-                                appDel?.httpRequest.makePostRequest((appDel?.services.resendVerEmail())!, body: json, objClass: "login", funcName: "verify")
+                                self.appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                                
+                                self.appDel?.profile.fullname = jsonResult.valueForKey("fullname") as? String
+                                self.appDel?.profile.userid = jsonResult.valueForKey("userid") as? String
+                                self.appDel?.profile.username = jsonResult.valueForKey("username") as? String
+                                self.appDel?.profile.email = jsonResult.valueForKey("email") as? String
+                                self.appDel?.profile.access_token = jsonResult.valueForKey("access_token") as? String
+                                self.appDel?.profile.sessionID = jsonResult.valueForKey("sessionid") as? String
+                                self.appDel?.profile.refresh_token = jsonResult.valueForKey("refresh_token") as? String
+                                self.appDel?.profile.token_expiry = jsonResult.valueForKey("token_expiry") as? Int64
+                                
+                                
+                                let checkUser = jsonResult.valueForKey("legacyuser") as! Bool
+                                //checkUser = true
+                                
+                                if  checkUser == true
+                                {
+                                    self.appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                                    
+                                    
+                                    let auth = self.getB64Auth(jsonResult.valueForKey("username") as! String, password: (self.appDel?.profile.password)!)
+                                    
+                                    let request = self.appDel?.httpRequest.getRequest((self.appDel?.services.loginLegacyUser((self.appDel?.profile.username)!))!,body: "",method: "GET")
+                                    request!.addValue( "Basic " + auth, forHTTPHeaderField: "Authorization")
+                                    let task = NSURLSession.sharedSession().dataTaskWithRequest(request!){ data, response, error in
+                                        
+                                        if let httpResponse = response as? NSHTTPURLResponse {
+                                            
+                                            let code = httpResponse.statusCode
+                                            
+                                            if code == 200{
+                                                
+                                                dispatch_after(1,dispatch_get_main_queue(), { () -> Void in
+                                                    
+                                                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                                                    let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("loginterms")
+                                                    
+                                                    let view = UIViewController.topMostController()
+                                                    view.presentViewController(nextViewController, animated:true, completion:nil)
+                                                    
+                                                })
+                                                
+                                                
+                                            }else if code == 401
+                                            {
+                                                
+                                                let alert = UIAlertController(title: "Error", message:"You have entered wrong login creditials,please enter again", preferredStyle: .Alert)
+                                                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                                                
+                                                dispatch_async( dispatch_get_main_queue(),{
+                                                    self.presentViewController(alert, animated: true,completion: nil)
+                                                })
+                                                
+                                            }
+                                        }else
+                                        {
+                                            
+                                        }
+                                        
+                                        if error != nil{
+                                            
+                                            print(error)
+                                            return
+                                        }
+                                        
+                                    }
+                                    
+                                    task.resume()
+                                    
+                                }else
+                                {
+                                    
+                                    
+                                    let verified = jsonResult.valueForKey("verified") as! Bool
+                                    
+                                    if (verified)
+                                    {
+                                        print("logged in")
+                                        let alert = UIAlertController(title: self.appDel?.profile.fullname, message: self.appDel?.profile.username, preferredStyle: .Alert)
+                                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                                            
+                                            self.txtUsername.text = self.appDel?.profile.username
+                                            })
+                                        
+                                        dispatch_async( dispatch_get_main_queue(),{
+                                            self.presentViewController(alert, animated: true,completion: nil)
+                                        })
+                                    }else
+                                    {
+                                        self.appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                                        
+                                        let json : [String: AnyObject] = [ "email"  : jsonResult.valueForKey("email")!, "userid" : jsonResult.valueForKey("userid")!]
+                                   let request = self.appDel?.httpRequest.getRequest((self.appDel?.services.resendVerEmail())!, body: json,method: "POST")
+                                        
+                                        let task = NSURLSession.sharedSession().dataTaskWithRequest(request!){ data, response, error in
+                                            
+                                            if let httpResponse = response as? NSHTTPURLResponse {
+                                                
+                                                let code = httpResponse.statusCode
+                                                
+                                                if code == 200{
+                                                    
+                                                    
+                                                    dispatch_after(1,dispatch_get_main_queue(), { () -> Void in
+                                                        
+                                                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                                                        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("versignup")
+                                                        
+                                                        UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+                                                        
+                                                    })
+                                                    
+                                                    
+                                                }else
+                                                {
+                                                    
+                                                    let alert = UIAlertController(title: "Error", message:"we have encountered an error with your request", preferredStyle: .Alert)
+                                                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                                                    
+                                                    dispatch_async( dispatch_get_main_queue(),{
+                                                        UIViewController.topMostController().presentViewController(alert, animated: true,completion: nil)
+                                                    })
+                                                    
+                                                }
+                                                
+                                            }else
+                                            {
+                                                
+                                            }
+                                            
+                                            if error != nil{
+                                                
+                                                print(error)
+                                                return
+                                            }
+                                            
+                                        }
+                                        
+                                        task.resume()
+                                    }
+                                }
+                                
+                            }catch{
+                                
                             }
+                            
+                        }else if code == 404
+                        {
+                            
+                            print("\(code)")
+                            let alert = UIAlertController(title: "Error", message:"You have entered wrong login creditials,please enter again", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                            
+                            
+                            dispatch_async( dispatch_get_main_queue(),{
+                                
+                                
+                                let view = UIViewController.topMostController()
+                                view.presentViewController(alert, animated: true,completion: nil)
+                            })
+                            
                         }
-                    }catch
+                        
+                        print(" passed 1" )
+                        
+                    }else
                     {
                         
                     }
                     
-
-                    
-                }else if code == 404
-                {
-                 
-                     print("\(code)")
-                    let alert = UIAlertController(title: "Error", message:"You have entered wrong login creditials,please enter again", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                    
-                
-                    dispatch_async( dispatch_get_main_queue(),{
+                    if error != nil{
                         
-                        
-                        let view = UIViewController.topMostController()
-                        view.presentViewController(alert, animated: true,completion: nil)
-                    })
+                        dispatch_async( dispatch_get_main_queue(),{
+                            let alert = UIAlertController(title: "ERROR", message:"Network Connection Lost", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                            UIViewController.topMostController().presentViewController(alert, animated: true){}
+                        })
+                        return
+                    }
                     
                 }
-        }else if funcName == "legacyUser"
-        {
-            
-            if code == 200{
                 
-                dispatch_after(1,dispatch_get_main_queue(), { () -> Void in
-                    
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("loginterms")
-                    
-                    let view = UIViewController.topMostController()
-                    view.presentViewController(nextViewController, animated:true, completion:nil)
-                    
-                })
+                task.resume()
                 
                 
-            }else if code == 401
-            {
-                
-                let alert = UIAlertController(title: "Error", message:"You have entered wrong login creditials,please enter again", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                
-                dispatch_async( dispatch_get_main_queue(),{
-                    self.presentViewController(alert, animated: true,completion: nil)
-                })
                 
             }
             
-        }else if funcName == "verify"
-        {
-            if code == 200{
-                
-            
-                dispatch_after(1,dispatch_get_main_queue(), { () -> Void in
-                    
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("versignup")
-                    
-                    UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
-                    
-                })
-                
-                
-            }else
-            {
-                
-                let alert = UIAlertController(title: "Error", message:"we have encountered an error with your request", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                
-                dispatch_async( dispatch_get_main_queue(),{
-                    UIViewController.topMostController().presentViewController(alert, animated: true,completion: nil)
-                })
-                
-            }
-        }
+        
+        
+        
+        
+        
     }
+    
+    
+    
     @IBAction func forgotPassword(sender: AnyObject) {
         
         dispatch_after(1,dispatch_get_main_queue(), { () -> Void in

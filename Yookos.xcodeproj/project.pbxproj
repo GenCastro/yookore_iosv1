@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160441EE1CAC552A00E033CC /* dropDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 160441ED1CAC552A00E033CC /* dropDown.png */; };
+		160441F11CAD02CD00E033CC /* InviteSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160441F01CAD02CD00E033CC /* InviteSpace.swift */; };
+		160441F31CAD0D5B00E033CC /* HobbiesNInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160441F21CAD0D5B00E033CC /* HobbiesNInterests.swift */; };
+		160441F51CAD10D300E033CC /* InviteFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160441F41CAD10D300E033CC /* InviteFriends.swift */; };
+		160441F81CAD1F3F00E033CC /* AddFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160441F61CAD1F3F00E033CC /* AddFriendsCell.swift */; };
+		160441F91CAD1F3F00E033CC /* AddFriendsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160441F71CAD1F3F00E033CC /* AddFriendsCell.xib */; };
 		161189861C8D6086006F8082 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189851C8D6086006F8082 /* LocationManager.swift */; };
 		161189881C8D63E5006F8082 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161189871C8D63E5006F8082 /* CoreLocation.framework */; };
 		161189941C8D9091006F8082 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161189931C8D9091006F8082 /* FBSDKCoreKit.framework */; };
@@ -27,6 +33,9 @@
 		161189B41C93120F006F8082 /* LoginTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189B31C93120F006F8082 /* LoginTerms.swift */; };
 		161189B61C96CAE2006F8082 /* UserInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 161189B51C96CAE2006F8082 /* UserInfo.plist */; };
 		161189BE1C9965D1006F8082 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189BD1C9965D1006F8082 /* VerificationView.swift */; };
+		162390981CA9B11C00CDC613 /* ForgotCheckEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162390971CA9B11C00CDC613 /* ForgotCheckEmail.swift */; };
+		1623909A1CA9B17400CDC613 /* SetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162390991CA9B17400CDC613 /* SetPassword.swift */; };
+		1630CBFB1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1630CBFA1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist */; };
 		1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3A81C7EF76C00B43327 /* AppDelegate.swift */; };
 		1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3AA1C7EF76C00B43327 /* ViewController.swift */; };
 		1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3AC1C7EF76C00B43327 /* Main.storyboard */; };
@@ -48,6 +57,8 @@
 		1637F3F81C7F3EB400B43327 /* SignUpStepTwoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3F71C7F3EB400B43327 /* SignUpStepTwoView.swift */; };
 		1637F3FB1C7F472E00B43327 /* FAIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3F91C7F472E00B43327 /* FAIcon.swift */; };
 		1637F3FC1C7F472E00B43327 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3FA1C7F472E00B43327 /* FontAwesome.ttf */; };
+		166E67341CA3C45C00527682 /* yookoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E67331CA3C45C00527682 /* yookoreTests.swift */; };
+		166E673F1CA3C45C00527682 /* yookoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E673E1CA3C45C00527682 /* yookoreUITests.swift */; };
 		167989971C85E05900A32CC0 /* ico_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 167989961C85E05900A32CC0 /* ico_facebook.png */; };
 		16A531471CA126E3002918CB /* OnBoardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A531461CA126E3002918CB /* OnBoardingWelcome.swift */; };
 		16A5314E1CA18362002918CB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A5314D1CA18362002918CB /* CoreTelephony.framework */; };
@@ -70,9 +81,29 @@
 			remoteGlobalIDString = 1637F3A41C7EF76C00B43327;
 			remoteInfo = Yookos;
 		};
+		166E67301CA3C45C00527682 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1637F39D1C7EF76C00B43327 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 166E671B1CA3C45C00527682;
+			remoteInfo = yookore;
+		};
+		166E673B1CA3C45C00527682 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1637F39D1C7EF76C00B43327 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 166E671B1CA3C45C00527682;
+			remoteInfo = yookore;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		160441ED1CAC552A00E033CC /* dropDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropDown.png; sourceTree = "<group>"; };
+		160441F01CAD02CD00E033CC /* InviteSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteSpace.swift; sourceTree = "<group>"; };
+		160441F21CAD0D5B00E033CC /* HobbiesNInterests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HobbiesNInterests.swift; sourceTree = "<group>"; };
+		160441F41CAD10D300E033CC /* InviteFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriends.swift; sourceTree = "<group>"; };
+		160441F61CAD1F3F00E033CC /* AddFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsCell.swift; sourceTree = "<group>"; };
+		160441F71CAD1F3F00E033CC /* AddFriendsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendsCell.xib; sourceTree = "<group>"; };
 		161189851C8D6086006F8082 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		161189871C8D63E5006F8082 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1611898B1C8D8B32006F8082 /* FBBridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FBBridging-Header.h"; sourceTree = "<group>"; };
@@ -94,6 +125,9 @@
 		161189B31C93120F006F8082 /* LoginTerms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTerms.swift; sourceTree = "<group>"; };
 		161189B51C96CAE2006F8082 /* UserInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserInfo.plist; sourceTree = "<group>"; };
 		161189BD1C9965D1006F8082 /* VerificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
+		162390971CA9B11C00CDC613 /* ForgotCheckEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotCheckEmail.swift; sourceTree = "<group>"; };
+		162390991CA9B17400CDC613 /* SetPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetPassword.swift; path = ../SetPassword.swift; sourceTree = "<group>"; };
+		1630CBFA1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		1637F3A51C7EF76C00B43327 /* Yookos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yookos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1637F3A81C7EF76C00B43327 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1637F3AA1C7EF76C00B43327 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,12 +155,18 @@
 		1637F3F71C7F3EB400B43327 /* SignUpStepTwoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpStepTwoView.swift; sourceTree = "<group>"; };
 		1637F3F91C7F472E00B43327 /* FAIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAIcon.swift; sourceTree = "<group>"; };
 		1637F3FA1C7F472E00B43327 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		166E671C1CA3C45C00527682 /* yookore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yookore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		166E672F1CA3C45C00527682 /* yookoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yookoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		166E67331CA3C45C00527682 /* yookoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yookoreTests.swift; sourceTree = "<group>"; };
+		166E67351CA3C45C00527682 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		166E673A1CA3C45C00527682 /* yookoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yookoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		166E673E1CA3C45C00527682 /* yookoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yookoreUITests.swift; sourceTree = "<group>"; };
+		166E67401CA3C45C00527682 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		167989961C85E05900A32CC0 /* ico_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_facebook.png; sourceTree = "<group>"; };
 		16A531461CA126E3002918CB /* OnBoardingWelcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingWelcome.swift; sourceTree = "<group>"; };
 		16A5314D1CA18362002918CB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		16A5314F1CA18C9B002918CB /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		16A531511CA2A566002918CB /* ForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
-		16D9B8941CA2E4690081036A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		18F7323F044CE80A1E97F6E3 /* Pods-Yookos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yookos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yookos/Pods-Yookos.release.xcconfig"; sourceTree = "<group>"; };
 		4280A15C7914F819D00050C2 /* Pods-Yookos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yookos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yookos/Pods-Yookos.debug.xcconfig"; sourceTree = "<group>"; };
 		5D82EBAB7DDA2AA1C153258F /* Pods_Yookos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yookos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,9 +200,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		166E67191CA3C45C00527682 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166E672C1CA3C45C00527682 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166E67371CA3C45C00527682 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		160441EF1CAD028500E033CC /* InviteFriends */ = {
+			isa = PBXGroup;
+			children = (
+				160441F01CAD02CD00E033CC /* InviteSpace.swift */,
+				160441F41CAD10D300E033CC /* InviteFriends.swift */,
+				160441F61CAD1F3F00E033CC /* AddFriendsCell.swift */,
+				160441F71CAD1F3F00E033CC /* AddFriendsCell.xib */,
+			);
+			name = InviteFriends;
+			sourceTree = "<group>";
+		};
 		161189921C8D9055006F8082 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +244,6 @@
 				161189961C8D909E006F8082 /* FBSDKLoginKit.framework */,
 				161189931C8D9091006F8082 /* FBSDKCoreKit.framework */,
 				5D82EBAB7DDA2AA1C153258F /* Pods_Yookos.framework */,
-				16D9B8941CA2E4690081036A /* Alamofire.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -180,7 +251,9 @@
 		161189A11C900F95006F8082 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
+				162390991CA9B17400CDC613 /* SetPassword.swift */,
 				16A531511CA2A566002918CB /* ForgotPassword.swift */,
+				162390971CA9B11C00CDC613 /* ForgotCheckEmail.swift */,
 			);
 			name = ForgotPassword;
 			sourceTree = "<group>";
@@ -193,6 +266,7 @@
 				161189AE1C906E7F006F8082 /* Location.xib */,
 				161189B11C917665006F8082 /* School.xib */,
 				16A531461CA126E3002918CB /* OnBoardingWelcome.swift */,
+				160441F21CAD0D5B00E033CC /* HobbiesNInterests.swift */,
 			);
 			name = OnBoarding;
 			sourceTree = "<group>";
@@ -200,6 +274,8 @@
 		1637F39C1C7EF76C00B43327 = {
 			isa = PBXGroup;
 			children = (
+				166E67321CA3C45C00527682 /* yookoreTests */,
+				166E673D1CA3C45C00527682 /* yookoreUITests */,
 				161189921C8D9055006F8082 /* Frameworks */,
 				161189871C8D63E5006F8082 /* CoreLocation.framework */,
 				1637F3A71C7EF76C00B43327 /* Yookos */,
@@ -216,6 +292,9 @@
 				1637F3A51C7EF76C00B43327 /* Yookos.app */,
 				1637F3B91C7EF76C00B43327 /* YookosTests.xctest */,
 				1637F3C41C7EF76C00B43327 /* YookosUITests.xctest */,
+				166E671C1CA3C45C00527682 /* yookore.app */,
+				166E672F1CA3C45C00527682 /* yookoreTests.xctest */,
+				166E673A1CA3C45C00527682 /* yookoreUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,14 +302,16 @@
 		1637F3A71C7EF76C00B43327 /* Yookos */ = {
 			isa = PBXGroup;
 			children = (
+				1630CBFA1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist */,
 				1637F3F91C7F472E00B43327 /* FAIcon.swift */,
 				1637F3FA1C7F472E00B43327 /* FontAwesome.ttf */,
 				1637F3E81C7F01D400B43327 /* Images */,
 				1637F3DB1C7EF89200B43327 /* Objects */,
 				1637F3D61C7EF81300B43327 /* Account */,
+				1611899B1C8DC2BA006F8082 /* HelpCentre.swift */,
 				1637F3A81C7EF76C00B43327 /* AppDelegate.swift */,
-				1637F3AA1C7EF76C00B43327 /* ViewController.swift */,
 				1637F3AC1C7EF76C00B43327 /* Main.storyboard */,
+				1637F3AA1C7EF76C00B43327 /* ViewController.swift */,
 				1637F3AF1C7EF76C00B43327 /* Assets.xcassets */,
 				1637F3B11C7EF76C00B43327 /* LaunchScreen.storyboard */,
 				1637F3E61C7EF8E000B43327 /* Services.plist */,
@@ -262,11 +343,11 @@
 		1637F3D61C7EF81300B43327 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				160441EF1CAD028500E033CC /* InviteFriends */,
 				161189AA1C9066DF006F8082 /* OnBoarding */,
 				161189A11C900F95006F8082 /* ForgotPassword */,
 				1637F3F61C7F3E6100B43327 /* SignUP */,
 				1637F3F51C7F3E5700B43327 /* Login */,
-				1611899B1C8DC2BA006F8082 /* HelpCentre.swift */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -287,6 +368,7 @@
 		1637F3E81C7F01D400B43327 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				160441ED1CAC552A00E033CC /* dropDown.png */,
 				161189A21C902AE3006F8082 /* ico_connect.png */,
 				161189A81C9059EA006F8082 /* ico_profile_pic.png */,
 				161189A31C902AE3006F8082 /* ico_play.png */,
@@ -319,6 +401,24 @@
 				161189BD1C9965D1006F8082 /* VerificationView.swift */,
 			);
 			name = SignUP;
+			sourceTree = "<group>";
+		};
+		166E67321CA3C45C00527682 /* yookoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				166E67331CA3C45C00527682 /* yookoreTests.swift */,
+				166E67351CA3C45C00527682 /* Info.plist */,
+			);
+			path = yookoreTests;
+			sourceTree = "<group>";
+		};
+		166E673D1CA3C45C00527682 /* yookoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				166E673E1CA3C45C00527682 /* yookoreUITests.swift */,
+				166E67401CA3C45C00527682 /* Info.plist */,
+			);
+			path = yookoreUITests;
 			sourceTree = "<group>";
 		};
 		C64292827EA617D4C27C7430 /* Pods */ = {
@@ -389,6 +489,59 @@
 			productReference = 1637F3C41C7EF76C00B43327 /* YookosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		166E671B1CA3C45C00527682 /* yookore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 166E67411CA3C45C00527682 /* Build configuration list for PBXNativeTarget "yookore" */;
+			buildPhases = (
+				166E67181CA3C45C00527682 /* Sources */,
+				166E67191CA3C45C00527682 /* Frameworks */,
+				166E671A1CA3C45C00527682 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = yookore;
+			productName = yookore;
+			productReference = 166E671C1CA3C45C00527682 /* yookore.app */;
+			productType = "com.apple.product-type.application";
+		};
+		166E672E1CA3C45C00527682 /* yookoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 166E67441CA3C45C00527682 /* Build configuration list for PBXNativeTarget "yookoreTests" */;
+			buildPhases = (
+				166E672B1CA3C45C00527682 /* Sources */,
+				166E672C1CA3C45C00527682 /* Frameworks */,
+				166E672D1CA3C45C00527682 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				166E67311CA3C45C00527682 /* PBXTargetDependency */,
+			);
+			name = yookoreTests;
+			productName = yookoreTests;
+			productReference = 166E672F1CA3C45C00527682 /* yookoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		166E67391CA3C45C00527682 /* yookoreUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 166E67471CA3C45C00527682 /* Build configuration list for PBXNativeTarget "yookoreUITests" */;
+			buildPhases = (
+				166E67361CA3C45C00527682 /* Sources */,
+				166E67371CA3C45C00527682 /* Frameworks */,
+				166E67381CA3C45C00527682 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				166E673C1CA3C45C00527682 /* PBXTargetDependency */,
+			);
+			name = yookoreUITests;
+			productName = yookoreUITests;
+			productReference = 166E673A1CA3C45C00527682 /* yookoreUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -413,6 +566,17 @@
 						DevelopmentTeam = H6TK77555C;
 						TestTargetID = 1637F3A41C7EF76C00B43327;
 					};
+					166E671B1CA3C45C00527682 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					166E672E1CA3C45C00527682 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 166E671B1CA3C45C00527682;
+					};
+					166E67391CA3C45C00527682 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 166E671B1CA3C45C00527682;
+					};
 				};
 			};
 			buildConfigurationList = 1637F3A01C7EF76C00B43327 /* Build configuration list for PBXProject "Yookos" */;
@@ -431,6 +595,9 @@
 				1637F3A41C7EF76C00B43327 /* Yookos */,
 				1637F3B81C7EF76C00B43327 /* YookosTests */,
 				1637F3C31C7EF76C00B43327 /* YookosUITests */,
+				166E671B1CA3C45C00527682 /* yookore */,
+				166E672E1CA3C45C00527682 /* yookoreTests */,
+				166E67391CA3C45C00527682 /* yookoreUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -443,17 +610,20 @@
 				1637F3F01C7F35C900B43327 /* step1_bg.png in Resources */,
 				161189A01C900083006F8082 /* ico_back@2x.png in Resources */,
 				1637F3FC1C7F472E00B43327 /* FontAwesome.ttf in Resources */,
+				160441EE1CAC552A00E033CC /* dropDown.png in Resources */,
 				161189B61C96CAE2006F8082 /* UserInfo.plist in Resources */,
 				1637F3E71C7EF8E000B43327 /* Services.plist in Resources */,
 				1637F3EC1C7F020100B43327 /* background.png in Resources */,
 				161189A71C902AE3006F8082 /* ico_share.png in Resources */,
 				1637F3EA1C7F01E500B43327 /* logo_with_taglines.png in Resources */,
 				161189B01C906E7F006F8082 /* Location.xib in Resources */,
+				1630CBFB1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist in Resources */,
 				1637F3B31C7EF76C00B43327 /* LaunchScreen.storyboard in Resources */,
 				161189A61C902AE3006F8082 /* ico_play.png in Resources */,
 				1637F3F21C7F35E300B43327 /* step2_bg.png in Resources */,
 				1637F3B01C7EF76C00B43327 /* Assets.xcassets in Resources */,
 				1637F3AE1C7EF76C00B43327 /* Main.storyboard in Resources */,
+				160441F91CAD1F3F00E033CC /* AddFriendsCell.xib in Resources */,
 				161189A51C902AE3006F8082 /* ico_connect.png in Resources */,
 				167989971C85E05900A32CC0 /* ico_facebook.png in Resources */,
 				161189B21C917665006F8082 /* School.xib in Resources */,
@@ -469,6 +639,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1637F3C21C7EF76C00B43327 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166E671A1CA3C45C00527682 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166E672D1CA3C45C00527682 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166E67381CA3C45C00527682 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -532,23 +723,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				1637F3AB1C7EF76C00B43327 /* ViewController.swift in Sources */,
+				1623909A1CA9B17400CDC613 /* SetPassword.swift in Sources */,
 				1611899E1C8EB0C7006F8082 /* ExtentionsMethods.swift in Sources */,
+				160441F81CAD1F3F00E033CC /* AddFriendsCell.swift in Sources */,
 				1637F3E11C7EF8C700B43327 /* HttpRequest.swift in Sources */,
 				161189B41C93120F006F8082 /* LoginTerms.swift in Sources */,
 				1637F3A91C7EF76C00B43327 /* AppDelegate.swift in Sources */,
 				1637F3FB1C7F472E00B43327 /* FAIcon.swift in Sources */,
 				1637F3E31C7EF8C700B43327 /* Profile.swift in Sources */,
 				1637F3E21C7EF8C700B43327 /* MyProtocol.swift in Sources */,
+				160441F51CAD10D300E033CC /* InviteFriends.swift in Sources */,
 				1637F3E41C7EF8C700B43327 /* Services.swift in Sources */,
 				161189861C8D6086006F8082 /* LocationManager.swift in Sources */,
 				161189AC1C906726006F8082 /* OnBoardingTableVIew.swift in Sources */,
 				1637F3F81C7F3EB400B43327 /* SignUpStepTwoView.swift in Sources */,
+				160441F31CAD0D5B00E033CC /* HobbiesNInterests.swift in Sources */,
 				1637F3DA1C7EF87A00B43327 /* SignUpViewController.swift in Sources */,
+				162390981CA9B11C00CDC613 /* ForgotCheckEmail.swift in Sources */,
 				16A531471CA126E3002918CB /* OnBoardingWelcome.swift in Sources */,
 				161189AF1C906E7F006F8082 /* OnboardingCell.swift in Sources */,
 				1611899C1C8DC2BA006F8082 /* HelpCentre.swift in Sources */,
 				161189BE1C9965D1006F8082 /* VerificationView.swift in Sources */,
 				1637F3D91C7EF87A00B43327 /* loginViewController.swift in Sources */,
+				160441F11CAD02CD00E033CC /* InviteSpace.swift in Sources */,
 				1611899A1C8DB1BE006F8082 /* TermsNConditions.swift in Sources */,
 				16A531521CA2A566002918CB /* ForgotPassword.swift in Sources */,
 			);
@@ -570,6 +767,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		166E67181CA3C45C00527682 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166E672B1CA3C45C00527682 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				166E67341CA3C45C00527682 /* yookoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166E67361CA3C45C00527682 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				166E673F1CA3C45C00527682 /* yookoreUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -582,6 +802,16 @@
 			isa = PBXTargetDependency;
 			target = 1637F3A41C7EF76C00B43327 /* Yookos */;
 			targetProxy = 1637F3C51C7EF76C00B43327 /* PBXContainerItemProxy */;
+		};
+		166E67311CA3C45C00527682 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 166E671B1CA3C45C00527682 /* yookore */;
+			targetProxy = 166E67301CA3C45C00527682 /* PBXContainerItemProxy */;
+		};
+		166E673C1CA3C45C00527682 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 166E671B1CA3C45C00527682 /* yookore */;
+			targetProxy = 166E673B1CA3C45C00527682 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -711,7 +941,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Yookos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PODS_FRAMEWORK_BUILD_PATH = "";
@@ -737,7 +967,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Yookos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
@@ -799,6 +1029,87 @@
 			};
 			name = Release;
 		};
+		166E67421CA3C45C00527682 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = yookore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.yookore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		166E67431CA3C45C00527682 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = yookore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.yookore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		166E67451CA3C45C00527682 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = yookoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.yookoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yookore.app/yookore";
+			};
+			name = Debug;
+		};
+		166E67461CA3C45C00527682 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = yookoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.yookoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yookore.app/yookore";
+			};
+			name = Release;
+		};
+		166E67481CA3C45C00527682 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = yookoreUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.yookoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e6d80204-b019-4b3a-9954-4ccd7315b67d";
+				TEST_TARGET_NAME = yookore;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		166E67491CA3C45C00527682 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = yookoreUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yookos.yookoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e6d80204-b019-4b3a-9954-4ccd7315b67d";
+				TEST_TARGET_NAME = yookore;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -834,6 +1145,33 @@
 			buildConfigurations = (
 				1637F3D41C7EF76C00B43327 /* Debug */,
 				1637F3D51C7EF76C00B43327 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		166E67411CA3C45C00527682 /* Build configuration list for PBXNativeTarget "yookore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				166E67421CA3C45C00527682 /* Debug */,
+				166E67431CA3C45C00527682 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		166E67441CA3C45C00527682 /* Build configuration list for PBXNativeTarget "yookoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				166E67451CA3C45C00527682 /* Debug */,
+				166E67461CA3C45C00527682 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		166E67471CA3C45C00527682 /* Build configuration list for PBXNativeTarget "yookoreUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				166E67481CA3C45C00527682 /* Debug */,
+				166E67491CA3C45C00527682 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

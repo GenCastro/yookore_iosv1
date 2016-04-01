@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class OnBoardingWelcome : UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
@@ -36,31 +35,83 @@ class OnBoardingWelcome : UIViewController,UIImagePickerControllerDelegate,UINav
     }
     @IBAction func next(sender: AnyObject) {
         
-        let imageData = UIImageJPEGRepresentation(imgView.image!, 0.5)
-        let url = Services().uploadProfileAvatar("21c4baa0-9db6-4c18-acf0-2c13ab62fa51")
+       let url = NSURL(string: "https://upm.yookos.com/api/v1/profile/21c4baa0-9db6-4c18-acf0-2c13ab62fa51/avatar")
+        let request = NSMutableURLRequest(URL:url!);
+        request.HTTPMethod = "POST"
         
-        let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+        let boundary = generateBoundaryString()
         
-        let parameters = ["file": base64String] as [String: AnyObject]
-        _ = Alamofire.request(.POST, url, parameters: parameters)
-            .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
-                //  To update your ui, dispatch to the main queue.
-                dispatch_async(dispatch_get_main_queue()) {
-                    print("Total bytes written on main queue: \(totalBytesWritten)....\(totalBytesExpectedToWrite)")
-                }
-            }
-            .responseJSON {  response in
-                debugPrint(response)
-                if response.result.isSuccess {
-                    print("here")
-                }
-                else{
-                    print("here")
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        let imageData = UIImageJPEGRepresentation(imgView.image!, 1)
+        
+        request.HTTPBody = createBodyWithParameters([:], filePathKey: "file", imageDataKey: imageData!, boundary: boundary)
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                
+                let code = httpResponse.statusCode
+                print(code)
+                print(response)
+                
+                
+                if code == 200
+                {
+                    
+                    do {
+                        
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSDictionary
+                        
+                        print(json)
+                        // YOUR OTHER CODE HERE
+                        
+                    } catch
+                    {
+                        print(error)
+                    }
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("onboarding");
+                    dispatch_async(dispatch_get_main_queue(), {
+                        //Code that presents or dismisses a view controller here
+                        
+                        self.presentViewController(nextViewController, animated:true, completion:nil)
+                    });
+                    
+                    
+                }else
+                {
+                    
+                    dispatch_async( dispatch_get_main_queue(),{
+                        let alert = UIAlertController(title: "ERROR!", message:"we couldnot upload your photo", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "DISMISS", style: .Default) { _ in })
+                        UIViewController.topMostController().presentViewController(alert, animated: true){}
+                    })
                 }
                 
+                print(" passed 1" )
+                
+            }else
+            {
+                
+            }
+            
+            if error != nil{
+                
+                dispatch_async( dispatch_get_main_queue(),{
+                    let alert = UIAlertController(title: "ERROR", message:"Network Connection Lost", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
+                })
+                return
+            }
+            
         }
         
-    }
+        task.resume()
+        
+        
+   }
     
     @IBAction func selectPhotoButtonTapped(sender: UITapGestureRecognizer) {
         
@@ -117,7 +168,34 @@ class OnBoardingWelcome : UIViewController,UIImagePickerControllerDelegate,UINav
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
+    func generateBoundaryString() -> String {
+        return "----WebKitFormBoundaryE19zNvXGzXaLvS5C"
+    }
+    func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String) -> NSData {
+        let body = NSMutableData();
+        
+        if parameters != nil {
+            for (key, value) in parameters! {
+                body.appendString("--\(boundary)\r\n")
+                body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.appendString("\(value)\r\n")
+            }
+        }
+        
+        let filename = "user-profile.jpg"
+        
+        let mimetype = "image/jpg"
+        
+        body.appendString("--\(boundary)\r\n")
+        body.appendString("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
+        body.appendString("Content-Type: \(mimetype)\r\n\r\n")
+        body.appendData(imageDataKey)
+        body.appendString("\r\n")
+        
+        body.appendString("--\(boundary)--\r\n")
+        
+        return body
+    }
 }
 
 extension NSMutableData {
