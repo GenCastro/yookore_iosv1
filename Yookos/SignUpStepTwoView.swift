@@ -72,10 +72,10 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         
         
         //ADDING TAB GESTURE TO ALL VIEWS
-        var tap = UITapGestureRecognizer(target: self, action: Selector("countryTap:"))
+        var tap = UITapGestureRecognizer(target: self, action: #selector(SignUpStepTwoView.countryTap(_:)))
         vwCountry.addGestureRecognizer(tap)
         
-        tap = UITapGestureRecognizer(target: self, action: Selector("acceptTnCsTap:"))
+        tap = UITapGestureRecognizer(target: self, action: #selector(SignUpStepTwoView.acceptTnCsTap(_:)))
         lblCheckTnC.addGestureRecognizer(tap)
         tap.delegate = self // Remember to extend your class with UIGestureRecognizerDelegate
         
@@ -88,7 +88,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         toolBar.barTintColor = Color.init().pickerBarColor()
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicking:")
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpStepTwoView.donePicking(_:)))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         toolBar.setItems([spaceButton,spaceButton,doneButton], animated: true)
@@ -103,7 +103,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         pickerView.dataSource = self
         pickerView.sizeToFit()
         
-        txtSelectCountry.addTarget(self, action: "dateInput:", forControlEvents: UIControlEvents.EditingDidBegin)
+        txtSelectCountry.addTarget(self, action: #selector(SignUpStepTwoView.dateInput(_:)), forControlEvents: UIControlEvents.EditingDidBegin)
         txtSelectCountry.inputView = pickerView
         txtSelectCountry.inputAccessoryView = toolBar
         
@@ -152,7 +152,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
                     do{
                         let countries = try NSJSONSerialization.JSONObjectWithData((data! as NSData!), options: []) as! NSMutableArray
                         
-                        for var i = 0; i < countries.count ; ++i
+                        for i in 0 ..< countries.count 
                         {
                             let country = countries[i] as! NSMutableDictionary
                             

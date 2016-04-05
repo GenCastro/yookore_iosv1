@@ -87,7 +87,7 @@ class Methods {
                         dict.setValue((contact.givenName+" "+contact.familyName), forKey: "name")
                         let emails = NSMutableArray()
                         
-                        for (var x = 0 ; x < arrEmail.count ; x++) {
+                        for x in 0  ..< arrEmail.count  {
                             
                             let email:CNLabeledValue = arrEmail.objectAtIndex(x) as! CNLabeledValue
                             emails .addObject(email.value as! String)
@@ -96,7 +96,7 @@ class Methods {
                         arrContacts.addObject(dict) // Either retrieve only those contact who have email and store only name and email
                     }
                     //arrContacts.addObject(contact) // either store all contact with all detail and simplifies later on
-                    for var index = 0; index < arrContacts.count; ++index {
+                    for index in 0 ..< arrContacts.count {
                         
                         let dict = arrContacts[index] as! NSDictionary
                         print(dict.valueForKey("name"))
@@ -135,7 +135,10 @@ class Color {
     {
         return UIColor(netHex: 0x03A9F4).CGColor
     }
-    
+    func tokenColor() -> UIColor
+    {
+        return UIColor(netHex: 0x535187)
+    }
     func fbColor() -> UIColor
     {
             return UIColor(netHex: 0x03A9F4)

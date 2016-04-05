@@ -23,7 +23,7 @@ class ForgotCheckEmail: UIViewController,UIGestureRecognizerDelegate {
         
          let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         lblEmail.text = appDel.profile.email
-        let tap = UITapGestureRecognizer(target: self, action: Selector("resend:"))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ForgotCheckEmail.resend(_:)))
         lblResend!.addGestureRecognizer(tap)
     }
     

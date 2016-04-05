@@ -109,20 +109,20 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         //ADDING TAB GESTURE TO ALL VIEWS
         
-        var tap = UITapGestureRecognizer(target: self, action: Selector("dayTap:"))
+        var tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.dayTap(_:)))
         vwDY?.addGestureRecognizer(tap)
-        tap = UITapGestureRecognizer(target: self, action: Selector("monthTap:"))
+        tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.monthTap(_:)))
         vwMonth?.addGestureRecognizer(tap)
-        tap = UITapGestureRecognizer(target: self, action: Selector("yearTap:"))
+        tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.yearTap(_:)))
         vwYear?.addGestureRecognizer(tap)
         
-        tap = UITapGestureRecognizer(target: self, action: Selector("maleTap:"))
+        tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.maleTap(_:)))
         vwMale?.addGestureRecognizer(tap)
-        tap = UITapGestureRecognizer(target: self, action: Selector("femaleTap:"))
+        tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.femaleTap(_:)))
         vwFemale?.addGestureRecognizer(tap)
-        tap = UITapGestureRecognizer(target: self, action: Selector("signWithTap:"))
+        tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.signWithTap(_:)))
         vwSignupWith?.addGestureRecognizer(tap)
-        tap = UITapGestureRecognizer(target: self, action: Selector("closeErrorTap:"))
+        tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.closeErrorTap(_:)))
         lblErrorMsg?.addGestureRecognizer(tap)
         
         
@@ -134,7 +134,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         toolBar.barTintColor = Color.init().pickerBarColor()
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicking:")
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SignUpViewController.donePicking(_:)))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         toolBar.setItems([spaceButton,spaceButton,doneButton], animated: true)
@@ -146,7 +146,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         pickerView?.dataSource = self
         pickerView?.sizeToFit()
         
-        txtDateInput.addTarget(self, action: "dateInput:", forControlEvents: UIControlEvents.EditingDidBegin)
+        txtDateInput.addTarget(self, action: #selector(SignUpViewController.dateInput(_:)), forControlEvents: UIControlEvents.EditingDidBegin)
         txtDateInput.inputView = pickerView
         txtDateInput.inputAccessoryView = toolBar
         
@@ -216,7 +216,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         theView!.userInteractionEnabled = false
         checkPic = "day"
         pickOption = []
-        for var i = 1;i < 32;i++
+        for i in 1 ..< 32
         {
             pickOption.append(String(i))
         }
@@ -256,7 +256,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
 
         let x = year - 1900
         
-        for var i = 0;i < x;i++
+        for i in 0 ..< x
         {
           pickOption.append(String(1900 + i))
         }

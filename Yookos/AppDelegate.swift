@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,9 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var services :Services!
     var profile :Profile!
     var httpRequest :HttpRequest!
-    var login :LoginViewController!
-    var signUp : SignUpViewController!
-
+   
+    var extras : Extras!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         services = Services.init()
         profile = Profile.init()
         httpRequest = HttpRequest.init()
-        
+        extras = Extras.init()
         
 //        let plist = NSBundle.mainBundle().pathForResource("UserInfo", ofType: "plist")
 //        let dict = NSMutableDictionary(contentsOfFile: plist!)
@@ -41,8 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
        
         self.window?.makeKeyAndVisible()
-        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     
@@ -50,12 +50,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         openURL url: NSURL,
         sourceApplication: String?,
         annotation: AnyObject) -> Bool {
-            return FBSDKApplicationDelegate.sharedInstance().application(
+            
+            
+            
+        
+             FBSDKApplicationDelegate.sharedInstance().application(
                 application,
                 openURL: url,
                 sourceApplication: sourceApplication,
                 annotation: annotation)
-            
+            return true
             
             
     }
@@ -63,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    
+       
         window?.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
         
     }
@@ -101,19 +105,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+   /* func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
         return true
     }
     
     func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
         return true
-    }
+    }*/
 
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         
         let urlParams = url.path
         url.host
-        
+        print(url.host)
+        print(urlParams)
         if urlParams == nil
         {
             print("nothing")
@@ -192,8 +197,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("setpwd")
                 UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
                 
+            }else if url.host == "authorize"
+            {
+                
             }
-            print(urlParams)
         }
         
         

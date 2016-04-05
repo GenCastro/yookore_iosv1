@@ -65,7 +65,7 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
                             
                             
                                 var cntry = NSMutableDictionary()
-                                for var i = 0; i < self.countries.count ; ++i
+                                for i in 0 ..< self.countries.count 
                                 {
                                     cntry = self.countries[i] as! NSMutableDictionary
                                     
@@ -119,7 +119,7 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
         toolBar.barTintColor = Color.init().pickerBarColor()
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicking:")
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(OnBoardingTableVIew.donePicking(_:)))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         toolBar.setItems([spaceButton,spaceButton,doneButton], animated: true)
@@ -165,7 +165,7 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
             
             
             //DEALING WITH THE CURRENT COUNTRY
-            var tap = UITapGestureRecognizer(target: self, action: Selector("countryTap:"))
+            var tap = UITapGestureRecognizer(target: self, action: #selector(OnBoardingTableVIew.countryTap(_:)))
             cell.vwCurCountry.addGestureRecognizer(tap)
             cell.vwCurCountry.tag = 1
             cell.vwCurCountry.layer.borderWidth = 1
@@ -173,14 +173,14 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
             
             
             //DEALING WITH THE CURRENT COUNTRY
-            tap = UITapGestureRecognizer(target: self, action: Selector("countryTap:"))
+            tap = UITapGestureRecognizer(target: self, action: #selector(OnBoardingTableVIew.countryTap(_:)))
             cell.vwHomeCountry.addGestureRecognizer(tap)
             cell.vwHomeCountry.tag = 2
             cell.vwHomeCountry.layer.borderWidth = 1
             cell.vwHomeCountry.layer.borderColor = Color().viewBorderColor()
             
             //DEALING WITH THE CURRENT COUNTRY
-            tap = UITapGestureRecognizer(target: self, action: Selector("city:"))
+            tap = UITapGestureRecognizer(target: self, action: #selector(OnBoardingTableVIew.city(_:)))
             cell.vwHomeCity.addGestureRecognizer(tap)
             cell.vwHomeCity.layer.borderWidth = 1
             cell.vwHomeCity.layer.borderColor = Color().viewBorderColor()
@@ -201,7 +201,7 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
             cell = tableView.dequeueReusableCellWithIdentifier("schoolCell", forIndexPath: indexPath) as! OnboardingCell
             
             //DEALING WITH THE CURRENT COUNTRY
-            var tap = UITapGestureRecognizer(target: self, action: Selector("skulTypeTap:"))
+            var tap = UITapGestureRecognizer(target: self, action: #selector(OnBoardingTableVIew.skulTypeTap(_:)))
             cell.vwSkulType.addGestureRecognizer(tap)
             cell.vwSkulType.layer.borderWidth = 1
             cell.vwSkulType.layer.borderColor = Color().viewBorderColor()

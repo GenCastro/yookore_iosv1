@@ -23,7 +23,7 @@ class OnBoardingWelcome : UIViewController,UIImagePickerControllerDelegate,UINav
         myPickerController.delegate = self
         lblAdd.text = tittle
         
-        let tap = UITapGestureRecognizer(target: self, action: Selector("selectPhotoButtonTapped:"))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(OnBoardingWelcome.selectPhotoButtonTapped(_:)))
         lblAdd?.addGestureRecognizer(tap)
     }
     

@@ -28,7 +28,7 @@ class HelpCentre: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,U
         super.viewDidLoad()
         
         //ADDING TAB GESTURE TO ALL VIEWS
-        let tap = UITapGestureRecognizer(target: self, action: Selector("problemTap:"))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(HelpCentre.problemTap(_:)))
         vwProblem.addGestureRecognizer(tap)
         
         // ADD A TOOLBAR WITH A DONE BUTTON
@@ -40,7 +40,7 @@ class HelpCentre: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,U
         toolBar.barTintColor = Color.init().pickerBarColor()
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicking:")
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(HelpCentre.donePicking(_:)))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         toolBar.setItems([spaceButton,spaceButton,doneButton], animated: true)

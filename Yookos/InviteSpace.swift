@@ -24,6 +24,7 @@ class InviteSpace: UIViewController {
     }
     @IBAction func findOnGmail(sender: AnyObject) {
         
+        
         let alert = UIAlertController(title: "Gmail Friends", message: "we couldnt find any link to your gmail account", preferredStyle: .Alert)
         
         dispatch_async(dispatch_get_main_queue(), {

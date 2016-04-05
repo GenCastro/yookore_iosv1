@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-
-class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
+class LoginViewController : UIViewController{
     
      var appDel:AppDelegate?
     
@@ -19,7 +20,7 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
     @IBOutlet var btnHaveProblem: UIButton!
     
     @IBOutlet var indicator: UIActivityIndicatorView!
-    @IBOutlet var vwFb: FBSDKLoginButton!
+    @IBOutlet var vwFb: UIView!
     
     @IBAction func back(sender: UIBarButtonItem) {
         
@@ -31,39 +32,92 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
         self.view.endEditing(true)
         //indicator.stopAnimating()
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
-        
-        
         btnLogin?.layer.cornerRadius = 3
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.loginWithTap(_:)))
+        vwFb.addGestureRecognizer(tap)
+        
+        vwFb.layer.borderColor = Color().fbColor().CGColor
+        vwFb.layer.borderWidth = 2
+        
+        FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.loginWithTap(_:)), name:FBSDKAccessTokenDidChangeNotification, object: nil)
         
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
     }
-    
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        print("User Logged In")
+    //let facebookReadPermissions = ["email"]
+    //Some other options: "user_about_me", "user_birthday", "user_hometown", "user_likes", "user_interests", "user_photos", "friends_photos", "friends_hometown", "friends_location", "friends_education_history"
+    @IBAction func loginWithTap(sender: UITapGestureRecognizer) {
         
-        if ((error) != nil)
+        
+        let token = FBSDKAccessToken.currentAccessToken()
+        
+        if token != nil
         {
-            // Process error
-            print(error)
-        }
-        else if result.isCancelled {
-            // Handle cancellations
+            print(FBSDKAccessToken.currentAccessToken())
             
-            print("cancelled")
-        }
-        else {
-            // If you ask for multiple permissions at once, you
-            // should check if specific permissions missing
-            if result.grantedPermissions.contains("email")
-            {
-                // Do work
+        }else
+        {
+            let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager.init()
+            
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                print(result.valueForKey("email"))
-            }
+            
+                fbLoginManager.logInWithReadPermissions(["email","public_profile"], fromViewController: self, handler: { (result, error) -> Void in
+                    
+                    if ((error) != nil) {
+                        // Process error
+                        print("EEROR")
+                        
+                        print(error)
+                        return
+                        
+                    } else if result.isCancelled {
+                        // Handle cancellations
+                        print("CANCELLED")
+                        self.returnUserData()
+                    } else {
+                        // If you ask for multiple permissions at once, you
+                        // should check if specific permissions missing
+                        if result.grantedPermissions.contains("email") {
+                            // Do work
+                            
+                            self.returnUserData()
+                        }
+                    }
+                })
+            })
+        }
+        
+    }
+    
+    
+    func returnUserData()
+    {
+       
+        
+        let token = FBSDKAccessToken.currentAccessToken()
+        
+        
+        if token != nil {
+            
+            let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: token.tokenString, version: nil, HTTPMethod: "GET")
+            req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+                if(error == nil)
+                {
+                    print("result \(result)")
+                }
+                else
+                {
+                    print("error \(error)")
+                }
+            })
+        }else{
+            print("nil")
         }
     }
     
@@ -71,26 +125,6 @@ class LoginViewController : UIViewController,FBSDKLoginButtonDelegate{
         print("User Logged Out")
     }
     
-    func returnUserData()
-    {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
-            
-            if ((error) != nil)
-            {
-                // Process error
-                print("Error: \(error)")
-            }
-            else
-            {
-                print("fetched user: \(result)")
-                let userName : NSString = result.valueForKey("name") as! NSString
-                print("User Name is: \(userName)")
-                let userEmail : NSString = result.valueForKey("email") as! NSString
-                print("User Email is: \(userEmail)")
-            }
-        })
-    }
     
     @IBAction func login(sender: AnyObject) {
         
