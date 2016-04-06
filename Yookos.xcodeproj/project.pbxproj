@@ -36,7 +36,6 @@
 		162390981CA9B11C00CDC613 /* ForgotCheckEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162390971CA9B11C00CDC613 /* ForgotCheckEmail.swift */; };
 		1623909A1CA9B17400CDC613 /* SetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162390991CA9B17400CDC613 /* SetPassword.swift */; };
 		1630CBFB1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1630CBFA1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist */; };
-		1630CBFF1CAECE16001C0A89 /* google-api-objectivec-client in Resources */ = {isa = PBXBuildFile; fileRef = 1630CBFE1CAECE16001C0A89 /* google-api-objectivec-client */; };
 		1630CC011CAECE50001C0A89 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1630CC001CAECE50001C0A89 /* GLKit.framework */; };
 		1630CC031CB0E308001C0A89 /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1630CC021CB0E308001C0A89 /* Onboarding2ViewController.swift */; };
 		1630CC051CB0E74D001C0A89 /* SuggestedCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1630CC041CB0E74D001C0A89 /* SuggestedCities.swift */; };
@@ -135,7 +134,6 @@
 		162390971CA9B11C00CDC613 /* ForgotCheckEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotCheckEmail.swift; sourceTree = "<group>"; };
 		162390991CA9B17400CDC613 /* SetPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetPassword.swift; path = ../SetPassword.swift; sourceTree = "<group>"; };
 		1630CBFA1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
-		1630CBFE1CAECE16001C0A89 /* google-api-objectivec-client */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "google-api-objectivec-client"; sourceTree = "<group>"; };
 		1630CC001CAECE50001C0A89 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		1630CC021CB0E308001C0A89 /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
 		1630CC041CB0E74D001C0A89 /* SuggestedCities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedCities.swift; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 		1637F3A71C7EF76C00B43327 /* Yookos */ = {
 			isa = PBXGroup;
 			children = (
-				1630CBFE1CAECE16001C0A89 /* google-api-objectivec-client */,
 				1630CBFA1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist */,
 				1637F3F91C7F472E00B43327 /* FAIcon.swift */,
 				1637F3FA1C7F472E00B43327 /* FontAwesome.ttf */,
@@ -649,7 +646,6 @@
 				1637F3EA1C7F01E500B43327 /* logo_with_taglines.png in Resources */,
 				161189B01C906E7F006F8082 /* Location.xib in Resources */,
 				1630CBFB1CAEB138001C0A89 /* client_357687756644-okekcefu6g5snjto17ncbonpa74d9o2v.apps.googleusercontent.com.plist in Resources */,
-				1630CBFF1CAECE16001C0A89 /* google-api-objectivec-client in Resources */,
 				1637F3B31C7EF76C00B43327 /* LaunchScreen.storyboard in Resources */,
 				161189A61C902AE3006F8082 /* ico_play.png in Resources */,
 				1637F3F21C7F35E300B43327 /* step2_bg.png in Resources */,
