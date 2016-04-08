@@ -4,9 +4,11 @@
 <dict>
 	<key>baseUrls</key>
 	<dict>
+		<key>upm</key>
+		<string>https://upm.yookos.com</string>
 		<key>countryUrls</key>
-		<string>http://countryservice.yookos.com/api/v1/countryservice/</string>
-		<key>UserAcc</key>
+		<string>https://countryservice.yookos.com/api/v1/countryservice/</string>
+		<key>uas</key>
 		<string>https://uas.yookos.com</string>
 	</dict>
 </dict>

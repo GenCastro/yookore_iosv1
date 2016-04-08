@@ -26,7 +26,11 @@ class Services {
         
     }
     
-    
+    /*888888888888888888888888888888888888888888888888888888888888888888888
+     
+     BASE URLS
+     
+     88888888888888888888888888888888888888888888888888888888888888888888*/
     
     internal func getToken() -> String
     {
@@ -36,7 +40,12 @@ class Services {
     
     internal func getUserAcc() ->String
     {
-        return baseUrls!.valueForKey("UserAcc") as! String
+        return baseUrls!.valueForKey("uas") as! String
+    }
+    
+    internal func getUpm() ->String
+    {
+        return baseUrls!.valueForKey("upm") as! String
     }
     
     internal func getCountryUrl() -> String
@@ -46,6 +55,11 @@ class Services {
     
     
     
+    /*888888888888888888888888888888888888888888888888888888888888888888888
+ 
+                            UAS URLS
+ 
+     88888888888888888888888888888888888888888888888888888888888888888888*/
     
     internal func signUp() ->NSURL
     {
@@ -89,14 +103,46 @@ class Services {
     
     
     
-    
+    /*888888888888888888888888888888888888888888888888888888888888888888888
+     
+     Countriees URLS
+     
+     88888888888888888888888888888888888888888888888888888888888888888888*/
     
     internal func countriesUrl() -> NSURL
     {
         return NSURL(string: getCountryUrl()+"countries")!
     }
     
+    internal func getCities(id:String,name:String) -> NSURL
+    {
+        return NSURL(string: getCountryUrl()+"countries/" + id + "/cities/" + name)!
+    }
     
+    /*888888888888888888888888888888888888888888888888888888888888888888888
+     
+     UPM URLS
+     
+     88888888888888888888888888888888888888888888888888888888888888888888*/
+    
+    internal func interestsUrl() -> NSURL
+    {
+        return NSURL(string: getUpm()+"/api/v1/profile/interest/all")!
+    }
+    
+    internal func addInterest(userid:String,extra:String?) ->NSURL
+    {
+        
+        return NSURL(string: getUpm()+"/api/v1/profile/"+userid+"/interest/"+extra!)!
+    }
+    
+    
+    
+    /*888888888888888888888888888888888888888888888888888888888888888888888
+     
+     EXTRAS USES URLS
+     
+     88888888888888888888888888888888888888888888888888888888888888888888*/
     
     
     internal func validateEmail() ->NSURL

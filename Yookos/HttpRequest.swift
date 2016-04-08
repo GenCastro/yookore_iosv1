@@ -20,7 +20,7 @@ class HttpRequest {
         
     }
     
-    internal func makeRequest(url : NSURL ,body : AnyObject,objClass : String,funcName :String)
+    /*internal func makeRequest(url : NSURL ,body : AnyObject,objClass : String,funcName :String)
     {
 
         do {
@@ -45,6 +45,22 @@ class HttpRequest {
                     
                     let code = httpResponse.statusCode
                     print(code)
+                    
+                    if code == 200
+                    {
+                        do
+                        {
+                            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                            
+                        }catch
+                        {
+                            print("couldnot convert to json")
+                        }
+                    }else
+                    {
+                        
+                    }
+                    
                    
                     
                 }else
@@ -54,7 +70,11 @@ class HttpRequest {
                 
                 if error != nil{
                     
-                    print(error)
+                    dispatch_async( dispatch_get_main_queue(),{
+                        let alert = UIAlertController(title: "ERROR", message:"No Network Connection", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                        UIViewController.topMostController().presentViewController(alert, animated: true){}
+                    })
                     return
                 }
                 
@@ -68,7 +88,7 @@ class HttpRequest {
         }
         
 
-    }
+    }*/
     
     internal func getRequest(url : NSURL ,body : AnyObject,method:String) ->  NSMutableURLRequest
     {
@@ -85,6 +105,7 @@ class HttpRequest {
             if method != "GET"
             {
                 let jsonData = try NSJSONSerialization.dataWithJSONObject(body, options: .PrettyPrinted)
+                print(jsonData)
                 request.HTTPBody = jsonData
             }
             

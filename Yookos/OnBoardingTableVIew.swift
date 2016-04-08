@@ -17,11 +17,18 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
     
     var countries  = NSMutableArray()
     var countriesList = [String]()
+    var citiesList = [String]()
+    
     var country = NSMutableDictionary()
+    var homeCountry = NSMutableDictionary()
     var activity_view = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     
     var txtSelectCountry :UITextField = UITextField()
     var pickerView:UIPickerView!
+    var pickerFor = ""
+    var theCountry = ""
+    var homeCountryId = ""
+    var appDel = AppDelegate?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +43,7 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
         //self.tableview.userInteractionEnabled = false
         self.tableview.backgroundColor = UIColor.clearColor()
         
-        
+        appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         let body: NSDictionary? = NSDictionary()
         let url = Services().countriesUrl()
         let request = HttpRequest().getRequest(url, body: body!, method: "GET")
@@ -179,12 +186,6 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
             cell.vwHomeCountry.layer.borderWidth = 1
             cell.vwHomeCountry.layer.borderColor = Color().viewBorderColor()
             
-            //DEALING WITH THE CURRENT COUNTRY
-            tap = UITapGestureRecognizer(target: self, action: #selector(OnBoardingTableVIew.city(_:)))
-            cell.vwHomeCity.addGestureRecognizer(tap)
-            cell.vwHomeCity.layer.borderWidth = 1
-            cell.vwHomeCity.layer.borderColor = Color().viewBorderColor()
-            
             let curCountry =  NSUserDefaults.standardUserDefaults().valueForKey("country") as? String
             
             if(curCountry != nil)
@@ -193,6 +194,12 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
                 cell.lblCurCountry!.text = curCountry
                 cell.lblCurCountry?.textColor = UIColor.blackColor()
             }
+            
+            if appDel?.profile.homeCountry != "" {
+                cell.lblHomeCountry.text = appDel?.profile.homeCountry
+                cell.lblHomeCountry?.textColor = UIColor.blackColor()
+            }
+            
             
         }else if indexPath.section == 1
         {
@@ -219,6 +226,7 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
             cell.vwToYr.layer.borderColor = Color().viewBorderColor()
         }
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
     }
     
@@ -244,8 +252,13 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
     
     func countryTap(sender:UITapGestureRecognizer) {
         
-        print("called")
+        pickerFor = "country"
         
+        if sender.view?.tag == 1 {
+            theCountry = "cur"
+        }else{
+            theCountry = "home"
+        }
         
         let curCountry = NSUserDefaults.standardUserDefaults().objectForKey("country") as? String
         
@@ -258,7 +271,7 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
         txtSelectCountry.becomeFirstResponder()
        
     }
-    func stateTap(sender:UITapGestureRecognizer){
+    /*func stateTap(sender:UITapGestureRecognizer){
         
         let links = country.valueForKey("_links") as? NSDictionary
         let regions = links?.valueForKey("regions")
@@ -307,12 +320,8 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
         }
         print(country)
         
-    }
-    func city(sender:UITapGestureRecognizer){
-        
-        print(country)
-        
-    }
+    }*/
+    
     func skulTypeTap(sender:UITapGestureRecognizer){
         
         print(country)
@@ -346,23 +355,52 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
-        return countriesList[row]
+        
+        if pickerFor == "country" {
+            
+            return countriesList[row]
+            
+        }else if pickerFor == "cities"
+        {
+            return citiesList[row]
+            
+        }else
+        {
+            return ""
+        }
+        
+        
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         
-        print(countriesList[row])
+        if pickerFor == "country"
+        {
+            if theCountry == "home"{
+                
+                appDel?.profile.homeCountry = countriesList[row]
+                homeCountry = countries[row] as! NSMutableDictionary
+                
+                let id = homeCountry.valueForKey("id") as! NSNumber
+                homeCountryId = String(id)
+            }else
+            {
+                
+                NSUserDefaults.standardUserDefaults().setValue(countriesList[row], forKey: "country")
+                country = countries[row] as! NSMutableDictionary
+                let id = country.valueForKey("id") as! NSNumber
+                appDel?.profile.countryId = String(id)
+            }
+            
+            
+        }else if pickerFor == ""
+        {
+            appDel?.profile.homeCity = citiesList[row]
+            
+        }
         
-        tableView.registerNib(UINib(nibName: "School", bundle: nil), forCellReuseIdentifier: "schoolCell")
-        
-        cellComponants = tableView.dequeueReusableCellWithIdentifier("schoolCell") as! OnboardingCell
-        
-        NSUserDefaults.standardUserDefaults().setValue(countriesList[row], forKey: "country")
-        country = countries[row] as! NSMutableDictionary
         tableview.reloadData()
-        
-        print(country)
         
     }
     func donePicking(sender: UIBarButtonItem) {

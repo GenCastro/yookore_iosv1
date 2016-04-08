@@ -17,7 +17,7 @@ class Profile {
     var lastname:String? = ""
     var cellphone:String? = ""
     var email:String? = ""
-    var currentcountry:String? = ""
+    var homeCountry:String? = ""
     var birthdate:NSTimeInterval?
     var dateOfBirth:String? = ""
     var gender:String? = "Male"
@@ -25,12 +25,14 @@ class Profile {
     var day : String? = ""
     var month : String? = ""
     var year : String? = ""
-    
+    var curCity = ""
+    var homeCity = ""
+    var currentcountry = ""
     var externalId: String?// optional
     var profileUrl:String?// optional
     var username:String? //optional
     
-    var userid:String? = ""
+    var userid:String? = "21c4baa0-9db6-4c18-acf0-2c13ab62fa51"
     var access_token:String? = ""
     var refresh_token:String? = ""
     var token_expiry:Int64?

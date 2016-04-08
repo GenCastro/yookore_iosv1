@@ -252,7 +252,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Day , .Month , .Year], fromDate: date)
         
-        let year =  components.year
+        let year =  components.year - 13
 
         let x = year - 1900
         
@@ -539,7 +539,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             appDel?.profile.emailVer! = false
             lblErrorMsg!.FAIcon = FAType.FAGithub
             lblErrorMsg!.setFAIcon(FAType.FAGithub, iconSize: 17)
-            lblErrorMsg!.setFAText(prefixText: "", icon: FAType.FAClose, postfixText: "\tEmail address is required", size: 12)
+            lblErrorMsg!.setFAText(prefixText: "", icon: FAType.FARemove, postfixText: "\tEmail address is required", size: 12)
             vwError!.hidden = false
             self.txtEmail?.layer.borderColor = UIColor.redColor().CGColor
             self.txtEmail?.layer.borderWidth = 1

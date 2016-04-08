@@ -8,9 +8,9 @@
 
 class Extras: NSObject {
     
-    var cities : Int?
+    var cities = [String]()
     override init
         (){
-            cities = 0
+           
     }
 }

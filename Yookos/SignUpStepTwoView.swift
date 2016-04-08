@@ -267,7 +267,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         
         if passMatch == true && verPassword == true
         {
-            appDel?.profile.currentcountry = lblCountrySelect.text
+            appDel?.profile.currentcountry = lblCountrySelect.text!
             appDel?.profile.cellphone = lblCountCode.text! + txtNumber.text!
             appDel?.profile.password = txtPassword.text
             appDel?.profile.terms = accepted
