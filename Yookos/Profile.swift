@@ -30,7 +30,7 @@ class Profile {
     var currentcountry = ""
     var externalId: String?// optional
     var profileUrl:String?// optional
-    var username:String? //optional
+    var username:String? = "castrozest6EdjLAaAm" //optional
     
     var userid:String? = "21c4baa0-9db6-4c18-acf0-2c13ab62fa51"
     var access_token:String? = ""
@@ -45,5 +45,8 @@ class Profile {
     var emailVer:Bool? = false
     
     var countryId = ""
+    var homeCountryId = ""
+    
+    var schoolName = ""
     
 }

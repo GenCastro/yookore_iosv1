@@ -21,6 +21,8 @@
 		1606751F1CB6BAD700555F1E /* ico_messages.png in Resources */ = {isa = PBXBuildFile; fileRef = 1606751E1CB6BAD700555F1E /* ico_messages.png */; };
 		160675211CB6BB1500555F1E /* ico_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 160675201CB6BB1500555F1E /* ico_profile.png */; };
 		160675231CB6BBB300555F1E /* ico_compose.png in Resources */ = {isa = PBXBuildFile; fileRef = 160675221CB6BBB300555F1E /* ico_compose.png */; };
+		160675271CB7ECE200555F1E /* findFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 160675261CB7ECE200555F1E /* findFriends.png */; };
+		160675291CB8146F00555F1E /* WaitScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160675281CB8146F00555F1E /* WaitScreen.swift */; };
 		161189861C8D6086006F8082 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161189851C8D6086006F8082 /* LocationManager.swift */; };
 		161189881C8D63E5006F8082 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161189871C8D63E5006F8082 /* CoreLocation.framework */; };
 		161189941C8D9091006F8082 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161189931C8D9091006F8082 /* FBSDKCoreKit.framework */; };
@@ -56,7 +58,6 @@
 		1637F3D91C7EF87A00B43327 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3D71C7EF87A00B43327 /* loginViewController.swift */; };
 		1637F3DA1C7EF87A00B43327 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3D81C7EF87A00B43327 /* SignUpViewController.swift */; };
 		1637F3E11C7EF8C700B43327 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3DC1C7EF8C700B43327 /* HttpRequest.swift */; };
-		1637F3E21C7EF8C700B43327 /* MyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3DD1C7EF8C700B43327 /* MyProtocol.swift */; };
 		1637F3E31C7EF8C700B43327 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3DE1C7EF8C700B43327 /* Profile.swift */; };
 		1637F3E41C7EF8C700B43327 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1637F3DF1C7EF8C700B43327 /* Services.swift */; };
 		1637F3E71C7EF8E000B43327 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1637F3E61C7EF8E000B43327 /* Services.plist */; };
@@ -120,6 +121,8 @@
 		1606751E1CB6BAD700555F1E /* ico_messages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico_messages.png; path = "../../Sprint 1/iOS icons/messages/ico_messages.png"; sourceTree = "<group>"; };
 		160675201CB6BB1500555F1E /* ico_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico_profile.png; path = "../../Sprint 1/iOS icons/menu_icons/profile/ico_profile.png"; sourceTree = "<group>"; };
 		160675221CB6BBB300555F1E /* ico_compose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico_compose.png; path = "../../Sprint 1/iOS icons/compose/ico_compose.png"; sourceTree = "<group>"; };
+		160675261CB7ECE200555F1E /* findFriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = findFriends.png; path = ../../../../Downloads/findFriends.png; sourceTree = "<group>"; };
+		160675281CB8146F00555F1E /* WaitScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitScreen.swift; sourceTree = "<group>"; };
 		161189851C8D6086006F8082 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		161189871C8D63E5006F8082 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1611898B1C8D8B32006F8082 /* FBBridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FBBridging-Header.h"; sourceTree = "<group>"; };
@@ -162,7 +165,6 @@
 		1637F3D71C7EF87A00B43327 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		1637F3D81C7EF87A00B43327 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1637F3DC1C7EF8C700B43327 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
-		1637F3DD1C7EF8C700B43327 /* MyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProtocol.swift; sourceTree = "<group>"; };
 		1637F3DE1C7EF8C700B43327 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		1637F3DF1C7EF8C700B43327 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		1637F3E61C7EF8E000B43327 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				1637F3B41C7EF76C00B43327 /* Info.plist */,
 				1611898B1C8D8B32006F8082 /* FBBridging-Header.h */,
 				161189B51C96CAE2006F8082 /* UserInfo.plist */,
+				160675281CB8146F00555F1E /* WaitScreen.swift */,
 			);
 			path = Yookos;
 			sourceTree = "<group>";
@@ -383,7 +386,6 @@
 			isa = PBXGroup;
 			children = (
 				1637F3DC1C7EF8C700B43327 /* HttpRequest.swift */,
-				1637F3DD1C7EF8C700B43327 /* MyProtocol.swift */,
 				1637F3DE1C7EF8C700B43327 /* Profile.swift */,
 				1637F3DF1C7EF8C700B43327 /* Services.swift */,
 				161189851C8D6086006F8082 /* LocationManager.swift */,
@@ -396,6 +398,7 @@
 		1637F3E81C7F01D400B43327 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				160675261CB7ECE200555F1E /* findFriends.png */,
 				1606751C1CB6BAB700555F1E /* ico_home.png */,
 				1606751E1CB6BAD700555F1E /* ico_messages.png */,
 				160675201CB6BB1500555F1E /* ico_profile.png */,
@@ -646,6 +649,7 @@
 				1606751D1CB6BAB700555F1E /* ico_home.png in Resources */,
 				161189A01C900083006F8082 /* ico_back@2x.png in Resources */,
 				160675191CB6ADF300555F1E /* Activity.storyboard in Resources */,
+				160675271CB7ECE200555F1E /* findFriends.png in Resources */,
 				160441EE1CAC552A00E033CC /* dropDown.png in Resources */,
 				161189B61C96CAE2006F8082 /* UserInfo.plist in Resources */,
 				1637F3E71C7EF8E000B43327 /* Services.plist in Resources */,
@@ -771,7 +775,6 @@
 				1630CC101CB0ECE2001C0A89 /* MyExtras.swift in Sources */,
 				160675151CB65B8A00555F1E /* FAIcon.swift in Sources */,
 				1637F3E31C7EF8C700B43327 /* Profile.swift in Sources */,
-				1637F3E21C7EF8C700B43327 /* MyProtocol.swift in Sources */,
 				160441F51CAD10D300E033CC /* InviteFriends.swift in Sources */,
 				1637F3E41C7EF8C700B43327 /* Services.swift in Sources */,
 				161189861C8D6086006F8082 /* LocationManager.swift in Sources */,
@@ -786,6 +789,7 @@
 				161189BE1C9965D1006F8082 /* VerificationView.swift in Sources */,
 				1637F3D91C7EF87A00B43327 /* loginViewController.swift in Sources */,
 				160441F11CAD02CD00E033CC /* InviteSpace.swift in Sources */,
+				160675291CB8146F00555F1E /* WaitScreen.swift in Sources */,
 				1611899A1C8DB1BE006F8082 /* TermsNConditions.swift in Sources */,
 				16A531521CA2A566002918CB /* ForgotPassword.swift in Sources */,
 			);

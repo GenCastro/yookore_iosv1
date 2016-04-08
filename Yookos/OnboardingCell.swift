@@ -30,8 +30,7 @@ class OnboardingCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource{
     @IBOutlet var txtCurCity: UITextField!
     
     @IBOutlet var txtHomeCity: UITextField!
-    
-    var selectedRow = false
+    var appdel = UIApplication.sharedApplication().delegate as? AppDelegate
 
     override func awakeFromNib() {
         
@@ -51,24 +50,50 @@ class OnboardingCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource{
         homeCityTable?.layer.borderColor = UIColor.groupTableViewBackgroundColor().CGColor
         homeCityTable?.layer.cornerRadius = 4
     }
+    
+    @IBAction func schoolName(sender: UITextField) {
+        
+        if sender.text != "" {
+            appdel?.profile.schoolName = sender.text!
+        }
+        
+    }
+    
+    
     @IBAction func suggest(sender: UITextField) {
        
-        self.tableview?.hidden = true
-        self.homeCityTable.hidden = true
+        
         let tag = sender.tag
         
         if tag == 1 {
-            if txtCurCity.text != ""{
+            
+            
+            self.homeCityTable.hidden = true
+            
+            if txtCurCity.text?.characters.count > 2 {
                 
-                self.txtCurCity.enabled = false
-                getCities(tag, text: txtCurCity.text!)
+                getCities(tag,id:(appdel?.profile.countryId)!, text: txtCurCity.text!)
             }
         }else if tag == 2
         {
-            if txtHomeCity.text != ""{
+            self.tableview?.hidden = true
+            if txtHomeCity.text?.characters.count > 2 {
                 
-                self.txtHomeCity.enabled = false
-                getCities(tag, text: txtHomeCity.text!)
+                if appdel?.profile.homeCountryId == ""
+                {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        let alert = UIAlertController(title: "Home Country", message: "please select your home country first", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                        UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+                    })
+                    
+                    return
+                }else{
+                    
+                    getCities(tag,id:(appdel?.profile.homeCountryId)!, text: txtHomeCity.text!)
+                }
+                
             }
         }
         
@@ -76,14 +101,12 @@ class OnboardingCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource{
         
     }
     
-    func getCities(tag:Int,text:String)
+    func getCities(tag:Int,id:String,text:String)
     {
-        let appdel = UIApplication.sharedApplication().delegate as? AppDelegate
         
         var cities = [String]()
-        let id = appdel?.profile.countryId
         let url =
-            Services().getCities(id!, name: text)
+            Services().getCities(id, name: text)
         let request = HttpRequest().getRequest(url, body: [:], method: "GET")
         
         defer{
@@ -114,7 +137,7 @@ class OnboardingCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource{
                                 // code here
                                 if tag == 1
                                 {
-                                    appdel?.extras.cities = cities
+                                    self.appdel?.extras.cities = cities
                                     self.tableview?.reloadData()
                                     self.tableview?.hidden = false
                                     self.txtCurCity.enabled = true
@@ -124,7 +147,7 @@ class OnboardingCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource{
                                     
                                 }else if tag == 2
                                 {
-                                    appdel?.extras.cities = cities
+                                    self.appdel?.extras.cities = cities
                                     self.homeCityTable?.reloadData()
                                     self.homeCityTable?.hidden = false
                                     self.txtHomeCity.enabled = true
@@ -141,26 +164,27 @@ class OnboardingCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource{
                         
                     }else
                     {
-                        print("not found")
-                        if tag == 1
-                        {
-                            appdel?.extras.cities = cities
-                            self.tableview?.reloadData()
-                            self.tableview?.hidden = false
-                            self.txtCurCity.enabled = true
-                            self.txtCurCity.becomeFirstResponder()
+                        dispatch_async(dispatch_get_main_queue(), {
                             
-                            
-                        }else if tag == 2
-                        {
-                            appdel?.extras.cities = cities
-                            self.homeCityTable?.reloadData()
-                            self.homeCityTable?.hidden = false
-                            self.txtHomeCity.enabled = true
-                            self.txtHomeCity.becomeFirstResponder()
-                            
-                            
-                        }
+                            print("not found")
+                            if tag == 1
+                            {
+                                self.tableview?.hidden = true
+                                self.txtCurCity.enabled = true
+                                self.txtCurCity.becomeFirstResponder()
+                                
+                                
+                            }else if tag == 2
+                            {
+                                
+                                self.homeCityTable?.hidden = true
+                                self.txtHomeCity.enabled = true
+                                self.txtHomeCity.becomeFirstResponder()
+                                
+                                
+                            }
+
+                        })
                     }
                     
                 }else
@@ -209,9 +233,18 @@ class OnboardingCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource{
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let appdel = UIApplication.sharedApplication().delegate as? AppDelegate
-        selectedRow = true
-        txtCurCity.text = appdel?.extras.cities[indexPath.row]
-        tableview?.hidden = true
+        
+        if tableView == tableview {
+            txtCurCity.text = appdel?.extras.cities[indexPath.row]
+            appdel?.profile.curCity = txtCurCity.text!
+            tableview?.hidden = true
+        }else if tableView == homeCityTable
+        {
+            txtHomeCity.text = appdel?.extras.cities[indexPath.row]
+            appdel?.profile.homeCity = txtHomeCity.text!
+            homeCityTable?.hidden = true
+        }
+        
     }
 
     

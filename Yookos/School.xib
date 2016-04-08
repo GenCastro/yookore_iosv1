@@ -33,6 +33,9 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <action selector="schoolName:" destination="Gra-1n-DMr" eventType="editingChanged" id="7Qi-Uv-uYe"/>
+                        </connections>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of school" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSz-2A-s92">
                         <rect key="frame" x="20" y="85" width="89" height="16"/>
@@ -84,7 +87,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2I-jN-uTx">
+                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2I-jN-uTx">
                         <rect key="frame" x="59" y="177" width="83" height="36"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTx-Lc-10U">
@@ -112,7 +115,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XNM-ah-mVQ">
+                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XNM-ah-mVQ">
                         <rect key="frame" x="173" y="177" width="83" height="36"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ8-Mx-9d9">
@@ -166,7 +169,6 @@
                 <outlet property="lblSkulType" destination="qkR-2k-vnL" id="G2H-iQ-fOx"/>
                 <outlet property="lblYearFrom" destination="mTx-Lc-10U" id="MiZ-vr-zb9"/>
                 <outlet property="lblYearTo" destination="fJ8-Mx-9d9" id="uKy-5k-Guv"/>
-                <outlet property="txtSkulName" destination="BDR-DA-DXM" id="wci-0U-dsS"/>
                 <outlet property="vwFrmYr" destination="o2I-jN-uTx" id="Eg1-H0-YZh"/>
                 <outlet property="vwSkulType" destination="Ras-dg-aMG" id="K2u-IB-fh9"/>
                 <outlet property="vwToYr" destination="XNM-ah-mVQ" id="LIq-CX-ckT"/>

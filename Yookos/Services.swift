@@ -37,18 +37,17 @@ class Services {
         return token
     }
     
-    
-    internal func getUserAcc() ->String
+    private func getUserAcc() ->String
     {
         return baseUrls!.valueForKey("uas") as! String
     }
     
-    internal func getUpm() ->String
+    private func getUpm() ->String
     {
         return baseUrls!.valueForKey("upm") as! String
     }
     
-    internal func getCountryUrl() -> String
+    private func getCountryUrl() -> String
     {
         return baseUrls?.valueForKey("countryUrls") as! String
     }
@@ -136,8 +135,17 @@ class Services {
         return NSURL(string: getUpm()+"/api/v1/profile/"+userid+"/interest/"+extra!)!
     }
     
+    internal func updateProfile(username:String) ->NSURL
+    {
+        
+        return NSURL(string: getUpm()+"/api/v1/profile/"+username)!
+    }
     
-    
+    internal func addeducation(userid:String) ->NSURL
+    {
+        
+        return NSURL(string: getUpm()+"/api/v1/profile/"+userid+"/education")!
+    }
     /*888888888888888888888888888888888888888888888888888888888888888888888
      
      EXTRAS USES URLS

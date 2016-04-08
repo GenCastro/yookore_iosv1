@@ -46,7 +46,7 @@ class HttpRequest {
                     let code = httpResponse.statusCode
                     print(code)
                     
-                    if code == 200
+                    if code == 200 || code == 201
                     {
                         do
                         {

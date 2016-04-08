@@ -63,6 +63,7 @@ class SetPassword: UIViewController {
     }
     @IBAction func save(sender: UIButton) {
         
+        
         if verPassword != true
         {
                 defer {
@@ -91,52 +92,66 @@ class SetPassword: UIViewController {
         
         
         print("password match")
+        
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("popover")
+        
+        self.providesPresentationContextTransitionStyle = true;
+        self.definesPresentationContext = true;
+        self.presentViewController(popoverVC!, animated: false, completion: nil)
+        
         let json : [String: AnyObject] = [ "email"  : "mathebulazc@gmail.com","password" : txtpassword.text!]
         let request = HttpRequest().getRequest(Services().resetPassword("21c4baa0-9db6-4c18-acf0-2c13ab62fa51"), body: json,method: "POST" )
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
             
-            if let httpResponse = response as? NSHTTPURLResponse {
-                
-                let code = httpResponse.statusCode
-                print(code)
-                
-                if code == 200
-                {
+            dispatch_async( dispatch_get_main_queue(),{
+            popoverVC?.dismissViewControllerAnimated(false, completion: {
+            
+                if let httpResponse = response as? NSHTTPURLResponse {
                     
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("setpwd2");
-                    dispatch_async(dispatch_get_main_queue(), {
-                        //Code that presents or dismisses a view controller here
-                        self.presentViewController(nextViewController, animated:true, completion:nil)
-                    });
+                    let code = httpResponse.statusCode
+                    print(code)
                     
+                    if code == 200
+                    {
+                        
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("setpwd2");
+                        dispatch_async(dispatch_get_main_queue(), {
+                            //Code that presents or dismisses a view controller here
+                            
+                            self.presentViewController(nextViewController, animated:true, completion:nil)
+                        });
+                        
+                        
+                    }else
+                    {
+                        dispatch_async( dispatch_get_main_queue(),{
+                            let alert = UIAlertController(title: "ERROR!", message:"We couldnot complete the request please try again or contact help centre", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                            UIViewController.topMostController().presentViewController(alert, animated: true){}
+                        })
+                    }
+                    
+                    print(" passed 1" )
                     
                 }else
                 {
+                    
+                }
+                
+                if error != nil{
+                    
                     dispatch_async( dispatch_get_main_queue(),{
-                        let alert = UIAlertController(title: "ERROR!", message:"We couldnot complete the request please try again or contact help centre", preferredStyle: .Alert)
+                        let alert = UIAlertController(title: "ERROR", message:"Network Connection Lost", preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
                         UIViewController.topMostController().presentViewController(alert, animated: true){}
                     })
+                    return
                 }
-                
-                print(" passed 1" )
-                
-            }else
-            {
-                
-            }
             
-            if error != nil{
-                
-                dispatch_async( dispatch_get_main_queue(),{
-                    let alert = UIAlertController(title: "ERROR", message:"Network Connection Lost", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                    UIViewController.topMostController().presentViewController(alert, animated: true){}
-                })
-                return
-            }
+            })
+            })
             
         }
         

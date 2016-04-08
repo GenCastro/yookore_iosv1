@@ -11,6 +11,7 @@ import Foundation
 
 class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource{
     
+    @IBOutlet var btnNext: UIBarButtonItem!
     
     @IBOutlet var tableview: UITableView!
     var cellComponants = OnboardingCell()
@@ -27,9 +28,15 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
     var pickerView:UIPickerView!
     var pickerFor = ""
     var theCountry = ""
-    var homeCountryId = ""
-    var appDel = AppDelegate?()
+    var years = [String]()
+    var yr = ""
+    var skulType = ["University","College","High School"]
+    var yrFrom = ""
+    var yrTo = ""
+    var skultype = ""
     
+    var appDel = AppDelegate?()
+    var year :Int?
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -214,16 +221,32 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
             cell.vwSkulType.layer.borderColor = Color().viewBorderColor()
             
             //DEALING WITH THE CURRENT COUNTRY
-            tap = UITapGestureRecognizer(target: self, action: Selector("yearFrom:"))
+            tap = UITapGestureRecognizer(target: self, action:  #selector(OnBoardingTableVIew.yearTap(_:)))
             cell.vwFrmYr.addGestureRecognizer(tap)
             cell.vwFrmYr.layer.borderWidth = 1
             cell.vwFrmYr.layer.borderColor = Color().viewBorderColor()
             
             //DEALING WITH THE CURRENT COUNTRY
-            tap = UITapGestureRecognizer(target: self, action: Selector("yearTo:"))
+            tap = UITapGestureRecognizer(target: self, action:  #selector(OnBoardingTableVIew.yearTap(_:)))
             cell.vwToYr.addGestureRecognizer(tap)
             cell.vwToYr.layer.borderWidth = 1
             cell.vwToYr.layer.borderColor = Color().viewBorderColor()
+            
+            
+            if yrFrom != "" {
+                cell.lblYearFrom.text = yrFrom
+                cell.lblYearFrom?.textColor = UIColor.blackColor()
+            }
+            if yrTo != "" {
+                cell.lblYearTo.text = yrTo
+                cell.lblYearTo?.textColor = UIColor.blackColor()
+            }
+            if skultype != "" {
+                cell.lblSkulType.text = skultype
+                cell.lblSkulType?.textColor = UIColor.blackColor()
+            }
+            
+            
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -251,6 +274,12 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
     ###########################################################################################*/
     
     func countryTap(sender:UITapGestureRecognizer) {
+        
+        
+        if countries.count < 1
+        {
+            return
+        }
         
         pickerFor = "country"
         
@@ -324,17 +353,37 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
     
     func skulTypeTap(sender:UITapGestureRecognizer){
         
-        print(country)
+        pickerFor = "skul"
+        
+        txtSelectCountry.becomeFirstResponder()
         
     }
-    func yearFromTap(sender:UITapGestureRecognizer){
+    func yearTap(sender:UITapGestureRecognizer){
         
-        print(country)
+        pickerFor = "year"
         
-    }
-    func YearToTap(sender:UITapGestureRecognizer){
+        if sender.view?.tag == 1
+        {
+            yr = "from"
+            
+        }else if sender.view!.tag == 2
+        {
+            yr = "to"
+        }
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Year], fromDate: date)
         
-        print(country)
+        year =  components.year
+        
+       
+        
+        for x in 0 ..< 100
+        {
+            years.append(String(year!-x))
+        }
+        
+        txtSelectCountry.becomeFirstResponder()
         
     }
     
@@ -350,7 +399,24 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-        return countriesList.count
+        if pickerFor == "country" {
+            
+            return countriesList.count
+            
+        }else if pickerFor == "cities"
+        {
+            return citiesList.count
+            
+        }else if pickerFor == "year"
+        {
+            return years.count
+            
+        }else if pickerFor == "skul"
+        {
+            return skulType.count
+        }else{
+            return 0
+        }
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
@@ -364,8 +430,14 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
         {
             return citiesList[row]
             
-        }else
+        }else if pickerFor == "year"
         {
+            return years[row]
+            
+        }else if pickerFor == "skul"
+        {
+            return skulType[row]
+        }else{
             return ""
         }
         
@@ -383,7 +455,7 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
                 homeCountry = countries[row] as! NSMutableDictionary
                 
                 let id = homeCountry.valueForKey("id") as! NSNumber
-                homeCountryId = String(id)
+                appDel?.profile.homeCountryId = String(id)
             }else
             {
                 
@@ -394,10 +466,20 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
             }
             
             
-        }else if pickerFor == ""
+        }else if pickerFor == "year"
         {
-            appDel?.profile.homeCity = citiesList[row]
-            
+            if yr == "to" {
+                
+                yrTo = years[row]
+                
+            }else if yr == "from"
+            {
+                yrFrom = years[row]
+            }
+           
+        }else if pickerFor == "skul"
+        {
+            skultype = skulType[row]
         }
         
         tableview.reloadData()
@@ -408,5 +490,240 @@ class OnBoardingTableVIew: UITableViewController,UITextFieldDelegate,UIPickerVie
         self.view.endEditing(true)
     }
 
+    @IBAction func next(sender: AnyObject) {
+        
+        let curCountry =  NSUserDefaults.standardUserDefaults().valueForKey("country") as? String
+        if curCountry == nil {
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                let alert = UIAlertController(title: "Current Country", message: "we can not find your current country make sure you have internet access", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+            })
+            return
+        }
+        if appDel?.profile.curCity == ""
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                let alert = UIAlertController(title: "Current City", message: "please enter a valid city name(select one of the suggested cities as you type)", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+            })
+            return
+        }
+        
+        if appDel?.profile.homeCountry == ""
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                let alert = UIAlertController(title: "Home Country", message: "please select your home country", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+            })
+            return
+        }
+        
+        if appDel?.profile.homeCity == ""
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                let alert = UIAlertController(title: "home City", message: "please enter a valid city name(select one of the suggested cities as you type)", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+            })
+            return
+        }
+        
+        if appDel?.profile.schoolName == ""
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                let alert = UIAlertController(title: "School Name", message: "please enter a school name", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+            })
+            return
+        }
+        
+        if skultype == ""
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                let alert = UIAlertController(title: "School", message: "please select the type of school", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+            })
+            return
+        }
+        
+        if yrFrom == ""
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                let alert = UIAlertController(title: "Time Period", message: "select the year you started school", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+            })
+            return
+        }
+        
+        if yrTo == ""
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                let alert = UIAlertController(title: "Time Period", message: "select the year you finished school,select current year if you still at school", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+            })
+            return
+        }
+        
+        let x = Int(yrFrom)! - Int(yrTo)!
+        
+        if x > 0 {
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                let alert = UIAlertController(title: "Time Period", message: "Your end date cannot be earlier than your start date", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+            })
+            return
+        }
+        
+        
+        let url = Services().updateProfile((appDel?.profile.username)!)
+        let body : [String : AnyObject] = ["userid" : (appDel?.profile.userid)!,
+                    "currentcity": (appDel?.profile.curCity)!,
+                    "currentcountry": curCountry!,
+                    "homecountry": (appDel?.profile.homeCountry)!,
+                    "hometown": (appDel?.profile.homeCity)!]
+        
+        let request = HttpRequest().getRequest(url, body: body, method: "PUT")
+        
+        defer{
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+                
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    
+                    let code = httpResponse.statusCode
+                    print(code)
+                    
+                    if code == 200 || code == 201
+                    {
+                        print("yeah")
+                        
+                        let url = Services().addeducation((self.appDel?.profile.userid)!)
+                        
+                        var body : [String : AnyObject]?
+                        
+                        if self.year == Int(self.yrTo)
+                        {
+                            body = ["school": (self.appDel?.profile.schoolName)!,
+                                    "type": self.skultype,
+                                    "from_year": Int(self.yrFrom)!,
+                                    "current" : true]
+                        }else{
+                            body = ["school": (self.appDel?.profile.schoolName)!,
+                                    "type": self.skultype,
+                                    "from_year": Int(self.yrFrom)!,
+                                    "to_year": Int(self.yrTo)!,
+                                    "current" : false]
+                        }
+                        
+                        
+                        let request = HttpRequest().getRequest(url, body: body!, method: "POST")
+                        
+                        defer{
+                            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+                                
+                                if let httpResponse = response as? NSHTTPURLResponse {
+                                    
+                                    let code = httpResponse.statusCode
+                                    print(code)
+                                    
+                                    if code == 200 || code == 201
+                                    {
+                                        
+                                    }else if code ==  400
+                                    {
+                                        print("bad request")
+                                    }else{
+                                        
+                                        dispatch_async( dispatch_get_main_queue(),{
+                                            let alert = UIAlertController(title: "ERROR", message:"Oooops! something went wrong", preferredStyle: .Alert)
+                                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                                            UIViewController.topMostController().presentViewController(alert, animated: true){}
+                                        })
+                                    }
+                                    
+                                    
+                                    
+                                }else
+                                {
+                                    dispatch_async( dispatch_get_main_queue(),{
+                                        let alert = UIAlertController(title: "ERROR", message:"Oooops! something went wrong", preferredStyle: .Alert)
+                                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                                        UIViewController.topMostController().presentViewController(alert, animated: true){}
+                                    })
+                                }
+                                
+                                if error != nil{
+                                    
+                                    dispatch_async( dispatch_get_main_queue(),{
+                                        let alert = UIAlertController(title: "ERROR", message:"No Network Connection", preferredStyle: .Alert)
+                                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                                        UIViewController.topMostController().presentViewController(alert, animated: true){}
+                                    })
+                                    return
+                                }
+                                
+                            }
+                            
+                            task.resume()
+                        }
+                    }else if code ==  400
+                    {
+                        print("bad request")
+                    }else{
+                        
+                        dispatch_async( dispatch_get_main_queue(),{
+                            let alert = UIAlertController(title: "ERROR", message:"Oooops! something went wrong", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                            UIViewController.topMostController().presentViewController(alert, animated: true){}
+                        })
+                    }
+                    
+                    
+                }else
+                {
+                    dispatch_async( dispatch_get_main_queue(),{
+                        let alert = UIAlertController(title: "ERROR", message:"Oooops! something went wrong", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                        UIViewController.topMostController().presentViewController(alert, animated: true){}
+                    })
+                }
+                
+                if error != nil{
+                    
+                    dispatch_async( dispatch_get_main_queue(),{
+                        let alert = UIAlertController(title: "ERROR", message:"No Network Connection", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                        UIViewController.topMostController().presentViewController(alert, animated: true){}
+                    })
+                    return
+                }
+                
+            }
+            
+            task.resume()
+                
+            
+            print("task done")}
+        
+        
+    }
   
 }
