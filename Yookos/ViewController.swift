@@ -65,7 +65,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate{
     @IBAction func goToSignUp() {
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup") as! SignUpViewController
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup")
         self.presentViewController(nextViewController, animated:true, completion:nil)
         
     }

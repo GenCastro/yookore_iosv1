@@ -132,8 +132,16 @@ class HelpCentre: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,U
         
         let request = HttpRequest().getRequest(Services().help(), body: json ,method: "POST")
         
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("popover")
+        
+        self.providesPresentationContextTransitionStyle = true;
+        self.definesPresentationContext = true;
+        self.presentViewController(popoverVC!, animated: false, completion: nil)
+        
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
             
+            dispatch_async(dispatch_get_main_queue(),{
+                popoverVC?.dismissViewControllerAnimated(false, completion: {
             if let httpResponse = response as? NSHTTPURLResponse {
                 
                 let code = httpResponse.statusCode
@@ -194,7 +202,7 @@ class HelpCentre: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,U
                 })
                 return
             }
-            
+                })})
         }
         
         task.resume()

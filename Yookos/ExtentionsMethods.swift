@@ -112,6 +112,28 @@ class Methods {
 
     }
     
+    func checkAlphabet(chk_txt:String) -> String
+    {
+        let length = chk_txt.characters.count
+        if length == 0
+        {
+            return "1"
+        }else if length > 20
+        {
+            return "2"
+        }else
+        {
+            for chr in chk_txt.characters{
+                
+                if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ){
+                    return "3"
+                }
+            }
+            return "0"
+        }
+        
+    }
+    
 }
 class InsetLabel: UILabel {
     

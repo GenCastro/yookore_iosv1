@@ -21,8 +21,8 @@ class LoginTerms: UIViewController
         self.view.endEditing(true)
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         // Do any additional setup after loading the view, typically from a nib.
-        let url = NSURL (string: "http://google.com")
-        //let url = NSURL (string: "https://chat.yookos.com/files/assests/terms.html")
+        //let url = NSURL (string: "http://google.com")
+        let url = NSURL (string: "https://chat.yookos.com/files/assests/terms.html")
         let requestObj = NSURLRequest(URL: url!)
         webView.loadRequest(requestObj)
         

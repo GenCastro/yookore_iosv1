@@ -67,10 +67,13 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     @IBOutlet var vwMainView: UIView?
     @IBOutlet var vwError: UIView?
     
-    var spinner: UIActivityIndicatorView?
+    
     @IBOutlet var scroller: UIScrollView?
-
-    var pickOption :[String] = []
+    
+    var years :[String] = []
+    var days :[String] = []
+    var months :[String ] = []
+    
     var txtDateInput :UITextField = UITextField()
     
     var pickerView:UIPickerView?
@@ -86,15 +89,12 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         super.viewDidLoad()
         
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
-        
-        self.view?.userInteractionEnabled = true
-        spinner?.stopAnimating()
+       
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.view?.endEditing(true)
-        spinner?.stopAnimating()
        
         theView?.addSubview(txtDateInput)
         //
@@ -106,6 +106,26 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         scroller?.addConstraint(specsScrollViewConstY);
      
+        
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        
+        let year =  components.year - 14
+        
+        let x = year - 1900
+        
+        for i in 0 ..< x
+        {
+            years.append(String(year - i))
+        }
+        
+        for i in 1 ..< 32
+        {
+            days.append(String(i))
+        }
+        
+        months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         
         //ADDING TAB GESTURE TO ALL VIEWS
         
@@ -197,7 +217,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+        
         scroller?.contentSize = CGSize(width: self.view.bounds.width, height: 800)
         txtFirstname?.delegate = self
         txtLastname?.delegate = self
@@ -215,12 +235,9 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         theView!.userInteractionEnabled = false
         checkPic = "day"
-        pickOption = []
-        for i in 1 ..< 32
-        {
-            pickOption.append(String(i))
-        }
-        pickerView!.selectRow(pickOption.indexOf("15")!, inComponent: 0, animated: true)
+
+        
+        pickerView!.selectRow(days.indexOf("15")!, inComponent: 0, animated: true)
         appDel?.profile.day! = "15"
         
         txtDateInput.becomeFirstResponder()
@@ -232,10 +249,9 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         theView!.userInteractionEnabled = false
         checkPic = "month"
-        pickOption = []
-        pickOption = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        pickerView!.selectRow(pickOption.indexOf("June")!, inComponent: 0, animated: true)
-        appDel?.profile.month! = "june"
+        
+        pickerView!.selectRow(months.indexOf("June")!, inComponent: 0, animated: true)
+        appDel?.profile.month! = "June"
         
         txtDateInput.becomeFirstResponder()
         lblMonth!.text = appDel?.profile.month!
@@ -246,33 +262,19 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         theView!.userInteractionEnabled = false
         checkPic = "year"
-        pickOption = []
         
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
-        
-        let year =  components.year - 13
-
-        let x = year - 1900
-        
-        for i in 0 ..< x
-        {
-          pickOption.append(String(1900 + i))
-        }
-        pickerView!.selectRow(pickOption.indexOf("1992")!, inComponent: 0, animated: true)
-        appDel?.profile.year! = "1992"
+        pickerView!.selectRow(years.indexOf("1998")!, inComponent: 0, animated: true)
+        appDel?.profile.year! = "1998"
         
         txtDateInput.becomeFirstResponder()
         lblYear!.text = appDel?.profile.year!
-        appDel?.profile.year = appDel?.profile.year!
         vwYear?.layer.borderColor = Color().viewBorderColor()
+        
     }
     
     func donePicking(sender: UIBarButtonItem) {
         
         self.view.endEditing(true)
-        pickOption = []
         theView!.userInteractionEnabled = true
     }
     let facebookReadPermissions = ["public_profile", "email", "user_friends"]
@@ -289,38 +291,7 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         
         }else
         {
-            let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
-                fbLoginManager.logOut()
-            })
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
-                fbLoginManager.logInWithReadPermissions(self.facebookReadPermissions, fromViewController: self, handler: { (result, error) -> Void in
-                    
-                    if ((error) != nil) {
-                        // Process error
-                        print("EEROR")
-                        
-                        print(error)
-                        return
-                        
-                    } else if result.isCancelled {
-                        // Handle cancellations
-                        print("CANCELLED")
-                        self.returnUserData()
-                    } else {
-                        // If you ask for multiple permissions at once, you
-                        // should check if specific permissions missing
-                        if result.grantedPermissions.contains("email") {
-                            // Do work
-                            print("SEE RESULTS")
-                            self.returnUserData()
-                        }
-                    }
-                })
-            })
+           
         }
         
     }
@@ -641,143 +612,159 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     @IBAction func nextStep(sender: UIButton) {
         
        
-        
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         
         if appDel?.profile.nameVer! == true && appDel?.profile.lastnameVer! == true && appDel?.profile.email != "" && appDel?.profile.emailMatch! == true && appDel?.profile.day! != "" && appDel?.profile.month! != "" && appDel?.profile.year! != ""
         {
-            self.view!.userInteractionEnabled = false
             
             let url = appDel?.services.validateEmail()
             let json : [String: AnyObject] = [ "email"  : (appDel?.profile.email)!]
             let request = HttpRequest().getRequest(url!, body: json,method: "POST")
+            let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("popover")
             
+            self.providesPresentationContextTransitionStyle = true;
+            self.definesPresentationContext = true;
+            self.presentViewController(popoverVC!, animated: false, completion: nil)
+            
+            defer{
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
                 
-                self.view!.userInteractionEnabled = true
-                if let httpResponse = response as? NSHTTPURLResponse {
-                    
-                    let code = httpResponse.statusCode
-                    print(code)
-                   
-                    if code == 200
-                    {
-                        print("email found")
-                        self.txtEmail?.layer.borderWidth = 0
-                        self.appDel?.profile.emailVer! = true
-                        
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "dd-MMMM-yyyy"
-                        self.appDel = UIApplication.sharedApplication().delegate as? AppDelegate
-                        let day = self.appDel?.profile.day!
-                        let month = self.appDel?.profile.month!
-                        let year = self.appDel?.profile.year!
-                        
-                        let date = dateFormatter.dateFromString(day! + "-" + month! + "-" + year!)
-                        
-                        let timeStamp = date?.timeIntervalSince1970
-                        self.appDel?.profile.birthdate = timeStamp
-                        self.appDel?.profile.dateOfBirth = dateFormatter.stringFromDate(date!)
-                        
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
-                        self.presentViewController(nextViewController, animated:true, completion:nil)
-                        
-                    }else if code == 406
-                    {
-                        
-                        print("Unsupported request")
-                        dispatch_after(1, dispatch_get_main_queue(),{
-                            
-                            let alert = UIAlertController(title: "Error!!", message: "We couldnot continue with your request,please try again or contact help centre", preferredStyle: UIAlertControllerStyle.Alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
-                                
-                                self.view.userInteractionEnabled = true
-                                
-                                })
-                            
-                            UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
-                            
-                            
-                        })
-                        
-                    }else if code == 400
-                    {
-                        
-                        print("bad request")
-                        
-                    }else if code == 401
-                    {
-                        
-                        print("Unauthorized")
-                        dispatch_after(1, dispatch_get_main_queue(),{
-                            
-                            let alert = UIAlertController(title: "Error!!", message: "We couldnot continue with your request,please try again or contact help centre", preferredStyle: UIAlertControllerStyle.Alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
-                                
-                                self.view.userInteractionEnabled = true
-                                
-                                })
-                            
-                            UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
-                            
-                            
-                        })
-                        
-                    }else if code == 404
-                    {
-                        
-                        print("not found")
-                        
-                        dispatch_after(1, dispatch_get_main_queue(),{
-                            
-                            let alert = UIAlertController(title: "Error!!", message: "either the email doesnot exist or the email have been used on yookos before,please verify", preferredStyle: UIAlertControllerStyle.Alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
-                                
-                                self.view.userInteractionEnabled = true
-                                self.txtEmail?.layer.borderColor = UIColor.redColor().CGColor
-                                self.txtEmail?.layer.borderWidth = 1
-                                self.txtEmail?.becomeFirstResponder()
-                                })
-                            
-                            UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
-                            
-                            
-                        })
-                        
-                    }else
-                    {
-                        dispatch_after(1, dispatch_get_main_queue(),{
-                            
-                            let alert = UIAlertController(title: "Error!!", message: "We couldnot continue with your request,please try again or contact help centre", preferredStyle: UIAlertControllerStyle.Alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
-                                
-                                self.view.userInteractionEnabled = true
-                                
-                                })
-                            
-                            UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
-                            
-                            
-                        })
-                    }
-                    print(" passed 1" )
-                    
-                }else
-                {
-                    
-                }
+                dispatch_async(dispatch_get_main_queue(), {
                 
-                if error != nil{
-                    
-                    print(error)
-                    return
-                }
+                    popoverVC?.dismissViewControllerAnimated(false, completion: {
+                        
+                        if let httpResponse = response as? NSHTTPURLResponse {
+                            
+                            let code = httpResponse.statusCode
+                            print(code)
+                            
+                            if code == 200
+                            {
+                                print("email found")
+                                self.txtEmail?.layer.borderWidth = 0
+                                self.appDel?.profile.emailVer! = true
+                                
+                                let dateFormatter = NSDateFormatter()
+                                dateFormatter.dateFormat = "dd-MMMM-yyyy"
+                                self.appDel = UIApplication.sharedApplication().delegate as? AppDelegate
+                                let day = self.appDel?.profile.day!
+                                let month = self.appDel?.profile.month!
+                                let year = self.appDel?.profile.year!
+                                
+                                let date = dateFormatter.dateFromString(day! + "-" + month! + "-" + year!)
+                                
+                                let timeStamp = date?.timeIntervalSince1970
+                                self.appDel?.profile.birthdate = timeStamp
+                                self.appDel?.profile.dateOfBirth = dateFormatter.stringFromDate(date!)
+                                
+                                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                                let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("signup2") as! SignUpStepTwoView
+                                self.presentViewController(nextViewController, animated:true, completion:nil)
+                                
+                            }else if code == 406
+                            {
+                                
+                                print("Unsupported request")
+                                dispatch_after(1, dispatch_get_main_queue(),{
+                                    
+                                    let alert = UIAlertController(title: "Error!!", message: "We couldnot continue with your request,please try again or contact help centre", preferredStyle: UIAlertControllerStyle.Alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
+                                        
+                                        self.view.userInteractionEnabled = true
+                                        
+                                        })
+                                    
+                                    UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+                                    
+                                    
+                                })
+                                
+                            }else if code == 400
+                            {
+                                
+                                print("bad request")
+                                
+                            }else if code == 401
+                            {
+                                
+                                print("Unauthorized")
+                                dispatch_async( dispatch_get_main_queue(),{
+                                    
+                                    let alert = UIAlertController(title: "Error!!", message: "We couldnot continue with your request,please try again or contact help centre", preferredStyle: UIAlertControllerStyle.Alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
+                                        
+                                        self.view.userInteractionEnabled = true
+                                        
+                                        })
+                                    
+                                    UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+                                    
+                                    
+                                })
+                                
+                            }else if code == 404
+                            {
+                                
+                                print("not found")
+                                
+                                dispatch_async( dispatch_get_main_queue(),{
+                                    
+                                    let alert = UIAlertController(title: "Error!!", message: "either the email doesnot exist,please verify", preferredStyle: UIAlertControllerStyle.Alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
+                                        
+                                        self.view.userInteractionEnabled = true
+                                        self.txtEmail?.layer.borderColor = UIColor.redColor().CGColor
+                                        self.txtEmail?.layer.borderWidth = 1
+                                        self.txtEmail?.becomeFirstResponder()
+                                        })
+                                    
+                                    UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+                                    
+                                    
+                                })
+                                
+                            }else
+                            {
+                                dispatch_async( dispatch_get_main_queue(),{
+                                    
+                                    let alert = UIAlertController(title: "Error!!", message: "We couldnot continue with your request,please try again or contact help centre", preferredStyle: UIAlertControllerStyle.Alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { _ in
+                                        
+                                        self.view.userInteractionEnabled = true
+                                        
+                                        })
+                                    
+                                    UIViewController.topMostController().presentViewController(alert, animated: true, completion: nil)
+                                    
+                                    
+                                })
+                            }
+                            print(" passed 1" )
+                            
+                        }else
+                        {
+                            
+                        }
+                        
+                        if error != nil{
+                            
+                            dispatch_async( dispatch_get_main_queue(),{
+                                let alert = UIAlertController(title: "ERROR", message:"No Network Connection", preferredStyle: .Alert)
+                                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                                UIViewController.topMostController().presentViewController(alert, animated: true){}
+                            })
+                            return
+                        }
+                        
+                    })
+                })
                 
-            }
+                
+                
+                }
             task.resume()
+            }
             
-        
         }else if appDel?.profile.nameVer! == false
         {
             validateName(txtFirstname!)
@@ -805,57 +792,55 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
             txtConfirmEmail?.layer.borderColor = UIColor.redColor().CGColor
         }else
         {
-           if appDel?.profile.day! == ""
-           {
-            dispatch_after(1, dispatch_get_main_queue(),{
-                
-                let alert = UIAlertController(title: "DATE!!", message: "You did not select day", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+            if appDel?.profile.day! == ""
+            {
+                dispatch_async(dispatch_get_main_queue(),{
                     
-                    self.vwDY?.layer.borderColor = UIColor.redColor().CGColor
-                    self.checkPic = "day"
+                    let alert = UIAlertController(title: "DATE!!", message: "You did not select day", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                        
+                        self.vwDY?.layer.borderColor = UIColor.redColor().CGColor
+                        self.checkPic = "day"
+                        
+                        })
+                    self.presentViewController(alert, animated: true, completion: nil)
                     
-                    })
-                self.presentViewController(alert, animated: true, completion: nil)
-                
                 })
-            
+                
             }else if appDel?.profile.month! == ""
-           {
-            dispatch_after(1, dispatch_get_main_queue(),{
-                
-                let alert = UIAlertController(title: "DATE!!", message: "You did not select month", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+            {
+                dispatch_async( dispatch_get_main_queue(),{
                     
-                    self.vwMonth?.layer.borderColor = UIColor.redColor().CGColor
-                    self.checkPic = "month"
+                    let alert = UIAlertController(title: "DATE!!", message: "You did not select month", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                        
+                        self.vwMonth?.layer.borderColor = UIColor.redColor().CGColor
+                        self.checkPic = "month"
+                        
+                        
+                        })
+                    self.presentViewController(alert, animated: true, completion: nil)
                     
-                    
-                    })
-                self.presentViewController(alert, animated: true, completion: nil)
-                
-            })
+                })
             }else if appDel?.profile.year! == ""
-           {
-                dispatch_after(1, dispatch_get_main_queue(),{
-                
-                let alert = UIAlertController(title: "DATE!!", message: "You did not select year", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+            {
+                dispatch_async(dispatch_get_main_queue(),{
                     
-                    self.vwYear?.layer.borderColor = UIColor.redColor().CGColor
-                    self.checkPic = "year"
+                    let alert = UIAlertController(title: "DATE!!", message: "You did not select year", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in
+                        
+                        self.vwYear?.layer.borderColor = UIColor.redColor().CGColor
+                        self.checkPic = "year"
+                        
+                        })
+                    self.presentViewController(alert, animated: true, completion: nil)
                     
                 })
-                self.presentViewController(alert, animated: true, completion: nil)
                 
-                })
-            
-            
-           }
-            
+                
+            }
+        
         }
-        
-        
     }
     
     
@@ -890,12 +875,43 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-                        return pickOption.count
+        
+        if checkPic == "day"
+        {
+            return days.count
+            
+        }else if checkPic == "month"
+        {
+            return months.count
+            
+            
+        }else if checkPic == "year"
+        {
+            return years.count
+        }else{
+            return 0
+        }
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
-                        return pickOption[row]
+        
+        
+        if checkPic == "day"
+        {
+            return days[row]
+            
+        }else if checkPic == "month"
+        {
+            return months[row]
+            
+            
+        }else if checkPic == "year"
+        {
+            return years[row]
+        }else{
+            return ""
+        }
     }
         
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
@@ -903,19 +919,19 @@ class SignUpViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         appDel = UIApplication.sharedApplication().delegate as? AppDelegate
         if checkPic == "day"
         {
-              lblDay!.text = pickOption[row]
+              lblDay!.text = days[row]
               appDel?.profile.day! = lblDay!.text!
             appDel?.profile.day = appDel?.profile.day!
             
         }else if checkPic == "month"
         {
-            lblMonth!.text = pickOption[row]
+            lblMonth!.text = months[row]
             appDel?.profile.month! = lblMonth!.text!
             
             
         }else if checkPic == "year"
         {
-            lblYear!.text = pickOption[row]
+            lblYear!.text = years[row]
             appDel?.profile.year! = lblYear!.text!
         }
         

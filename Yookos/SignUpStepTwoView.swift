@@ -43,7 +43,6 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     
     
     var pickOption :[String] = []
-    var pickCountryCode :[String] = []
     var prefixCodes = NSMutableDictionary()
     var txtSelectCountry :UITextField = UITextField()
     
@@ -60,6 +59,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     var accepted = false
     var verPassword = false
     var passMatch = false
+    var phoneMatch = false
     
     @IBAction func back(sender: UIBarButtonItem) {
         
@@ -72,10 +72,9 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         
         
         //ADDING TAB GESTURE TO ALL VIEWS
-        var tap = UITapGestureRecognizer(target: self, action: #selector(SignUpStepTwoView.countryTap(_:)))
-        vwCountry.addGestureRecognizer(tap)
         
-        tap = UITapGestureRecognizer(target: self, action: #selector(SignUpStepTwoView.acceptTnCsTap(_:)))
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SignUpStepTwoView.acceptTnCsTap(_:)))
         lblCheckTnC.addGestureRecognizer(tap)
         tap.delegate = self // Remember to extend your class with UIGestureRecognizerDelegate
         
@@ -138,68 +137,79 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         let url = appDel?.services.countriesUrl()
         let request = HttpRequest().getRequest(url!, body: body!, method: "GET")
         
-        dispatch_async( dispatch_get_main_queue(),{
-            
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
-            
-            if let httpResponse = response as? NSHTTPURLResponse {
-                
-                let code = httpResponse.statusCode
-                print(code)
-                
-                if code == 200
-                {
-                    do{
-                        let countries = try NSJSONSerialization.JSONObjectWithData((data! as NSData!), options: []) as! NSMutableArray
+                    
+                    if let httpResponse = response as? NSHTTPURLResponse {
                         
-                        for i in 0 ..< countries.count 
+                        let code = httpResponse.statusCode
+                        print(code)
+                        
+                        if code == 200
                         {
-                            let country = countries[i] as! NSMutableDictionary
+                            do{
+                                let countries = try NSJSONSerialization.JSONObjectWithData((data! as NSData!), options: []) as! NSMutableArray
+                                
+                                for i in 0 ..< countries.count
+                                {
+                                    let country = countries[i] as! NSMutableDictionary
+                                    let countName = country.valueForKey("name") as! String
+                                    self.pickOption.append(countName)
+                                   
+                                    self.prefixCodes.setValue(country.valueForKey("dialCode") as! String, forKey: countName)
+                                    
+                                }
+                                
+                                
+                                let curCountry = NSUserDefaults.standardUserDefaults().objectForKey("country") as? String
+                                
+                                if(curCountry != nil)
+                                {
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        
+                                        self.lblCountrySelect.text = NSUserDefaults.standardUserDefaults().objectForKey("country") as? String
+                                        self.lblCountCode.text = self.prefixCodes.valueForKey(curCountry!) as? String
+                                        self.lblConfirmCode.text = self.prefixCodes.valueForKey(curCountry!) as? String
+                                        
+                                        
+                                    })
+                                    
+                                }
+                                
+                                dispatch_async(dispatch_get_main_queue(), {
+                                
+                                    let tap = UITapGestureRecognizer(target: self, action: #selector(SignUpStepTwoView.countryTap(_:)))
+                                    self.vwCountry.addGestureRecognizer(tap)
+                                })
+                            }catch{
+                                
+                            }
                             
-                            self.pickOption.append(country.valueForKey("name") as! String)
-                            let iso = country.valueForKey("iso") as! String
-                            self.pickCountryCode.append(iso)
-                            
-                            self.prefixCodes.setValue(country.valueForKey("dialCode") as! String, forKey: iso)
+                        }else
+                        {
                             
                         }
-    
-                        let isoCode = NSUserDefaults.standardUserDefaults().objectForKey("ISOCode") as! String
                         
-                        self.lblCountrySelect.text = NSUserDefaults.standardUserDefaults().objectForKey("country") as? String
-                        self.lblCountCode.text = self.prefixCodes.valueForKey(isoCode) as? String
-                        self.lblConfirmCode.text = self.prefixCodes.valueForKey(isoCode) as? String
+                        print(" passed 1" )
                         
-                    }catch{
+                    }else
+                    {
                         
                     }
                     
-                }else
-                {
-                   
-                }
-                
-                print(" passed 1" )
-                
-            }else
-            {
-                
-            }
-            
-            if error != nil{
-                
-                dispatch_async( dispatch_get_main_queue(),{
-                    let alert = UIAlertController(title: "ERROR", message:"Network Connection Lost", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
-                    UIViewController.topMostController().presentViewController(alert, animated: true){}
-                })
-                return
-            }
+                    if error != nil{
+                        
+                        dispatch_async( dispatch_get_main_queue(),{
+                            let alert = UIAlertController(title: "ERROR", message:"Network Connection Lost", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                            UIViewController.topMostController().presentViewController(alert, animated: true){}
+                        })
+                        return
+                    }
             
         }
         
-            task.resume();
-        })
+        task.resume()
+        
 
     }
     override func viewDidAppear(animated: Bool)
@@ -219,14 +229,25 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     func countryTap(sender: UITapGestureRecognizer? = nil) {
         
         
-        let isoCode = NSUserDefaults.standardUserDefaults().objectForKey("ISOCode") as! String
+        let curCountry = NSUserDefaults.standardUserDefaults().objectForKey("country") as? String
         
-        pickerView.selectRow(pickCountryCode.indexOf(isoCode)!, inComponent: 0, animated: true)
-        txtSelectCountry.becomeFirstResponder()
-        lblCountrySelect.text = pickOption[pickCountryCode.indexOf(isoCode)!]
-       
-        lblCountCode.text =  prefixCodes.valueForKey(isoCode) as? String
-        lblConfirmCode.text = prefixCodes.valueForKey(isoCode) as? String
+        if(curCountry != nil)
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+               
+                
+                self.pickerView.selectRow(self.pickOption.indexOf(curCountry!)!, inComponent: 0, animated: true)
+                self.txtSelectCountry.becomeFirstResponder()
+                self.lblCountrySelect.text = curCountry
+                self.lblCountCode.text =  self.prefixCodes.valueForKey(curCountry!) as? String
+                self.lblConfirmCode.text = self.prefixCodes.valueForKey(curCountry!) as? String
+                
+                
+            })
+            
+        }
+        
+        
         
     }
     
@@ -265,54 +286,142 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     @IBAction func signup(sender: AnyObject) {
         
         
-        if passMatch == true && verPassword == true
+        if verPassword == false
         {
+            validatePassword(txtPassword)
+            return
+        }
+        
+        if passMatch == false
+        {
+            matchPass(txtConfirmPass)
+            return
+            
+        }
+        
+        if accepted == false
+        {
+            dispatch_async( dispatch_get_main_queue(),{
+                let alert = UIAlertController(title: "ERROR", message:"You have to accept terms and conditions to register", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                UIViewController.topMostController().presentViewController(alert, animated: true){}
+            })
+            
+            return
+        }
+        
+        
+
             appDel?.profile.currentcountry = lblCountrySelect.text!
             appDel?.profile.cellphone = lblCountCode.text! + txtNumber.text!
             appDel?.profile.password = txtPassword.text
             appDel?.profile.terms = accepted
             
             let url = appDel?.services.signUp()
-            let json :[String : AnyObject] = ["password":(appDel?.profile.password)!,
-                "firstname":(appDel?.profile.firstname)!,
-                "lastname":(appDel?.profile.lastname)!,
-                "cellphone":(appDel?.profile.cellphone)!,
-                "email":(appDel?.profile.email)!,
-                "currentcountry":(appDel?.profile.currentcountry)!,
-                "birthdate":(appDel?.profile.birthdate)!,
-                "gender":(appDel?.profile.gender)!,
-                "terms":(appDel?.profile.terms)!]
+        
+        let json :[String : AnyObject]?
+
+        if txtNumber.text != ""
+        {
+            if phoneMatch == false{
+                
+                dispatch_async( dispatch_get_main_queue(),{
+                    let alert = UIAlertController(title: "ERROR", message:"You have to accept terms and conditions to register", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                    UIViewController.topMostController().presentViewController(alert, animated: true){}
+                })
+                
+                return
+            }
             
-            let request = appDel?.httpRequest.getRequest(url!, body: json,method: "POST")
+            
+            json = ["password":(appDel?.profile.password)!,
+                                              "firstname":(appDel?.profile.firstname)!,
+                                              "lastname":(appDel?.profile.lastname)!,
+                                              "cellphone":(appDel?.profile.cellphone)!,
+                                              "email":(appDel?.profile.email)!,
+                                              "currentcountry":(appDel?.profile.currentcountry)!,
+                                              "birthdate":(appDel?.profile.birthdate)!,
+                                              "gender":(appDel?.profile.gender)!,
+                                              "terms":(appDel?.profile.terms)!]
+
+            
+        }else{
+            
+             json  = ["password":(appDel?.profile.password)!,
+                                              "firstname":(appDel?.profile.firstname)!,
+                                              "lastname":(appDel?.profile.lastname)!,
+                                              "email":(appDel?.profile.email)!,
+                                              "currentcountry":(appDel?.profile.currentcountry)!,
+                                              "birthdate":(appDel?.profile.birthdate)!,
+                                              "gender":(appDel?.profile.gender)!,
+                                              "terms":(appDel?.profile.terms)!]
+
+            
+        }
+        
+            let request = appDel?.httpRequest.getRequest(url!, body: json!,method: "POST")
+            
+            let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("popover")
+            
+            self.providesPresentationContextTransitionStyle = true;
+            self.definesPresentationContext = true;
+            self.presentViewController(popoverVC!, animated: false, completion: nil)
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request!){ data, response, error in
                 
+                dispatch_async(dispatch_get_main_queue(),{
+                popoverVC?.dismissViewControllerAnimated(false, completion: {
                 if let httpResponse = response as? NSHTTPURLResponse {
                     
                     let code = httpResponse.statusCode
                     print(code)
                     if code == 200
                     {
-                        print(response!.valueForKey("username"))
+                     
+                            
+                            let defaults = NSUserDefaults.standardUserDefaults()
+                            defaults.setObject(self.appDel!.profile.email, forKey: "email")
+                            
+                            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                            let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("versignup")
+                            
+                            dispatch_async(dispatch_get_main_queue(),{
+                            
+                                UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
+                                
+                            
+                            })
+                            
                         
-                        let defaults = NSUserDefaults.standardUserDefaults()
-                        defaults.setObject(response!.valueForKey("email") as! String, forKey: "email")
+
                         
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("versignup")
-                        UIViewController.topMostController().presentViewController(nextViewController, animated:true, completion:nil)
                         
-                    }else if code == 406
+                    }else if code == 409
                     {
-                        print("Unsupported request")
-                    }else if code == 400
-                    {
-                        print("bad request")
-                    }else if code == 401
-                    {
-                        print("Unauthorized")
-                    }else if code == 404
-                    {
+                        if self.txtNumber.text != ""
+                        {
+                            defer {
+                                dispatch_async( dispatch_get_main_queue(),{
+                                    let alert = UIAlertController(title: "Error", message:"please make sure you have not used the email on Yokoos before,and also verify your number", preferredStyle: .Alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                                    UIViewController.topMostController().presentViewController(alert, animated: true){}
+                                })
+                            }
+                        }
+                        else
+                        {
+                            defer {
+                                dispatch_async( dispatch_get_main_queue(),{
+                                    let alert = UIAlertController(title: "Error", message:"please make sure you have not used the email on Yokoos before", preferredStyle: .Alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: .Default) { _ in })
+                                    UIViewController.topMostController().presentViewController(alert, animated: true){}
+                                })
+                            }
+                        }
                         
+                        
+                    }else
+                    {
                         defer {
                             dispatch_async( dispatch_get_main_queue(),{
                                 let alert = UIAlertController(title: "ERROR", message:"We couldnt complete your request,please try again", preferredStyle: .Alert)
@@ -320,7 +429,6 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
                                 UIViewController.topMostController().presentViewController(alert, animated: true){}
                             })
                         }
-                        
                     }
 
                     
@@ -334,20 +442,11 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
                     print(error)
                     return
                 }
-                
+                })})
             }
             
             task.resume()
             
-        }else if verPassword == false
-        {
-            validatePassword(txtPassword)
-            
-        }else if passMatch == false
-        {
-            matchPass(txtConfirmPass)
-        }
-        
         
         
     }
@@ -387,10 +486,11 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         
-        lblCountrySelect.text = pickOption[row]
-        let code = pickCountryCode[row] 
-        lblCountCode.text = prefixCodes.valueForKey(code ) as? String
-      lblConfirmCode.text =  prefixCodes.valueForKey(code ) as? String
+        
+        let cntName = pickOption[row]
+        lblCountrySelect.text = cntName
+        lblCountCode.text = prefixCodes.valueForKey(cntName ) as? String
+        lblConfirmCode.text =  prefixCodes.valueForKey(cntName ) as? String
         
         
     }
@@ -412,10 +512,17 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
     }
     @IBAction func enterNumber(sender: AnyObject) {
         
-        
+        appDel?.profile.cellphone = txtNumber.text
         
     }
     
+    @IBAction func matchNumbers(sender: AnyObject) {
+        
+        
+        if txtNumber.text == txtConfirmNum.text {
+            phoneMatch = true
+        }
+    }
     @IBAction func validatePassword(sender: UITextField) {
         
         let txt = sender.text
