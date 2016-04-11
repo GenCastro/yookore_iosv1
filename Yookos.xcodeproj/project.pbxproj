@@ -195,8 +195,6 @@
 		16FDB09B1CBBBD1A002A1B95 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		16FDB09C1CBBBD1A002A1B95 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		16FDB09D1CBBBD1A002A1B95 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		18F7323F044CE80A1E97F6E3 /* Pods-Yookos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yookos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yookos/Pods-Yookos.release.xcconfig"; sourceTree = "<group>"; };
-		4280A15C7914F819D00050C2 /* Pods-Yookos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yookos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yookos/Pods-Yookos.debug.xcconfig"; sourceTree = "<group>"; };
 		5D82EBAB7DDA2AA1C153258F /* Pods_Yookos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yookos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -477,8 +475,6 @@
 		C64292827EA617D4C27C7430 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4280A15C7914F819D00050C2 /* Pods-Yookos.debug.xcconfig */,
-				18F7323F044CE80A1E97F6E3 /* Pods-Yookos.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -990,7 +986,6 @@
 		};
 		1637F3CE1C7EF76C00B43327 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4280A15C7914F819D00050C2 /* Pods-Yookos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1018,7 +1013,6 @@
 		};
 		1637F3CF1C7EF76C00B43327 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18F7323F044CE80A1E97F6E3 /* Pods-Yookos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
