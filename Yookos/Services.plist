@@ -10,6 +10,8 @@
 		<string>https://countryservice.yookos.com/api/v1/countryservice/</string>
 		<key>uas</key>
 		<string>https://uas.yookos.com</string>
+		<key>socialgraph</key>
+		<string>https://socialgraph.yookos.com</string>
 	</dict>
 </dict>
 </plist>

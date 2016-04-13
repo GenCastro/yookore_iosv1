@@ -1,0 +1,117 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "Profile"
+provides-nominal:
+- "C6Yookos7Profile"
+provides-member:
+- ["C6Yookos7Profile", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "NSTimeInterval"
+- "String"
+- "BooleanLiteralType"
+- "Bool"
+- "Profile"
+- "Int64"
+- "StringLiteralType"
+depends-member:
+- ["PSs9AnyObject", ""]
+- ["Sq", "deinit"]
+- ["C6Yookos7Profile", "Bool"]
+- ["C6Yookos7Profile", "Int64"]
+- ["C6Yookos7Profile", "NSTimeInterval"]
+- ["C6Yookos7Profile", "String"]
+- ["C6Yookos7Profile", "access_token"]
+- ["C6Yookos7Profile", "birthdate"]
+- ["C6Yookos7Profile", "cellphone"]
+- ["C6Yookos7Profile", "currentcountry"]
+- ["C6Yookos7Profile", "dateOfBirth"]
+- ["C6Yookos7Profile", "day"]
+- ["C6Yookos7Profile", "deinit"]
+- ["C6Yookos7Profile", "email"]
+- ["C6Yookos7Profile", "emailMatch"]
+- ["C6Yookos7Profile", "emailVer"]
+- ["C6Yookos7Profile", "externalId"]
+- ["C6Yookos7Profile", "firstname"]
+- ["C6Yookos7Profile", "fullname"]
+- ["C6Yookos7Profile", "gender"]
+- ["C6Yookos7Profile", "init"]
+- ["C6Yookos7Profile", "lastname"]
+- ["C6Yookos7Profile", "lastnameVer"]
+- ["C6Yookos7Profile", "month"]
+- ["C6Yookos7Profile", "nameVer"]
+- ["C6Yookos7Profile", "password"]
+- ["C6Yookos7Profile", "profileUrl"]
+- ["C6Yookos7Profile", "refresh_token"]
+- ["C6Yookos7Profile", "sessionID"]
+- ["C6Yookos7Profile", "terms"]
+- ["C6Yookos7Profile", "token_expiry"]
+- ["C6Yookos7Profile", "userid"]
+- ["C6Yookos7Profile", "username"]
+- ["C6Yookos7Profile", "year"]
+depends-nominal:
+- "PSs9AnyObject"
+- "Sq"
+- "C6Yookos7Profile"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Swift.swiftmodule"
+- "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/FBBridging-Header.h"
+- "./Bolts.framework/Headers/BFWebViewAppLinkResolver.h"
+- "./Bolts.framework/Headers/BFURL.h"
+- "./Bolts.framework/Headers/BFMeasurementEvent.h"
+- "./Bolts.framework/Headers/BFAppLinkTarget.h"
+- "./Bolts.framework/Headers/BFAppLinkReturnToRefererView.h"
+- "./Bolts.framework/Headers/BFAppLinkReturnToRefererController.h"
+- "./Bolts.framework/Headers/BFAppLinkResolving.h"
+- "./Bolts.framework/Headers/BFAppLinkNavigation.h"
+- "./Bolts.framework/Headers/BFAppLink.h"
+- "./Bolts.framework/Headers/BFTaskCompletionSource.h"
+- "./Bolts.framework/Headers/BFTask.h"
+- "./Bolts.framework/Headers/BFExecutor.h"
+- "./Bolts.framework/Headers/BFCancellationTokenSource.h"
+- "./Bolts.framework/Headers/BFCancellationTokenRegistration.h"
+- "./Bolts.framework/Headers/BFCancellationToken.h"
+- "./Bolts.framework/Headers/BoltsVersion.h"
+- "./Bolts.framework/Headers/Bolts.h"
+- "./Bolts.framework/Modules/module.modulemap"
+- "./FBSDKCoreKit.framework/Headers/FBSDKProfilePictureView.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKProfile.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKMutableCopying.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphErrorRecoveryProcessor.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAppLinkUtility.h"
+- "/Users/zwelithinimathebula/Documents/Project/Yookos/Bolts.framework/Modules/module.modulemap"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAppLinkResolver.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKUtility.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKTestUsersManager.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKSettings.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphRequestDataAttachment.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphRequest.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKConstants.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKButton.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKApplicationDelegate.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAppEvents.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKMacros.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphRequestConnection.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKCopying.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAccessToken.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKCoreKit.h"
+- "./FBSDKCoreKit.framework/Modules/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreImage.swiftmodule"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginTooltipView.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginManagerLoginResult.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginConstants.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKTooltipView.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginManager.h"
+- "/Users/zwelithinimathebula/Documents/Project/Yookos/FBSDKCoreKit.framework/Modules/module.modulemap"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginButton.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginKit.h"
+- "./FBSDKLoginKit.framework/Modules/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreLocation.swiftmodule"
+interface-hash: "f74202e63979ccb2a05df388a467aa4c"

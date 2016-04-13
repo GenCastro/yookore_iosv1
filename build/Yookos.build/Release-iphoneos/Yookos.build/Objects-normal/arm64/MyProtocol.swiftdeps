@@ -1,0 +1,251 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "MyProtocol"
+provides-nominal:
+- "C6Yookos10MyProtocol"
+provides-member:
+- ["C6Yookos10MyProtocol", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "StringLiteralType"
+- !private "AppDelegate"
+- "VerificationView"
+- "MyProtocol"
+- "LoginViewController"
+- !private "=="
+- "Int"
+- "AnyObject"
+- "LoginTerms"
+- "SignUpViewController"
+- "String"
+- "SignUpStepTwoView"
+depends-member:
+- !private ["PSs9AnyObject", "AppDelegate"]
+- !private ["PSs9AnyObject", "LoginTerms"]
+- !private ["PSs9AnyObject", "LoginViewController"]
+- !private ["PSs9AnyObject", "SignUpStepTwoView"]
+- !private ["PSs9AnyObject", "SignUpViewController"]
+- !private ["PSs9AnyObject", "VerificationView"]
+- !private ["PSs9AnyObject", "init"]
+- !private ["PSs9AnyObject", "login"]
+- !private ["PSs9AnyObject", "loginTerms"]
+- !private ["PSs9AnyObject", "receiveRequest"]
+- !private ["PSs9AnyObject", "receiveResponse"]
+- !private ["PSs9AnyObject", "sharedFunction"]
+- !private ["PSs9AnyObject", "signup"]
+- !private ["PSs9AnyObject", "signup2"]
+- !private ["PSs9AnyObject", "verify"]
+- ["PSs9AnyObject", ""]
+- !private ["C6Yookos11AppDelegate", "init"]
+- !private ["C6Yookos11AppDelegate", "receiveResponse"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["PSs25BooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs11BooleanType", "_getBuiltinLogicValue"]
+- !private ["PSs11CVarArgType", "init"]
+- !private ["PSs11CVarArgType", "receiveRequest"]
+- !private ["PSs11CVarArgType", "receiveResponse"]
+- !private ["PSs11CVarArgType", "sharedFunction"]
+- !private ["PSs23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs23CustomStringConvertible", "init"]
+- !private ["PSs23CustomStringConvertible", "receiveRequest"]
+- !private ["PSs23CustomStringConvertible", "receiveResponse"]
+- !private ["PSs23CustomStringConvertible", "sharedFunction"]
+- !private ["PSs9Equatable", "_getBuiltinLogicValue"]
+- !private ["PSs9Equatable", "init"]
+- !private ["PSs9Equatable", "receiveRequest"]
+- !private ["PSs9Equatable", "receiveResponse"]
+- !private ["PSs9Equatable", "sharedFunction"]
+- !private ["PSo24FBSDKLoginButtonDelegate", "init"]
+- !private ["PSo24FBSDKLoginButtonDelegate", "sharedFunction"]
+- !private ["PSs8Hashable", "_getBuiltinLogicValue"]
+- !private ["PSs8Hashable", "init"]
+- !private ["PSs8Hashable", "receiveRequest"]
+- !private ["PSs8Hashable", "receiveResponse"]
+- !private ["PSs8Hashable", "sharedFunction"]
+- !private ["C6Yookos10LoginTerms", "init"]
+- !private ["C6Yookos10LoginTerms", "receiveResponse"]
+- !private ["C6Yookos19LoginViewController", "init"]
+- !private ["C6Yookos19LoginViewController", "sharedFunction"]
+- ["C6Yookos10MyProtocol", "AnyObject"]
+- !private ["C6Yookos10MyProtocol", "AppDelegate"]
+- ["C6Yookos10MyProtocol", "Int"]
+- ["C6Yookos10MyProtocol", "LoginTerms"]
+- ["C6Yookos10MyProtocol", "LoginViewController"]
+- ["C6Yookos10MyProtocol", "SignUpStepTwoView"]
+- ["C6Yookos10MyProtocol", "SignUpViewController"]
+- ["C6Yookos10MyProtocol", "String"]
+- ["C6Yookos10MyProtocol", "VerificationView"]
+- ["C6Yookos10MyProtocol", "deinit"]
+- ["C6Yookos10MyProtocol", "getRequestFinished"]
+- ["C6Yookos10MyProtocol", "init"]
+- ["C6Yookos10MyProtocol", "login"]
+- ["C6Yookos10MyProtocol", "loginTerms"]
+- ["C6Yookos10MyProtocol", "postRequestFinished"]
+- ["C6Yookos10MyProtocol", "putRequestFinished"]
+- ["C6Yookos10MyProtocol", "signup"]
+- ["C6Yookos10MyProtocol", "signup2"]
+- ["C6Yookos10MyProtocol", "verify"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo8NSCoding", "receiveRequest"]
+- !private ["PSo8NSCoding", "receiveResponse"]
+- !private ["PSo8NSCoding", "sharedFunction"]
+- !private ["PSo26NSExtensionRequestHandling", "init"]
+- !private ["PSo26NSExtensionRequestHandling", "receiveRequest"]
+- !private ["PSo26NSExtensionRequestHandling", "receiveResponse"]
+- !private ["PSo26NSExtensionRequestHandling", "sharedFunction"]
+- !private ["CSo8NSObject", "init"]
+- !private ["CSo8NSObject", "receiveRequest"]
+- !private ["CSo8NSObject", "receiveResponse"]
+- !private ["CSo8NSObject", "sharedFunction"]
+- !private ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "receiveRequest"]
+- !private ["PSo16NSObjectProtocol", "receiveResponse"]
+- !private ["PSo16NSObjectProtocol", "sharedFunction"]
+- !private ["C6Yookos17SignUpStepTwoView", "init"]
+- !private ["C6Yookos17SignUpStepTwoView", "receiveRequest"]
+- !private ["C6Yookos20SignUpViewController", "init"]
+- !private ["C6Yookos20SignUpViewController", "receiveRequest"]
+- !private ["PSo21UIAppearanceContainer", "init"]
+- !private ["PSo21UIAppearanceContainer", "receiveRequest"]
+- !private ["PSo21UIAppearanceContainer", "receiveResponse"]
+- !private ["PSo21UIAppearanceContainer", "sharedFunction"]
+- !private ["PSo21UIApplicationDelegate", "init"]
+- !private ["PSo21UIApplicationDelegate", "receiveResponse"]
+- !private ["PSo18UIContentContainer", "init"]
+- !private ["PSo18UIContentContainer", "receiveRequest"]
+- !private ["PSo18UIContentContainer", "receiveResponse"]
+- !private ["PSo18UIContentContainer", "sharedFunction"]
+- !private ["PSo18UIFocusEnvironment", "init"]
+- !private ["PSo18UIFocusEnvironment", "receiveRequest"]
+- !private ["PSo18UIFocusEnvironment", "receiveResponse"]
+- !private ["PSo18UIFocusEnvironment", "sharedFunction"]
+- !private ["PSo27UIGestureRecognizerDelegate", "init"]
+- !private ["PSo27UIGestureRecognizerDelegate", "receiveRequest"]
+- !private ["PSo22UIPickerViewDataSource", "init"]
+- !private ["PSo22UIPickerViewDataSource", "receiveRequest"]
+- !private ["PSo20UIPickerViewDelegate", "init"]
+- !private ["PSo20UIPickerViewDelegate", "receiveRequest"]
+- !private ["CSo11UIResponder", "init"]
+- !private ["CSo11UIResponder", "receiveRequest"]
+- !private ["CSo11UIResponder", "receiveResponse"]
+- !private ["CSo11UIResponder", "sharedFunction"]
+- !private ["PSo20UIScrollViewDelegate", "init"]
+- !private ["PSo20UIScrollViewDelegate", "receiveRequest"]
+- !private ["PSo16UIStateRestoring", "init"]
+- !private ["PSo16UIStateRestoring", "receiveRequest"]
+- !private ["PSo16UIStateRestoring", "receiveResponse"]
+- !private ["PSo16UIStateRestoring", "sharedFunction"]
+- !private ["PSo19UITextFieldDelegate", "init"]
+- !private ["PSo19UITextFieldDelegate", "receiveRequest"]
+- !private ["PSo18UITraitEnvironment", "init"]
+- !private ["PSo18UITraitEnvironment", "receiveRequest"]
+- !private ["PSo18UITraitEnvironment", "receiveResponse"]
+- !private ["PSo18UITraitEnvironment", "sharedFunction"]
+- !private ["CSo16UIViewController", "init"]
+- !private ["CSo16UIViewController", "receiveRequest"]
+- !private ["CSo16UIViewController", "receiveResponse"]
+- !private ["CSo16UIViewController", "sharedFunction"]
+- !private ["C6Yookos16VerificationView", "init"]
+- !private ["C6Yookos16VerificationView", "receiveResponse"]
+- !private ["PSs33_BuiltinBooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["PSs12_Reflectable", "_getBuiltinLogicValue"]
+depends-nominal:
+- "PSs9AnyObject"
+- !private "C6Yookos11AppDelegate"
+- !private "Sb"
+- !private "PSs25BooleanLiteralConvertible"
+- !private "PSs11BooleanType"
+- !private "PSs11CVarArgType"
+- !private "PSs23CustomStringConvertible"
+- !private "PSs9Equatable"
+- !private "PSo24FBSDKLoginButtonDelegate"
+- !private "PSs8Hashable"
+- !private "C6Yookos10LoginTerms"
+- !private "C6Yookos19LoginViewController"
+- "C6Yookos10MyProtocol"
+- !private "PSo8NSCoding"
+- !private "PSo26NSExtensionRequestHandling"
+- !private "CSo8NSObject"
+- !private "PSo16NSObjectProtocol"
+- !private "C6Yookos17SignUpStepTwoView"
+- !private "C6Yookos20SignUpViewController"
+- !private "PSo21UIAppearanceContainer"
+- !private "PSo21UIApplicationDelegate"
+- !private "PSo18UIContentContainer"
+- !private "PSo18UIFocusEnvironment"
+- !private "PSo27UIGestureRecognizerDelegate"
+- !private "PSo22UIPickerViewDataSource"
+- !private "PSo20UIPickerViewDelegate"
+- !private "CSo11UIResponder"
+- !private "PSo20UIScrollViewDelegate"
+- !private "PSo16UIStateRestoring"
+- !private "PSo19UITextFieldDelegate"
+- !private "PSo18UITraitEnvironment"
+- !private "CSo16UIViewController"
+- !private "C6Yookos16VerificationView"
+- !private "PSs33_BuiltinBooleanLiteralConvertible"
+- !private "PSs21_ObjectiveCBridgeable"
+- !private "PSs12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Swift.swiftmodule"
+- "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/FBBridging-Header.h"
+- "./Bolts.framework/Headers/BFWebViewAppLinkResolver.h"
+- "./Bolts.framework/Headers/BFURL.h"
+- "./Bolts.framework/Headers/BFMeasurementEvent.h"
+- "./Bolts.framework/Headers/BFAppLinkTarget.h"
+- "./Bolts.framework/Headers/BFAppLinkReturnToRefererView.h"
+- "./Bolts.framework/Headers/BFAppLinkReturnToRefererController.h"
+- "./Bolts.framework/Headers/BFAppLinkResolving.h"
+- "./Bolts.framework/Headers/BFAppLinkNavigation.h"
+- "./Bolts.framework/Headers/BFAppLink.h"
+- "./Bolts.framework/Headers/BFTaskCompletionSource.h"
+- "./Bolts.framework/Headers/BFTask.h"
+- "./Bolts.framework/Headers/BFExecutor.h"
+- "./Bolts.framework/Headers/BFCancellationTokenSource.h"
+- "./Bolts.framework/Headers/BFCancellationTokenRegistration.h"
+- "./Bolts.framework/Headers/BFCancellationToken.h"
+- "./Bolts.framework/Headers/BoltsVersion.h"
+- "./Bolts.framework/Headers/Bolts.h"
+- "./Bolts.framework/Modules/module.modulemap"
+- "./FBSDKCoreKit.framework/Headers/FBSDKProfilePictureView.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKProfile.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKMutableCopying.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphErrorRecoveryProcessor.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAppLinkUtility.h"
+- "/Users/zwelithinimathebula/Documents/Project/Yookos/Bolts.framework/Modules/module.modulemap"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAppLinkResolver.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKUtility.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKTestUsersManager.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKSettings.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphRequestDataAttachment.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphRequest.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKConstants.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKButton.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKApplicationDelegate.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAppEvents.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKMacros.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphRequestConnection.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKCopying.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAccessToken.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKCoreKit.h"
+- "./FBSDKCoreKit.framework/Modules/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreImage.swiftmodule"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginTooltipView.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginManagerLoginResult.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginConstants.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKTooltipView.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginManager.h"
+- "/Users/zwelithinimathebula/Documents/Project/Yookos/FBSDKCoreKit.framework/Modules/module.modulemap"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginButton.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginKit.h"
+- "./FBSDKLoginKit.framework/Modules/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreLocation.swiftmodule"
+interface-hash: "cc3438f9162f23006bf6acba540233ed"

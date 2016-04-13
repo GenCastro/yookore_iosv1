@@ -1,0 +1,327 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "HttpRequest"
+provides-nominal:
+- "C6Yookos11HttpRequest"
+provides-member:
+- ["C6Yookos11HttpRequest", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "=="
+- !private "Void"
+- "HttpRequest"
+- !private "NSMutableURLRequest"
+- !private "NSHTTPURLResponse"
+- !private "MyProtocol"
+- !private "+"
+- !private "StringLiteralType"
+- !private "NSJSONSerialization"
+- !private "print"
+- !private "NSURLSession"
+- !private "UIApplication"
+- "AppDelegate"
+- "AnyObject"
+- !private "NSURLSessionConfiguration"
+- !private "!="
+- "NSURL"
+- "String"
+depends-member:
+- !private ["PSs9AnyObject", "HTTPBody"]
+- !private ["PSs9AnyObject", "HTTPMethod"]
+- !private ["PSs9AnyObject", "MyProtocol"]
+- !private ["PSs9AnyObject", "NSJSONSerialization"]
+- !private ["PSs9AnyObject", "NSMutableURLRequest"]
+- !private ["PSs9AnyObject", "NSURLSession"]
+- !private ["PSs9AnyObject", "NSURLSessionConfiguration"]
+- !private ["PSs9AnyObject", "UIApplication"]
+- !private ["PSs9AnyObject", "addValue"]
+- !private ["PSs9AnyObject", "appDel"]
+- !private ["PSs9AnyObject", "dataTaskWithRequest"]
+- !private ["PSs9AnyObject", "dataWithJSONObject"]
+- !private ["PSs9AnyObject", "defaultSessionConfiguration"]
+- !private ["PSs9AnyObject", "delegate"]
+- !private ["PSs9AnyObject", "getRequestFinished"]
+- !private ["PSs9AnyObject", "getToken"]
+- !private ["PSs9AnyObject", "init"]
+- !private ["PSs9AnyObject", "postRequestFinished"]
+- !private ["PSs9AnyObject", "print"]
+- !private ["PSs9AnyObject", "putRequestFinished"]
+- !private ["PSs9AnyObject", "resume"]
+- !private ["PSs9AnyObject", "services"]
+- !private ["PSs9AnyObject", "sharedApplication"]
+- !private ["PSs9AnyObject", "sharedSession"]
+- !private ["PSs9AnyObject", "statusCode"]
+- ["PSs9AnyObject", ""]
+- !private ["C6Yookos11AppDelegate", "services"]
+- !private ["PSs23ArrayLiteralConvertible", "PrettyPrinted"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["PSs25BooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs11BooleanType", "_getBuiltinLogicValue"]
+- !private ["PSs11CVarArgType", "HTTPBody"]
+- !private ["PSs11CVarArgType", "HTTPMethod"]
+- !private ["PSs11CVarArgType", "addValue"]
+- !private ["PSs11CVarArgType", "dataTaskWithRequest"]
+- !private ["PSs11CVarArgType", "dataWithJSONObject"]
+- !private ["PSs11CVarArgType", "defaultSessionConfiguration"]
+- !private ["PSs11CVarArgType", "delegate"]
+- !private ["PSs11CVarArgType", "init"]
+- !private ["PSs11CVarArgType", "resume"]
+- !private ["PSs11CVarArgType", "services"]
+- !private ["PSs11CVarArgType", "sharedApplication"]
+- !private ["PSs11CVarArgType", "sharedSession"]
+- !private ["PSs11CVarArgType", "statusCode"]
+- !private ["PSs28CustomDebugStringConvertible", "Some"]
+- !private ["PSs23CustomStringConvertible", "HTTPBody"]
+- !private ["PSs23CustomStringConvertible", "HTTPMethod"]
+- !private ["PSs23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs23CustomStringConvertible", "addValue"]
+- !private ["PSs23CustomStringConvertible", "dataTaskWithRequest"]
+- !private ["PSs23CustomStringConvertible", "dataWithJSONObject"]
+- !private ["PSs23CustomStringConvertible", "defaultSessionConfiguration"]
+- !private ["PSs23CustomStringConvertible", "delegate"]
+- !private ["PSs23CustomStringConvertible", "init"]
+- !private ["PSs23CustomStringConvertible", "resume"]
+- !private ["PSs23CustomStringConvertible", "services"]
+- !private ["PSs23CustomStringConvertible", "sharedApplication"]
+- !private ["PSs23CustomStringConvertible", "sharedSession"]
+- !private ["PSs23CustomStringConvertible", "statusCode"]
+- !private ["PSs9Equatable", "HTTPBody"]
+- !private ["PSs9Equatable", "HTTPMethod"]
+- !private ["PSs9Equatable", "PrettyPrinted"]
+- !private ["PSs9Equatable", "_getBuiltinLogicValue"]
+- !private ["PSs9Equatable", "addValue"]
+- !private ["PSs9Equatable", "dataTaskWithRequest"]
+- !private ["PSs9Equatable", "dataWithJSONObject"]
+- !private ["PSs9Equatable", "defaultSessionConfiguration"]
+- !private ["PSs9Equatable", "delegate"]
+- !private ["PSs9Equatable", "init"]
+- !private ["PSs9Equatable", "resume"]
+- !private ["PSs9Equatable", "services"]
+- !private ["PSs9Equatable", "sharedApplication"]
+- !private ["PSs9Equatable", "sharedSession"]
+- !private ["PSs9Equatable", "statusCode"]
+- !private ["PSs8Hashable", "HTTPBody"]
+- !private ["PSs8Hashable", "HTTPMethod"]
+- !private ["PSs8Hashable", "_getBuiltinLogicValue"]
+- !private ["PSs8Hashable", "addValue"]
+- !private ["PSs8Hashable", "dataTaskWithRequest"]
+- !private ["PSs8Hashable", "dataWithJSONObject"]
+- !private ["PSs8Hashable", "defaultSessionConfiguration"]
+- !private ["PSs8Hashable", "delegate"]
+- !private ["PSs8Hashable", "init"]
+- !private ["PSs8Hashable", "resume"]
+- !private ["PSs8Hashable", "services"]
+- !private ["PSs8Hashable", "sharedApplication"]
+- !private ["PSs8Hashable", "sharedSession"]
+- !private ["PSs8Hashable", "statusCode"]
+- ["C6Yookos11HttpRequest", "AnyObject"]
+- ["C6Yookos11HttpRequest", "AppDelegate"]
+- !private ["C6Yookos11HttpRequest", "MyProtocol"]
+- !private ["C6Yookos11HttpRequest", "NSHTTPURLResponse"]
+- !private ["C6Yookos11HttpRequest", "NSJSONSerialization"]
+- !private ["C6Yookos11HttpRequest", "NSMutableURLRequest"]
+- ["C6Yookos11HttpRequest", "NSURL"]
+- !private ["C6Yookos11HttpRequest", "NSURLSession"]
+- !private ["C6Yookos11HttpRequest", "NSURLSessionConfiguration"]
+- ["C6Yookos11HttpRequest", "String"]
+- !private ["C6Yookos11HttpRequest", "UIApplication"]
+- !private ["C6Yookos11HttpRequest", "Void"]
+- ["C6Yookos11HttpRequest", "appDel"]
+- ["C6Yookos11HttpRequest", "deinit"]
+- ["C6Yookos11HttpRequest", "init"]
+- ["C6Yookos11HttpRequest", "makeGetRequest"]
+- ["C6Yookos11HttpRequest", "makePostRequest"]
+- ["C6Yookos11HttpRequest", "makePutRequest"]
+- !private ["C6Yookos11HttpRequest", "print"]
+- !private ["C6Yookos10MyProtocol", "getRequestFinished"]
+- !private ["C6Yookos10MyProtocol", "init"]
+- !private ["C6Yookos10MyProtocol", "postRequestFinished"]
+- !private ["C6Yookos10MyProtocol", "putRequestFinished"]
+- !private ["PSo8NSCoding", "HTTPBody"]
+- !private ["PSo8NSCoding", "HTTPMethod"]
+- !private ["PSo8NSCoding", "addValue"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo8NSCoding", "statusCode"]
+- !private ["PSo9NSCopying", "HTTPBody"]
+- !private ["PSo9NSCopying", "HTTPMethod"]
+- !private ["PSo9NSCopying", "addValue"]
+- !private ["PSo9NSCopying", "defaultSessionConfiguration"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["PSo9NSCopying", "resume"]
+- !private ["PSo9NSCopying", "statusCode"]
+- !private ["CSo17NSHTTPURLResponse", "statusCode"]
+- !private ["CSo19NSJSONSerialization", "dataWithJSONObject"]
+- !private ["VSC20NSJSONWritingOptions", "PrettyPrinted"]
+- !private ["PSo16NSMutableCopying", "HTTPBody"]
+- !private ["PSo16NSMutableCopying", "HTTPMethod"]
+- !private ["PSo16NSMutableCopying", "addValue"]
+- !private ["PSo16NSMutableCopying", "init"]
+- !private ["CSo19NSMutableURLRequest", "HTTPBody"]
+- !private ["CSo19NSMutableURLRequest", "HTTPMethod"]
+- !private ["CSo19NSMutableURLRequest", "addValue"]
+- !private ["CSo19NSMutableURLRequest", "init"]
+- !private ["CSo8NSObject", "HTTPBody"]
+- !private ["CSo8NSObject", "HTTPMethod"]
+- !private ["CSo8NSObject", "addValue"]
+- !private ["CSo8NSObject", "dataTaskWithRequest"]
+- !private ["CSo8NSObject", "dataWithJSONObject"]
+- !private ["CSo8NSObject", "defaultSessionConfiguration"]
+- !private ["CSo8NSObject", "delegate"]
+- !private ["CSo8NSObject", "init"]
+- !private ["CSo8NSObject", "resume"]
+- !private ["CSo8NSObject", "services"]
+- !private ["CSo8NSObject", "sharedApplication"]
+- !private ["CSo8NSObject", "sharedSession"]
+- !private ["CSo8NSObject", "statusCode"]
+- !private ["PSo16NSObjectProtocol", "HTTPBody"]
+- !private ["PSo16NSObjectProtocol", "HTTPMethod"]
+- !private ["PSo16NSObjectProtocol", "addValue"]
+- !private ["PSo16NSObjectProtocol", "dataTaskWithRequest"]
+- !private ["PSo16NSObjectProtocol", "dataWithJSONObject"]
+- !private ["PSo16NSObjectProtocol", "defaultSessionConfiguration"]
+- !private ["PSo16NSObjectProtocol", "delegate"]
+- !private ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "resume"]
+- !private ["PSo16NSObjectProtocol", "services"]
+- !private ["PSo16NSObjectProtocol", "sharedApplication"]
+- !private ["PSo16NSObjectProtocol", "sharedSession"]
+- !private ["PSo16NSObjectProtocol", "statusCode"]
+- !private ["PSo14NSSecureCoding", "HTTPBody"]
+- !private ["PSo14NSSecureCoding", "HTTPMethod"]
+- !private ["PSo14NSSecureCoding", "addValue"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["PSo14NSSecureCoding", "statusCode"]
+- !private ["CSo12NSURLRequest", "HTTPBody"]
+- !private ["CSo12NSURLRequest", "HTTPMethod"]
+- !private ["CSo12NSURLRequest", "addValue"]
+- !private ["CSo12NSURLRequest", "init"]
+- !private ["CSo13NSURLResponse", "statusCode"]
+- !private ["CSo12NSURLSession", "dataTaskWithRequest"]
+- !private ["CSo12NSURLSession", "init"]
+- !private ["CSo12NSURLSession", "sharedSession"]
+- !private ["CSo25NSURLSessionConfiguration", "defaultSessionConfiguration"]
+- !private ["CSo20NSURLSessionDataTask", "resume"]
+- !private ["CSo16NSURLSessionTask", "resume"]
+- !private ["PSs21NilLiteralConvertible", "Some"]
+- !private ["PSs13OptionSetType", "PrettyPrinted"]
+- !private ["Sq", "Some"]
+- !private ["Sq", "deinit"]
+- !private ["PSs16RawRepresentable", "PrettyPrinted"]
+- !private ["C6Yookos8Services", "getToken"]
+- !private ["PSs14SetAlgebraType", "PrettyPrinted"]
+- !private ["CSo13UIApplication", "delegate"]
+- !private ["CSo13UIApplication", "sharedApplication"]
+- !private ["PSo21UIApplicationDelegate", "services"]
+- !private ["CSo11UIResponder", "delegate"]
+- !private ["CSo11UIResponder", "services"]
+- !private ["CSo11UIResponder", "sharedApplication"]
+- !private ["PSs33_BuiltinBooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["VSs26_OptionalNilComparisonType", "deinit"]
+- !private ["PSs12_Reflectable", "Some"]
+- !private ["PSs12_Reflectable", "_getBuiltinLogicValue"]
+depends-nominal:
+- "PSs9AnyObject"
+- !private "C6Yookos11AppDelegate"
+- !private "PSs23ArrayLiteralConvertible"
+- !private "Sb"
+- !private "PSs25BooleanLiteralConvertible"
+- !private "PSs11BooleanType"
+- !private "PSs11CVarArgType"
+- !private "PSs28CustomDebugStringConvertible"
+- !private "PSs23CustomStringConvertible"
+- !private "PSs9Equatable"
+- !private "PSs8Hashable"
+- "C6Yookos11HttpRequest"
+- !private "C6Yookos10MyProtocol"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "CSo17NSHTTPURLResponse"
+- !private "CSo19NSJSONSerialization"
+- !private "VSC20NSJSONWritingOptions"
+- !private "PSo16NSMutableCopying"
+- !private "CSo19NSMutableURLRequest"
+- !private "CSo8NSObject"
+- !private "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "CSo12NSURLRequest"
+- !private "CSo13NSURLResponse"
+- !private "CSo12NSURLSession"
+- !private "CSo25NSURLSessionConfiguration"
+- !private "CSo20NSURLSessionDataTask"
+- !private "CSo16NSURLSessionTask"
+- !private "PSs21NilLiteralConvertible"
+- !private "PSs13OptionSetType"
+- !private "Sq"
+- !private "PSs16RawRepresentable"
+- !private "C6Yookos8Services"
+- !private "PSs14SetAlgebraType"
+- !private "CSo13UIApplication"
+- !private "PSo21UIApplicationDelegate"
+- !private "CSo11UIResponder"
+- !private "PSs33_BuiltinBooleanLiteralConvertible"
+- !private "PSs21_ObjectiveCBridgeable"
+- !private "VSs26_OptionalNilComparisonType"
+- !private "PSs12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Swift.swiftmodule"
+- "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/FBBridging-Header.h"
+- "./Bolts.framework/Headers/BFWebViewAppLinkResolver.h"
+- "./Bolts.framework/Headers/BFURL.h"
+- "./Bolts.framework/Headers/BFMeasurementEvent.h"
+- "./Bolts.framework/Headers/BFAppLinkTarget.h"
+- "./Bolts.framework/Headers/BFAppLinkReturnToRefererView.h"
+- "./Bolts.framework/Headers/BFAppLinkReturnToRefererController.h"
+- "./Bolts.framework/Headers/BFAppLinkResolving.h"
+- "./Bolts.framework/Headers/BFAppLinkNavigation.h"
+- "./Bolts.framework/Headers/BFAppLink.h"
+- "./Bolts.framework/Headers/BFTaskCompletionSource.h"
+- "./Bolts.framework/Headers/BFTask.h"
+- "./Bolts.framework/Headers/BFExecutor.h"
+- "./Bolts.framework/Headers/BFCancellationTokenSource.h"
+- "./Bolts.framework/Headers/BFCancellationTokenRegistration.h"
+- "./Bolts.framework/Headers/BFCancellationToken.h"
+- "./Bolts.framework/Headers/BoltsVersion.h"
+- "./Bolts.framework/Headers/Bolts.h"
+- "./Bolts.framework/Modules/module.modulemap"
+- "./FBSDKCoreKit.framework/Headers/FBSDKProfilePictureView.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKProfile.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKMutableCopying.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphErrorRecoveryProcessor.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAppLinkUtility.h"
+- "/Users/zwelithinimathebula/Documents/Project/Yookos/Bolts.framework/Modules/module.modulemap"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAppLinkResolver.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKUtility.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKTestUsersManager.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKSettings.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphRequestDataAttachment.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphRequest.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKConstants.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKButton.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKApplicationDelegate.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAppEvents.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKMacros.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKGraphRequestConnection.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKCopying.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKAccessToken.h"
+- "./FBSDKCoreKit.framework/Headers/FBSDKCoreKit.h"
+- "./FBSDKCoreKit.framework/Modules/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreImage.swiftmodule"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginTooltipView.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginManagerLoginResult.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginConstants.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKTooltipView.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginManager.h"
+- "/Users/zwelithinimathebula/Documents/Project/Yookos/FBSDKCoreKit.framework/Modules/module.modulemap"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginButton.h"
+- "./FBSDKLoginKit.framework/Headers/FBSDKLoginKit.h"
+- "./FBSDKLoginKit.framework/Modules/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreLocation.swiftmodule"
+interface-hash: "88dfc6181949f71815c50755caecbba7"

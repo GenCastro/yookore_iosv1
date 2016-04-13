@@ -52,7 +52,10 @@ class Services {
         return baseUrls?.valueForKey("countryUrls") as! String
     }
     
-    
+    private func getSocialUrl() -> String
+    {
+        return baseUrls?.valueForKey("socialgraph") as! String
+    }
     
     /*888888888888888888888888888888888888888888888888888888888888888888888
  
@@ -160,6 +163,17 @@ class Services {
     internal func loginLegacyUser(username : String) ->NSURL
     {
         return NSURL(string: "http://www.yookos.co.uk/api/core/v3/people/username/" + username+"/")!
+    }
+    
+    /*888888888888888888888888888888888888888888888888888888888888888888888
+     
+     SOCIAL GRAPH URLS
+     
+     88888888888888888888888888888888888888888888888888888888888888888888*/
+    
+    internal func checkRelationship() -> NSURL
+    {
+        return NSURL(string: getSocialUrl()+"/api/v1/friends/status")!
     }
     
 }

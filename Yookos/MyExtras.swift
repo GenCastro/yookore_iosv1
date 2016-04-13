@@ -9,6 +9,7 @@
 class Extras: NSObject {
     
     var cities = [String]()
+    var phoneContacts = NSMutableArray()
     override init
         (){
            

@@ -2,13 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDesrciption</key>
-	<string>Yookos needs to know your location</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Yookos needs your location to works properly</string>
-	<key>privacy - location usage description</key>
-	<string>i need location</string>
-	<key>LSApplicationCategoryType</key>
+	<key></key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en_US</string>
@@ -48,6 +42,8 @@
 	<string>305894549561656</string>
 	<key>FacebookDisplayName</key>
 	<string>Yookos</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -55,8 +51,6 @@
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
-	<key></key>
-	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -64,6 +58,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationAlwaysUsageDesrciption</key>
+	<string>Yookos needs to know your location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Yookos needs your location to works properly</string>
 	<key>Profile</key>
 	<string>login</string>
 	<key>UILaunchStoryboardName</key>
@@ -87,5 +85,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>privacy - location usage description</key>
+	<string>i need location</string>
 </dict>
 </plist>

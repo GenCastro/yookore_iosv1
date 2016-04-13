@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreTelephony
 
 class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate
 {
@@ -511,6 +512,7 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         activeField = sender
     }
     @IBAction func enterNumber(sender: AnyObject) {
+       
         
         appDel?.profile.cellphone = txtNumber.text
         
@@ -522,6 +524,8 @@ class SignUpStepTwoView : UIViewController,UIPickerViewDelegate,UIPickerViewData
         if txtNumber.text == txtConfirmNum.text {
             phoneMatch = true
         }
+        
+        
     }
     @IBAction func validatePassword(sender: UITextField) {
         

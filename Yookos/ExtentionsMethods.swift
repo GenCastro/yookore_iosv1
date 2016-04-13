@@ -165,7 +165,7 @@ class Color {
     
     func titleBarColor() -> UIColor
     {
-        return UIColor(netHex: 0x00BFFF)
+        return UIColor(netHex: 0x03A9F4)
     }
     
     func viewBorderColor() -> CGColor

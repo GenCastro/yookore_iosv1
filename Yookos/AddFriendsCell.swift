@@ -10,7 +10,11 @@ import UIKit
 
 class AddFriendsCell: UITableViewCell {
 
+    @IBOutlet var btnInvite: UIButton!
+    @IBOutlet var imgAvatar: UIImageView!
     
+    @IBOutlet var lblEmail: UILabel!
+    @IBOutlet var lblName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -1,0 +1,22 @@
+version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
+options: "88545dda6ab77b10e56fc7841faf352f"
+build_time: [511613502, 995207000]
+inputs:
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/VerificationView.swift": [511440037, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/FAIcon.swift": [503099688, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/loginViewController.swift": [511440037, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/HelpCentre.swift": [510756345, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/AppDelegate.swift": [511523363, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/MyProtocol.swift": [511451369, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/Services.swift": [511542517, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/Profile.swift": [511606518, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/ViewController.swift": [511538207, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/TermsNConditions.swift": [511345288, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/HttpRequest.swift": [511608186, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/OnBoardingTableVIew.swift": [511000127, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/ExtentionsMethods.swift": [511434682, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/LoginTerms.swift": [511345288, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/LocationManager.swift": [511364641, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/OnboardingCell.swift": [510911105, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/SignUpStepTwoView.swift": [511532718, 0]
+  "/Users/zwelithinimathebula/Documents/Project/Yookos/Yookos/SignUpViewController.swift": [511613316, 0]
